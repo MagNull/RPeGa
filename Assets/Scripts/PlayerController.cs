@@ -11,27 +11,32 @@ public class PlayerController : MonoBehaviour
     
     [Header("Mouse Look")]
     [SerializeField] private float mouseSens = 1;
-    private Camera _camera;
+    [SerializeField] private Transform targetFollow;
     private float rotationX;
     private float rotationY;
     
     [Header("Player Move")]
-    [SerializeField] private float speed = 1;
+    [SerializeField] private float walkingSpeed = 1;
+    [SerializeField] private float runSpeed = 2;
     [SerializeField] private float jumpHeight;
-    [SerializeField] private float airSpeed = 0.5f;
     private CharacterController _characterController;
-    private Vector3 movement;
+    [SerializeField] private Vector3 movement;
     
     [Header("Gravity")]
     [SerializeField] private float gravityForce = -19.62f;
     private Vector3 velocity;
 
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+    }
+
     private void Start()
     {
-        _camera = Camera.main;
-        _characterController = GetComponent<CharacterController>();
-        
-        rotationX = _camera.transform.rotation.x;
+        rotationX = targetFollow.rotation.x;
         rotationY = transform.rotation.y;
 
         Cursor.visible = false;
@@ -40,6 +45,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _animator.SetBool("isRunning", false);
+        }
         Move();
         Rotate();
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,12 +60,12 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate()
     {
-        transform.localEulerAngles = new Vector3(0, rotationY, 0);
-        _camera.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
-        
         rotationX -= Input.GetAxis("Mouse Y") * mouseSens;
         rotationY += Input.GetAxis("Mouse X") * mouseSens;
         rotationX = Mathf.Clamp(rotationX, -60, 60);
+        
+        transform.localEulerAngles = new Vector3(0, rotationY, 0);
+        targetFollow.localEulerAngles = new Vector3(rotationX, 0, 0);
     }
 
     private void Jump()
@@ -71,8 +80,38 @@ public class PlayerController : MonoBehaviour
     {
         if (_characterController.isGrounded)
         {
-            movement = new Vector3(Input.GetAxis("Horizontal") * speed, 0, Input.GetAxis("Vertical") * speed);
+            float movementX = Input.GetAxisRaw("Horizontal");
+            float movementZ = Input.GetAxisRaw("Vertical");
+            float speed = 0;
+            if (movementZ == 0 && movementZ == 0)
+            {
+                _animator.SetInteger("Move State", 0);
+            }
+            else
+            if (movementZ > 0)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    float blend = Mathf.Clamp01(_animator.GetFloat("Blend") + 0.05f);
+                    speed = runSpeed * blend;
+                    _animator.SetFloat("Blend", blend );
+                }
+                else
+                {
+                    float blend = Mathf.Clamp01(_animator.GetFloat("Blend") - 0.01f);
+                    speed = walkingSpeed * (1 - blend);
+                    _animator.SetFloat("Blend", blend );
+                }
+                _animator.SetInteger("Move State", 1);
+            }
+            else
+            if (movementZ < 0)
+            {
+                _animator.SetInteger("Move State", -1);
+            }
+            movement = new Vector3(movementX * speed,0, movementZ * speed);
             movement = transform.TransformDirection(movement);
+            
         }
         Jump();
         movement.y += gravityForce * Time.deltaTime;
