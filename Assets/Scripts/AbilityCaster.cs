@@ -10,6 +10,14 @@ public class AbilityCaster : MonoBehaviour
     [SerializeField] private BaseAbility[] abilities;
 
 
+    private void Awake()
+    {
+        foreach (var ability in abilities)
+        {
+            ability.Init(CurrentWeaponAnimator, this, CurrentWeaponAnimator.GetComponent<DamageDealer>());
+        }
+    }
+
     private void Start()
     {
         inputHandler.OnCast += CastAbility;
@@ -17,6 +25,6 @@ public class AbilityCaster : MonoBehaviour
 
     private void CastAbility(int i)
     {
-        abilities[i].Execute(this, CurrentWeaponAnimator, inputHandler);
+        abilities[i].Execute(inputHandler);
     }
 }

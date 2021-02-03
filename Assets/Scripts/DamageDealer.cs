@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    public int damage = 1;
+    [SerializeField] private bool canDamage = false;
+
+    public void ChangeDamageState()
+    {
+        canDamage = !canDamage;
+    }
 
     private void OnCollisionEnter(Collision other)
     {
-        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
-        if (damageable != null)
-        { 
-            damageable.TakeDamage(damage); 
+        if (canDamage)
+        {
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            { 
+                damageable.TakeDamage(damage); 
+            }  
         }
-        
     }
 }

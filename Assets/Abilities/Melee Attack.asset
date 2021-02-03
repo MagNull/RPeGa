@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37746b2bde3f0cc4e8c9270d3ef104f7, type: 3}
   m_Name: Melee Attack
   m_EditorClassIdentifier: 
-  coolDown: 0.35
+  coolDown: 1
   coolDownText: {fileID: 0}
   abilityImage: {fileID: 0}
   manaCost: 1
+  CanUse: 1

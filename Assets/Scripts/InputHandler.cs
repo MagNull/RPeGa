@@ -20,6 +20,8 @@ public class InputHandler : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0)) OnCast(0);
             if (Input.GetKeyDown(KeyCode.Alpha1)) OnCast(1);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) OnCast(2);
+
         }
     }
 }
