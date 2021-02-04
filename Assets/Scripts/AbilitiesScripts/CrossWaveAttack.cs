@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Melee Attack", menuName = "Abilities/Melee Abilities/Cross Wave Attack")]
-public class CrossWaveAttack : BaseAbility
+[CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Cross Wave Attack")]
+public class CrossWaveAttack : BaseActiveAbility
 {
     [SerializeField] private GameObject wavePrefab;
     [SerializeField] private float waveDistance = 1;
     [SerializeField] private float waveSpeed;
+
     public override void Init(Animator a, AbilityCaster caster, DamageDealer dd)
     {
         base.Init(a, caster, dd);
@@ -34,6 +36,7 @@ public class CrossWaveAttack : BaseAbility
     private IEnumerator CrossAttack(AbilityCaster coolDowner, Animator animator, InputHandler inputHandler)
     {
         animator.SetBool("Cross Wave", true);
+        coolDowner.CurrentMana -= manaCost;
         _damageDealer.ChangeDamageState();
         inputHandler.CanCast = false;
         

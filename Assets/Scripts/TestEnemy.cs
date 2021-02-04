@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class TestEnemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int health = 10;
-    public void TakeDamage(int damage)
+    [SerializeField] private float health = 10;
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
         {
             Die();
         }
+    }
+
+    public void OnDamageTaken(float damage)
+    {
+        
     }
 
     private void Die()

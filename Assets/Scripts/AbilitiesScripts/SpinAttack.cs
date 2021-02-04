@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Melee Attack", menuName = "Abilities/Melee Abilities/Spin Attack")]
-public class SpinAttack : BaseAbility
+[CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Spin Attack")]
+public class SpinAttack : BaseActiveAbility
 {
     [SerializeField] private float spinSpeed = 1;
     [SerializeField] private float spinDuration = 1;
@@ -32,8 +33,8 @@ public class SpinAttack : BaseAbility
     private IEnumerator Spin(AbilityCaster coolDowner,Animator anim,InputHandler inputHandler)
     {
         inputHandler.CanCast = false;
+        coolDowner.CurrentMana -= manaCost;
         _damageDealer.ChangeDamageState();
-        int origDamage = _damageDealer.damage;
         _damageDealer.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration));
         
         float t = 0;
@@ -49,7 +50,7 @@ public class SpinAttack : BaseAbility
         anim.SetBool("Spin", false);
         inputHandler.CanCast = true;
         _damageDealer.ChangeDamageState();
-        _damageDealer.damage = origDamage;
+        _damageDealer.damage = _damageDealer.PureDamage;
         
         coolDowner.StartCoroutine(StartCooldown());
     }

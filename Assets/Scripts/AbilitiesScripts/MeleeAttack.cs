@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Melee Attack", menuName = "Abilities/Melee Abilities/Melee Attack")]
-public class MeleeAttack : BaseAbility
+[CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Melee Attack")]
+public class MeleeAttack : BaseActiveAbility
 {
     public override void Execute(InputHandler inputHandler)
     {
@@ -22,9 +22,6 @@ public class MeleeAttack : BaseAbility
                     _animator.SetTrigger("MA 3");
                     break;
             }
-            Debug.Log("Attack");
-            _caster.StartCoroutine(StartCooldown());
-
         }
     }
 }
