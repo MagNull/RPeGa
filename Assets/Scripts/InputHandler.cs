@@ -7,8 +7,10 @@ public class InputHandler : MonoBehaviour
 {
     public Action OnMove;
     public Action<int> OnCast;
+    public Action<int> OnAttack;
     public bool CanMove = true;
     public bool CanCast = true;
+    public bool CanAttack = true;
     private void Update()
     {
         if (CanMove)
@@ -18,10 +20,15 @@ public class InputHandler : MonoBehaviour
 
         if (CanCast)
         {
-            if (Input.GetMouseButtonDown(0)) OnCast(0);
-            if (Input.GetKeyDown(KeyCode.Alpha1)) OnCast(1);
-            if (Input.GetKeyDown(KeyCode.Alpha2)) OnCast(2);
+            if (Input.GetKeyDown(KeyCode.Alpha1)) OnCast(0);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) OnCast(1);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) OnCast(2);
+        }
 
+        if (CanAttack)
+        {
+            if (Input.GetMouseButtonDown(0)) OnAttack(0);
+            if (Input.GetMouseButtonDown(1)) OnAttack(1);
         }
     }
 }

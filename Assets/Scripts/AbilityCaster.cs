@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class AbilityCaster : MonoBehaviour
 {
-    public Animator CurrentWeaponAnimator;
+    public DamageDealer mainHandWeapon;
+    public DamageDealer offHandWeapon;
     [SerializeField] private Slider manaBar;
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private BaseActiveAbility[] activeAbilities;
+    [SerializeField] private BaseActiveAbility[] activeAttacks;
     [SerializeField] private BasePassiveAbility[] passiveAbilities;
     [SerializeField] private int manaPool = 5;
     private float _currentMana;
@@ -29,11 +31,15 @@ public class AbilityCaster : MonoBehaviour
     {
         foreach (var ability in activeAbilities)
         {
-            ability.Init(CurrentWeaponAnimator, this, CurrentWeaponAnimator.GetComponent<DamageDealer>());
+            ability.Init(this, mainHandWeapon, offHandWeapon);
+        }
+        foreach (var ability in activeAttacks)
+        {
+            ability.Init(this, mainHandWeapon, offHandWeapon);
         }
         foreach (var ability in passiveAbilities)
         {
-            ability.Init(CurrentWeaponAnimator.GetComponent<DamageDealer>(),GetComponent<IDamageable>());
+            ability.Init(mainHandWeapon, offHandWeapon,GetComponent<IDamageable>());
         }
 
         CurrentMana = manaPool;    
@@ -42,13 +48,22 @@ public class AbilityCaster : MonoBehaviour
     private void Start()
     {
         inputHandler.OnCast += CastAbility;
+        inputHandler.OnAttack += Attack;
     }
 
     private void CastAbility(int i)
     {
-        if (activeAbilities[i].ManaCost <= _currentMana)
+        if (activeAbilities[i].ManaCost <= _currentMana && activeAbilities[i].CanCast)
         {
             activeAbilities[i].Execute(inputHandler);
+        }
+    }
+    
+    private void Attack(int i)
+    {
+        if (activeAttacks[i].CanCast)
+        {
+            activeAttacks[i].Execute(inputHandler);
         }
     }
 }

@@ -10,11 +10,12 @@ public class CrossWaveAttack : BaseActiveAbility
     [SerializeField] private GameObject wavePrefab;
     [SerializeField] private float waveDistance = 1;
     [SerializeField] private float waveSpeed;
+    [SerializeField] private float animDelay = 1;
 
-    public override void Init(Animator a, AbilityCaster caster, DamageDealer dd)
+    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
     {
-        base.Init(a, caster, dd);
-        WaveSpawner waveSpawner = _damageDealer.GetComponent<WaveSpawner>();
+        base.Init(caster, mainHandWeapon, offHandWeapon);
+        WaveSpawner waveSpawner = _mainHandWeapon.GetComponent<WaveSpawner>();
         waveSpawner.WavePrefab = wavePrefab;
         waveSpawner.WaveDistance = waveDistance;
         waveSpawner.WaveSpeed = waveSpeed;
@@ -22,30 +23,23 @@ public class CrossWaveAttack : BaseActiveAbility
 
     public override void Execute(InputHandler inputHandler)
     {
-        if (!_animator)
+        if (!_mainHandAnimator || _offHandAnimator)
         {
-            Init(_animator, _caster, _animator.GetComponent<DamageDealer>());
+            Init(_caster, _mainHandWeapon, _offHandWeapon);
         }
-        if (CanUse)
-        {
-            CanUse = false;
-            _caster.StartCoroutine(CrossAttack(_caster, _animator, inputHandler));
-        }
+        cdTimer = coolDown;
+        _caster.StartCoroutine(CrossAttack(_caster, inputHandler));
     }
 
-    private IEnumerator CrossAttack(AbilityCaster coolDowner, Animator animator, InputHandler inputHandler)
+    private IEnumerator CrossAttack(AbilityCaster coolDowner, InputHandler inputHandler)
     {
-        animator.SetBool("Cross Wave", true);
+        cdTimer = coolDown;
         coolDowner.CurrentMana -= manaCost;
-        _damageDealer.ChangeDamageState();
-        inputHandler.CanCast = false;
         
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        _mainHandAnimator.SetTrigger("Cross Wave");
+
+        yield return new WaitForSeconds(animDelay);
         
-        inputHandler.CanCast = true;
-        animator.SetBool("Cross Wave", false);
-        _damageDealer.ChangeDamageState();
-        
-        coolDowner.StartCoroutine(StartCooldown());
+        _mainHandWeapon.StartCoroutine(StartCooldown());
     }
 }

@@ -8,12 +8,14 @@ using UnityEngine.UI;
 public abstract class BasePassiveAbility : ScriptableObject
 {
     [SerializeField] protected Image abilityImage;
-    protected DamageDealer _damageDealer;
+    protected DamageDealer _mainHandWeapon;
+    protected DamageDealer _offHandWeapon;
     protected IDamageable _damageable;
 
-    public virtual void Init(DamageDealer dd, IDamageable damageable)
+    public virtual void Init(DamageDealer mainHandWeapon, DamageDealer offHandWeapon, IDamageable damageable)
     {
-        _damageDealer = dd;
+        _mainHandWeapon = mainHandWeapon;
+        _offHandWeapon = offHandWeapon;
         _damageable = damageable;
     }
 

@@ -9,7 +9,15 @@ public class WaveSpawner : MonoBehaviour
     [HideInInspector] public float WaveDistance;
     [HideInInspector] public float WaveSpeed;
     [SerializeField] private int poolSize = 2;
+    [SerializeField] private Material fireMaterial;
     private Queue<Transform> wavesPool = new Queue<Transform>();
+    private Material _defaultMaterial;
+    private MeshRenderer _meshRenderer;
+
+    private void Awake()
+    {
+        _meshRenderer = GetComponent<MeshRenderer>();
+    }
 
     private void Start()
     {
@@ -21,14 +29,21 @@ public class WaveSpawner : MonoBehaviour
             wave.SetActive(false);
             wavesPool.Enqueue(wave.transform);
         }
+        _defaultMaterial = _meshRenderer.material;
     }
 
+    public void ChargeSword()
+    {
+        _meshRenderer.material = fireMaterial;
+    }
+    
     public void CreateWave()
     {
         Transform wave = wavesPool.Dequeue();
         wave.position = transform.parent.transform.parent.position;
         wave.rotation = Quaternion.Euler(wave.eulerAngles.x,transform.parent.transform.parent.eulerAngles.y,wave.eulerAngles.z);
         wave.gameObject.SetActive(true);
+        _meshRenderer.material = _defaultMaterial;
         StartCoroutine(PushWave(wave));
     }
 

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc2f0be84be3fc40bf8aa4393fd3286, type: 3}
   m_Name: CrossWave Attack
   m_EditorClassIdentifier: 
-  coolDown: 1
+  manaCost: 1
+  coolDown: 3
   coolDownText: {fileID: 0}
   abilityImage: {fileID: 0}
-  manaCost: 1
-  CanUse: 1
+  cdTimer: -0.00008904468
   wavePrefab: {fileID: 3637661360229736198, guid: 08f1b58c1b53df24f827205f706bb4cd, type: 3}
-  waveDistance: 15
-  waveSpeed: 20
+  waveDistance: 30
+  waveSpeed: 15
+  animDelay: 2

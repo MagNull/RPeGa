@@ -10,21 +10,28 @@ public class CritChancePassive : BasePassiveAbility
     [SerializeField] private float critChance = 1;
     [SerializeField] private float critMultiplayer = 2;
 
-    public override void Init(DamageDealer dd, IDamageable damageable)
+    public override void Init(DamageDealer mainHandWeapon, DamageDealer offHandWeapon, IDamageable damageable)
     {
-        base.Init(dd, damageable);
-        _damageDealer.OnHitStart += CritTest;
-        _damageDealer.OnHitEnd += RevertDamage;
+        base.Init(mainHandWeapon, offHandWeapon, damageable);
+        _mainHandWeapon.OnHitStart += CritTest;
+        _mainHandWeapon.OnHitEnd += RevertDamage;
+        _offHandWeapon.OnHitStart += CritTest;
+        _offHandWeapon.OnHitEnd += RevertDamage;
     }
 
     private void CritTest()
     {
         int roll = Random.Range(0, 101);
-        if (roll <= critChance) _damageDealer.damage *= critMultiplayer;
+        if (roll <= critChance)
+        {
+            _mainHandWeapon.damage *= critMultiplayer;
+            _offHandWeapon.damage *= critMultiplayer;
+        }
     }
 
     private void RevertDamage()
     {
-        _damageDealer.damage = _damageDealer.PureDamage;
+        _mainHandWeapon.damage = _mainHandWeapon.PureDamage;
+        _offHandWeapon.damage = _offHandWeapon.PureDamage;
     }
 }

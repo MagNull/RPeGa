@@ -11,28 +11,38 @@ public abstract class BaseActiveAbility : ScriptableObject
     [SerializeField] protected float coolDown;
     [SerializeField] protected Text coolDownText;
     [SerializeField] protected Image abilityImage;
-    public bool CanUse = true;
     protected AbilityCaster _caster;
-    protected Animator _animator;
-    protected DamageDealer _damageDealer;
+    protected Animator _mainHandAnimator;
+    protected Animator _offHandAnimator;
+    protected DamageDealer _mainHandWeapon;
+    protected DamageDealer _offHandWeapon;
+    [SerializeField] protected float cdTimer = 0;
 
     public int ManaCost => manaCost;
 
+    public bool CanCast => (cdTimer <= 0);
 
-    public virtual void Init(Animator a, AbilityCaster caster, DamageDealer dd)
+
+
+    public virtual void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
     {
-        _animator = a;
-        _damageDealer = dd;
+        _mainHandAnimator = mainHandWeapon.GetComponent<Animator>();
+        _offHandAnimator = offHandWeapon.GetComponent<Animator>();
+        _mainHandWeapon = mainHandWeapon;
+        _offHandWeapon = offHandWeapon;
         _caster = caster;
-        CanUse = true;
+        cdTimer = 0;
     }
 
     public abstract void Execute(InputHandler inputHandler);
+    
 
     protected IEnumerator StartCooldown()
     {
-        CanUse = false;
-        yield return new WaitForSeconds(coolDown);
-        CanUse = true;
+        while (cdTimer > 0)
+        {
+            cdTimer = cdTimer - Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

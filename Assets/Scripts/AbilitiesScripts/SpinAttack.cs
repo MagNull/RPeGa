@@ -11,34 +11,39 @@ public class SpinAttack : BaseActiveAbility
     [SerializeField] private Transform _spinTargetTransform;
     [SerializeField] private int abilityDamage = 1;
 
-    public override void Init(Animator a, AbilityCaster caster, DamageDealer dd)
+    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
     {
-        base.Init(a, caster, dd);
+        base.Init(caster, mainHandWeapon, offHandWeapon);
         _spinTargetTransform = caster.transform;
     }
 
     public override void Execute(InputHandler inputHandler)
     {
-        if (!_animator || !_spinTargetTransform)
+        if (!_mainHandAnimator || _offHandAnimator || !_spinTargetTransform)
         {
-            Init(_animator,_caster, _animator.GetComponent<DamageDealer>());
+            Init(_caster, _mainHandWeapon, _offHandWeapon);
         }
-        if (CanUse)
-        {
-            CanUse = false;
-            _caster.StartCoroutine(Spin(_caster, _animator, inputHandler));
-        }
+        cdTimer = coolDown;
+        _caster.StartCoroutine(Spin(_caster, inputHandler));
     }
 
-    private IEnumerator Spin(AbilityCaster coolDowner,Animator anim,InputHandler inputHandler)
+    private IEnumerator Spin(AbilityCaster coolDowner,InputHandler inputHandler)
     {
         inputHandler.CanCast = false;
+        inputHandler.CanAttack = false;
+        
         coolDowner.CurrentMana -= manaCost;
-        _damageDealer.ChangeDamageState();
-        _damageDealer.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration));
+        
+        _mainHandWeapon.ChangeDamageState();
+        _offHandWeapon.ChangeDamageState();
+        
+        _mainHandWeapon.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration)) / 2;
+        _offHandWeapon.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration)) / 2;
+        
+        _mainHandAnimator.SetBool("Spin", true);
+        _offHandAnimator.SetBool("Spin", true);
         
         float t = 0;
-        anim.SetBool("Spin", true);
         while (t < spinDuration)
         {
             t += Time.deltaTime;
@@ -47,10 +52,17 @@ public class SpinAttack : BaseActiveAbility
         }
         _spinTargetTransform.localEulerAngles = Vector3.zero;
         
-        anim.SetBool("Spin", false);
+        _mainHandAnimator.SetBool("Spin", false);
+        _offHandAnimator.SetBool("Spin", false);
+        
         inputHandler.CanCast = true;
-        _damageDealer.ChangeDamageState();
-        _damageDealer.damage = _damageDealer.PureDamage;
+        inputHandler.CanAttack = true;
+        
+        _mainHandWeapon.ChangeDamageState();
+        _offHandWeapon.ChangeDamageState();
+        
+        _mainHandWeapon.damage = _mainHandWeapon.PureDamage;
+        _offHandWeapon.damage = _mainHandWeapon.PureDamage;
         
         coolDowner.StartCoroutine(StartCooldown());
     }
