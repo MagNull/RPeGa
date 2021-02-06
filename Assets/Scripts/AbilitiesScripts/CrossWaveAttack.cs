@@ -11,6 +11,7 @@ public class CrossWaveAttack : BaseActiveAbility
     [SerializeField] private float waveDistance = 1;
     [SerializeField] private float waveSpeed;
     [SerializeField] private float animDelay = 1;
+    [SerializeField] private float speedReduce = 2;
 
     public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
     {
@@ -37,8 +38,11 @@ public class CrossWaveAttack : BaseActiveAbility
         coolDowner.CurrentMana -= manaCost;
         
         _mainHandAnimator.SetTrigger("Cross Wave");
+        inputHandler.Speed /= 2; 
 
         yield return new WaitForSeconds(animDelay);
+
+        inputHandler.Speed *= 1;
         
         _mainHandWeapon.StartCoroutine(StartCooldown());
     }

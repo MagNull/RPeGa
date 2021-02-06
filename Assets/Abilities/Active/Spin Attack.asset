@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Spin Attack
   m_EditorClassIdentifier: 
   manaCost: 1
-  coolDown: 3
+  coolDown: 1
   coolDownText: {fileID: 0}
   abilityImage: {fileID: 0}
-  cdTimer: -0.006539452
+  cdTimer: -0.008149013
   spinSpeed: 3
-  spinDuration: 5
+  spinDuration: 3
   _spinTargetTransform: {fileID: 0}
-  abilityDamage: 1
+  abilityDamage: 5
+  speedBoost: 1.5

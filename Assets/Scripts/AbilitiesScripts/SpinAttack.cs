@@ -10,6 +10,7 @@ public class SpinAttack : BaseActiveAbility
     [SerializeField] private float spinDuration = 1;
     [SerializeField] private Transform _spinTargetTransform;
     [SerializeField] private int abilityDamage = 1;
+    [SerializeField] private float speedBoost = 1.5f;
 
     public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
     {
@@ -37,11 +38,13 @@ public class SpinAttack : BaseActiveAbility
         _mainHandWeapon.ChangeDamageState();
         _offHandWeapon.ChangeDamageState();
         
-        _mainHandWeapon.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration)) / 2;
-        _offHandWeapon.damage = Mathf.CeilToInt(abilityDamage / (spinSpeed * spinDuration)) / 2;
+        _mainHandWeapon.damage = (abilityDamage / (spinSpeed * spinDuration)) / 2;
+        _offHandWeapon.damage = (abilityDamage / (spinSpeed * spinDuration)) / 2;
         
         _mainHandAnimator.SetBool("Spin", true);
         _offHandAnimator.SetBool("Spin", true);
+
+        inputHandler.Speed *= speedBoost;
         
         float t = 0;
         while (t < spinDuration)
@@ -63,6 +66,8 @@ public class SpinAttack : BaseActiveAbility
         
         _mainHandWeapon.damage = _mainHandWeapon.PureDamage;
         _offHandWeapon.damage = _mainHandWeapon.PureDamage;
+
+        inputHandler.Speed *= 1;
         
         coolDowner.StartCoroutine(StartCooldown());
     }

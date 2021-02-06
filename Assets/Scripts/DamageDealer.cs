@@ -11,12 +11,20 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] private bool canDamage = false;
     private float _pureDamage;
     private ParticleSystem _particles;
+    private float _damageBuffer;
 
     public float PureDamage
     {
         get => _pureDamage;
-        set => _pureDamage = value;
+        set
+        {
+            damage = value;
+            _damageBuffer = _pureDamage;
+            _pureDamage = value;
+        }
     }
+
+    public void BufferizeDamage() => _damageBuffer = _pureDamage;
 
     private void Awake()
     {
