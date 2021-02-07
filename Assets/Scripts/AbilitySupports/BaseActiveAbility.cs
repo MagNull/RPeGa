@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public abstract class BaseActiveAbility : ScriptableObject
 {
+    public bool CanCast = true;
     [SerializeField] protected int manaCost = 1;
     [SerializeField] protected float coolDown;
     [SerializeField] protected Text coolDownText;
@@ -16,11 +17,9 @@ public abstract class BaseActiveAbility : ScriptableObject
     protected Animator _offHandAnimator;
     protected DamageDealer _mainHandWeapon;
     protected DamageDealer _offHandWeapon;
-    [SerializeField] protected float cdTimer = 0;
 
     public int ManaCost => manaCost;
-
-    public bool CanCast => (cdTimer <= 0);
+    
 
 
 
@@ -31,18 +30,18 @@ public abstract class BaseActiveAbility : ScriptableObject
         _mainHandWeapon = mainHandWeapon;
         _offHandWeapon = offHandWeapon;
         _caster = caster;
-        cdTimer = 0;
+        CanCast = true;
     }
 
     public abstract void Execute(InputHandler inputHandler);
     
-
-    protected IEnumerator StartCooldown()
-    {
-        while (cdTimer > 0)
-        {
-            cdTimer = cdTimer - Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-    }
+    //
+    // protected IEnumerator StartCooldown()
+    // {
+    //     while (cdTimer > 0)
+    //     {
+    //         cdTimer = cdTimer - Time.deltaTime;
+    //         yield return new WaitForEndOfFrame();
+    //     }
+    // }
 }

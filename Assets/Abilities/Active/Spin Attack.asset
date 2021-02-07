@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea9e885a1b0bbd4fbc0019456b6a295, type: 3}
   m_Name: Spin Attack
   m_EditorClassIdentifier: 
+  CanCast: 1
   manaCost: 1
   coolDown: 1
   coolDownText: {fileID: 0}
   abilityImage: {fileID: 0}
-  cdTimer: -0.008149013
   spinSpeed: 3
   spinDuration: 3
   _spinTargetTransform: {fileID: 0}

@@ -24,7 +24,6 @@ public class SpinAttack : BaseActiveAbility
         {
             Init(_caster, _mainHandWeapon, _offHandWeapon);
         }
-        cdTimer = coolDown;
         _caster.StartCoroutine(Spin(_caster, inputHandler));
     }
 
@@ -32,6 +31,7 @@ public class SpinAttack : BaseActiveAbility
     {
         inputHandler.CanCast = false;
         inputHandler.CanAttack = false;
+        CanCast = false;
         
         coolDowner.CurrentMana -= manaCost;
         
@@ -69,6 +69,8 @@ public class SpinAttack : BaseActiveAbility
 
         inputHandler.Speed *= 1;
         
-        coolDowner.StartCoroutine(StartCooldown());
+        yield return new WaitForSeconds(coolDown);
+
+        CanCast = true;
     }
 }

@@ -7,26 +7,23 @@ public class MeleeSwordAttack : BaseActiveAbility
 {
     public override void Execute(InputHandler inputHandler)
     {
-        if (cdTimer <= 0)
+        int num = Random.Range(1,4);
+        switch (num)
         {
-            int num = Random.Range(1,4);
-            switch (num)
-            {
-                case 1:
-                    _mainHandAnimator.SetTrigger("MA 1");
-                    break;
-                case 2:
-                    _mainHandAnimator.SetTrigger("MA 2");
-                    break;
-                case 3:
-                    _mainHandAnimator.SetTrigger("MA 3");
-                    break;
-            }
+            case 1:
+                _mainHandAnimator.SetTrigger("MA 1");
+                break;
+            case 2:
+                _mainHandAnimator.SetTrigger("MA 2");
+                break;
+            case 3:
+                _mainHandAnimator.SetTrigger("MA 3");
+                break;
+        }
 
-            if (_offHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shield Block"))
-            {
-                _offHandAnimator.SetTrigger("Shield Bash");
-            }
+        if (_offHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shield Block"))
+        {
+            _offHandAnimator.SetTrigger("Shield Bash");
         }
     }
 }

@@ -28,13 +28,12 @@ public class CrossWaveAttack : BaseActiveAbility
         {
             Init(_caster, _mainHandWeapon, _offHandWeapon);
         }
-        cdTimer = coolDown;
         _caster.StartCoroutine(CrossAttack(_caster, inputHandler));
     }
 
     private IEnumerator CrossAttack(AbilityCaster coolDowner, InputHandler inputHandler)
     {
-        cdTimer = coolDown;
+        CanCast = false;
         coolDowner.CurrentMana -= manaCost;
         
         _mainHandAnimator.SetTrigger("Cross Wave");
@@ -44,6 +43,8 @@ public class CrossWaveAttack : BaseActiveAbility
 
         inputHandler.Speed *= 1;
         
-        _mainHandWeapon.StartCoroutine(StartCooldown());
+        yield return new WaitForSeconds(coolDown);
+
+        CanCast = true;
     }
 }
