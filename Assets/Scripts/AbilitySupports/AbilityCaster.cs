@@ -3,59 +3,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class AbilityCaster : MonoBehaviour
 {
     public DamageDealer mainHandWeapon;
     public DamageDealer offHandWeapon;
-    [SerializeField] private Slider manaBar;
-    [SerializeField] private InputHandler inputHandler;
     [SerializeField] private BaseActiveAbility[] activeAbilities;
     [SerializeField] private BaseActiveAbility[] activeAttacks;
     [SerializeField] private BasePassiveAbility[] passiveAbilities;
     [SerializeField] private int manaPool = 5;
     private float _currentMana;
+    
+    [Inject]
+    private InputHandler _inputHandler;
+    
+    [Inject(Id = "Mana")]
+    private Slider _manaBar;
 
     public float CurrentMana
     {
         get => _currentMana;
         set
         {
-            _currentMana = value;
-            manaBar.value = _currentMana / manaPool;
+            if (value <= manaPool)
+            {
+                _currentMana = value;
+                _manaBar.value = _currentMana / ManaPool;
+            }
         }
     }
 
+    public int ManaPool
+    {
+        get => manaPool;
+        set => manaPool = value;
+    }
 
-    private void Awake()
+    private void Start()
     {
         foreach (var ability in activeAbilities)
         {
-            ability.Init(this, mainHandWeapon, offHandWeapon);
+            ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
         }
         foreach (var ability in activeAttacks)
         {
-            ability.Init(this, mainHandWeapon, offHandWeapon);
+            ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
         }
         foreach (var ability in passiveAbilities)
         {
             ability.Init(mainHandWeapon, offHandWeapon,GetComponent<IDamageable>());
         }
 
-        CurrentMana = manaPool;    
+        CurrentMana = ManaPool;
+        _manaBar.gameObject.SetActive(true);
+        _inputHandler.OnCast += CastAbility;
+        _inputHandler.OnAttack += Attack;
+        _inputHandler.CanMove = true;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        inputHandler.OnCast += CastAbility;
-        inputHandler.OnAttack += Attack;
+        _inputHandler.OnCast -= CastAbility;
+        _inputHandler.OnAttack -= Attack;
     }
 
     private void CastAbility(int i)
     {
         if (activeAbilities[i].ManaCost <= _currentMana && activeAbilities[i].CanCast)
         {
-            activeAbilities[i].Execute(inputHandler);
+            activeAbilities[i].Execute();
         }
     }
     
@@ -63,7 +80,7 @@ public class AbilityCaster : MonoBehaviour
     {
         if (activeAttacks[i].CanCast)
         {
-            activeAttacks[i].Execute(inputHandler);
+            activeAttacks[i].Execute();
         }
     }
 }

@@ -6,28 +6,28 @@ using UnityEngine;
 public class ShieldBlock : BaseActiveAbility
 {
     private DamageDealer fireShield;
-    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
+    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon, InputHandler inputHandler)
     {
-        base.Init(caster, mainHandWeapon, offHandWeapon);
+        base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
         fireShield = _offHandWeapon.GetComponentInChildren<FireShield>().GetComponent<DamageDealer>();
         fireShield.gameObject.SetActive(false);
     }
 
-    public override void Execute(InputHandler inputHandler)
+    public override void Execute()
     {
         if (!_mainHandAnimator || !_offHandAnimator)
         {
-            Init(_caster, _mainHandWeapon, _offHandWeapon);
+            Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
         }
-        ChangeBlockState(inputHandler);
+        ChangeBlockState();
     }
 
-    private void ChangeBlockState(InputHandler inputHandler)
+    private void ChangeBlockState()
     {
         _mainHandAnimator.SetTrigger("ShieldOn");
         _offHandAnimator.SetTrigger("ShieldOn");
         fireShield.ChangeDamageState();
         fireShield.gameObject.SetActive(!fireShield.gameObject.activeSelf);
-        inputHandler.CanCast = !fireShield.gameObject.activeSelf;
+        _inputHandler.CanCast = !fireShield.gameObject.activeSelf;
     }
 }

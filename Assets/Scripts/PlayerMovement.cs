@@ -2,24 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravityForce = -9.81f;
+    
+    [Inject]
     private InputHandler inputHandler;
+    
     private CharacterController _characterController;
     private Vector3 movement = Vector3.zero;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        inputHandler = GetComponent<InputHandler>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         inputHandler.OnMove += Move;
+    }
+
+    private void OnDisable()
+    {
+        inputHandler.OnMove -= Move;
     }
 
     private void Jump()

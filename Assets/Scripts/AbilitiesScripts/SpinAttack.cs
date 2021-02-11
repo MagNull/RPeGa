@@ -8,29 +8,29 @@ public class SpinAttack : BaseActiveAbility
 {
     [SerializeField] private float spinSpeed = 1;
     [SerializeField] private float spinDuration = 1;
-    [SerializeField] private Transform _spinTargetTransform;
+    [SerializeField] private Transform spinTargetTransform;
     [SerializeField] private int abilityDamage = 1;
     [SerializeField] private float speedBoost = 1.5f;
 
-    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon)
+    public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon, InputHandler inputHandler)
     {
-        base.Init(caster, mainHandWeapon, offHandWeapon);
-        _spinTargetTransform = caster.transform;
+        base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
+        spinTargetTransform = caster.transform;
     }
 
-    public override void Execute(InputHandler inputHandler)
+    public override void Execute()
     {
-        if (!_mainHandAnimator || _offHandAnimator || !_spinTargetTransform)
+        if (!_mainHandAnimator || _offHandAnimator || !spinTargetTransform)
         {
-            Init(_caster, _mainHandWeapon, _offHandWeapon);
+            Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
         }
-        _caster.StartCoroutine(Spin(_caster, inputHandler));
+        _caster.StartCoroutine(Spin(_caster));
     }
 
-    private IEnumerator Spin(AbilityCaster coolDowner,InputHandler inputHandler)
+    private IEnumerator Spin(AbilityCaster coolDowner)
     {
-        inputHandler.CanCast = false;
-        inputHandler.CanAttack = false;
+        _inputHandler.CanCast = false;
+        _inputHandler.CanAttack = false;
         CanCast = false;
         
         coolDowner.CurrentMana -= manaCost;
@@ -44,22 +44,22 @@ public class SpinAttack : BaseActiveAbility
         _mainHandAnimator.SetBool("Spin", true);
         _offHandAnimator.SetBool("Spin", true);
 
-        inputHandler.Speed *= speedBoost;
+        _inputHandler.Speed *= speedBoost;
         
         float t = 0;
         while (t < spinDuration)
         {
             t += Time.deltaTime;
-            _spinTargetTransform.Rotate(Vector3.up, 360 * spinSpeed * Time.deltaTime);
+            spinTargetTransform.Rotate(Vector3.up, 360 * spinSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        _spinTargetTransform.localEulerAngles = Vector3.zero;
+        spinTargetTransform.localEulerAngles = Vector3.zero;
         
         _mainHandAnimator.SetBool("Spin", false);
         _offHandAnimator.SetBool("Spin", false);
         
-        inputHandler.CanCast = true;
-        inputHandler.CanAttack = true;
+        _inputHandler.CanCast = true;
+        _inputHandler.CanAttack = true;
         
         _mainHandWeapon.ChangeDamageState();
         _offHandWeapon.ChangeDamageState();
@@ -67,7 +67,7 @@ public class SpinAttack : BaseActiveAbility
         _mainHandWeapon.damage = _mainHandWeapon.PureDamage;
         _offHandWeapon.damage = _mainHandWeapon.PureDamage;
 
-        inputHandler.Speed *= 1;
+        _inputHandler.Speed *= 1;
         
         yield return new WaitForSeconds(coolDown);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Melee Sword Attack")]
 public class MeleeSwordAttack : BaseActiveAbility
 {
-    public override void Execute(InputHandler inputHandler)
+    public override void Execute()
     {
         int num = Random.Range(1,4);
         switch (num)

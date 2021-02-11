@@ -2,15 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CastStateController : MonoBehaviour
 {
+    [Inject]
     private InputHandler _inputHandler;
-
-    private void Awake()
-    {
-        _inputHandler = transform.parent.transform.parent.GetComponent<InputHandler>();
-    }
 
     public void SetTrueCastState() => _inputHandler.CanCast = true;
     
