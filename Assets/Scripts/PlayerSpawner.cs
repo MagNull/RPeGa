@@ -18,18 +18,19 @@ public class PlayerSpawner : MonoBehaviour
       switch (component.classType)
       {
          case Classes.Warrior:
-            player = Instantiate(warriorPrefab, playerTransform.position, Quaternion.identity);
+            player = Instantiate(warriorPrefab, playerTransform.position, playerTransform.rotation);
             break;
          case Classes.Archer:
-            player = Instantiate(archerPrefab, playerTransform.position, Quaternion.identity);
+            player = Instantiate(archerPrefab, playerTransform.position, playerTransform.rotation);
             break;
          case Classes.Wizard:
-            player = Instantiate(wizardPrefab, playerTransform.position, Quaternion.identity);
+            player = Instantiate(wizardPrefab, playerTransform.position, playerTransform.rotation);
             break;
       }
       if(!(player is null)) player.transform.parent = playerTransform;
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
+      playerTransform.GetComponent<MouseRotation>().enabled = true;
       classChooseUI.SetActive(false);
    }
 }

@@ -9,11 +9,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravityForce = -9.81f;
     
-    [Inject]
-    private InputHandler inputHandler;
+    private InputHandler _inputHandler;
+    private PlayerSpeedManipulator _playerSpeedManipulator;
     
     private CharacterController _characterController;
     private Vector3 movement = Vector3.zero;
+
+    [Inject]
+    public void Construct(InputHandler inputHandler, PlayerSpeedManipulator playerSpeedManipulator)
+    {
+        _inputHandler = inputHandler;
+        _playerSpeedManipulator = playerSpeedManipulator;
+    }
 
     private void Awake()
     {
@@ -22,12 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        inputHandler.OnMove += Move;
+        _inputHandler.OnMove += Move;
     }
 
     private void OnDisable()
     {
-        inputHandler.OnMove -= Move;
+        _inputHandler.OnMove -= Move;
     }
 
     private void Jump()
@@ -38,14 +45,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Move(float speed)
+    private void Move()
     {
         if (_characterController.isGrounded)
         {
             movement = new Vector3(Input.GetAxis("Horizontal"), 0,
                 Input.GetAxis("Vertical"));
             if (movement.magnitude > 1) movement.Normalize();
-            movement = transform.TransformDirection(movement * speed);
+            movement = transform.TransformDirection(movement * _playerSpeedManipulator.Speed);
         }
 
         movement.y += gravityForce * Time.deltaTime;

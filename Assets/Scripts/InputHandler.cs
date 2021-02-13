@@ -5,32 +5,21 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    public event Action<float> OnMove;
+    public event Action OnMove;
     public event Action<int> OnCast;
     public event Action<int> OnAttack;
     public bool CanMove = true;
     public bool CanCast = true;
     public bool CanAttack = true;
-    [SerializeField] private float baseSpeed = 5;
-    [SerializeField] private float _currentSpeed;
-
-    public float Speed
-    {
-        get => baseSpeed;
-        set => _currentSpeed = value;
-    }
+    
 
 
-    private void Awake()
-    {
-        Speed = baseSpeed;
-    }
 
     private void Update()
     {
         if (CanMove)
         {
-            OnMove?.Invoke(_currentSpeed);
+            OnMove?.Invoke();
         }
 
         if (CanCast)

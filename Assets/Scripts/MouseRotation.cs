@@ -14,15 +14,12 @@ public class MouseRotation : MonoBehaviour
 
     private void Update()
     {
-        if (!Cursor.visible)
-        {
-            rotation.x += -Input.GetAxis("Mouse Y") * sensitivity;
-            rotation.y += Input.GetAxis("Mouse X") * sensitivity;
-            rotation.x = Mathf.Clamp(rotation.x, -30, 30);
-        
-        
-            transform.rotation = Quaternion.Euler(0, rotation.y, 0);
-            followTarget.rotation = Quaternion.Euler(rotation.x, rotation.y, 0); 
-        }
+        rotation.x += -Input.GetAxis("Mouse Y") * sensitivity;
+        rotation.y += Input.GetAxis("Mouse X") * sensitivity;
+        rotation.x = Mathf.Clamp(rotation.x, -30, 30);
+    
+    
+        transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+        followTarget.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
     }
 }

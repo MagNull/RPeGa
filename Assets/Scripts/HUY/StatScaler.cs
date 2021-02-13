@@ -14,10 +14,9 @@ public class StatScaler : MonoBehaviour
     private float agilitySpeedCoefficient;
     [Header("Stats Scale Coefficient ")] [SerializeField]
     private float intelligenceManaCoefficient;
-    
 
-    [Inject]
-    private InputHandler _inputHandler;
+
+    [Inject] private PlayerSpeedManipulator _playerSpeedManipulator;
 
     private void OnEnable()
     {
@@ -33,23 +32,23 @@ public class StatScaler : MonoBehaviour
         stats.OnStatsChange -= ScaleIntelligence;
     }
 
-    private void Start()
+    private void Awake()
     {
-        ScaleAgility(StatType.Agility);
+        ScaleAgility(StatType.Agility, stats.Agility);
     }
 
-    private void ScaleStrength(StatType type)
+    private void ScaleStrength(StatType type, int delta)
     {
         
     }
 
-    private void ScaleAgility(StatType type)
+    private void ScaleAgility(StatType type, int delta)
     {
         if (type == StatType.Agility)
-            _inputHandler.Speed = _inputHandler.Speed + stats.Agility * agilitySpeedCoefficient;
+            _playerSpeedManipulator.SpeedBonus += stats.Agility * agilitySpeedCoefficient;
     }
 
-    private void ScaleIntelligence(StatType type)
+    private void ScaleIntelligence(StatType type, int delta)
     {
         
     }

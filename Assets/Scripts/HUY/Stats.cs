@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stats", menuName = "Player Features/Characteristics")]
 public class Stats : ScriptableObject
 {
-    public event Action<StatType> OnStatsChange; 
+    public event Action<StatType, int> OnStatsChange; 
     [SerializeField] private int _strength;    
     [SerializeField] private int _agility;
     [SerializeField] private int _intelligence;
@@ -18,8 +18,8 @@ public class Stats : ScriptableObject
         get => _strength;
         set
         {
+            OnStatsChange(StatType.Strength, _strength - value);
             _strength = value;
-            OnStatsChange(StatType.Strength);
         }
     }
 
@@ -28,8 +28,8 @@ public class Stats : ScriptableObject
         get => _agility;
         set
         {
+            OnStatsChange(StatType.Agility, _agility - value);
             _agility = value;
-            OnStatsChange(StatType.Agility);
         }
     }
 
@@ -38,8 +38,8 @@ public class Stats : ScriptableObject
         get => _intelligence;
         set
         {
+            OnStatsChange(StatType.Intelligence, _intelligence - value);
             _intelligence = value;
-            OnStatsChange(StatType.Intelligence);
         }
     }
 }

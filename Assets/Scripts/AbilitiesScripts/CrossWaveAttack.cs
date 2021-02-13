@@ -11,7 +11,8 @@ public class CrossWaveAttack : BaseActiveAbility
     [SerializeField] private float waveDistance = 1;
     [SerializeField] private float waveSpeed;
     [SerializeField] private float animDelay = 1;
-    [SerializeField] private float speedReduce = 2;
+    [SerializeField] private float speedChange = 2;
+    private PlayerSpeedManipulator _playerSpeedManipulator;
 
     public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon, InputHandler inputHandler)
     {
@@ -20,6 +21,7 @@ public class CrossWaveAttack : BaseActiveAbility
         waveSpawner.WavePrefab = wavePrefab;
         waveSpawner.WaveDistance = waveDistance;
         waveSpawner.WaveSpeed = waveSpeed;
+        _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
     }
 
     public override void Execute()
@@ -37,11 +39,12 @@ public class CrossWaveAttack : BaseActiveAbility
         coolDowner.CurrentMana -= manaCost;
         
         _mainHandAnimator.SetTrigger("Cross Wave");
-        _inputHandler.Speed /= 2; 
+        
+        _playerSpeedManipulator.SpeedBonus += speedChange;
 
         yield return new WaitForSeconds(animDelay);
 
-        _inputHandler.Speed *= 1;
+        _playerSpeedManipulator.SpeedBonus -= speedChange;
         
         yield return new WaitForSeconds(coolDown);
 

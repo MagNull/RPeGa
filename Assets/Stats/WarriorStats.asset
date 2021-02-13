@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WarriorStats
   m_EditorClassIdentifier: 
   _strength: 0
-  _agility: 5
+  _agility: 20
   _intelligence: 0

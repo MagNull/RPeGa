@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 7441455743516830427}
   - component: {fileID: 7441455743516830426}
   - component: {fileID: 7441455743516830405}
+  - component: {fileID: 1194826221461362214}
   - component: {fileID: 7441455743516830425}
   - component: {fileID: 7441455743516830424}
   m_Layer: 6
@@ -58,7 +59,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441455743516830407}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.8, y: 1, z: 57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -87,7 +88,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441455743516830407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e480b6d8e39b249988f17a08c050bb, type: 3}
   m_Name: 
@@ -109,7 +110,20 @@ MonoBehaviour:
   CanMove: 0
   CanCast: 1
   CanAttack: 1
+--- !u!114 &1194826221461362214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441455743516830407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8802e8545cf5d424797d0eaa57d1aab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   baseSpeed: 5
+  _currentSpeed: 0
 --- !u!143 &7441455743516830425
 CharacterController:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3976151638120473634
+--- !u!1 &4313960987112732680
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3976151638120473639}
-  - component: {fileID: 3976151638120473632}
-  - component: {fileID: 3976151638120473633}
-  - component: {fileID: 3976151638120473638}
+  - component: {fileID: 4313960987112732724}
+  - component: {fileID: 4313960987112732725}
+  - component: {fileID: 4313960987112732683}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -19,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3976151638120473639
+--- !u!4 &4313960987112732724
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976151638120473634}
+  m_GameObject: {fileID: 4313960987112732680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3976151638120473632
+--- !u!114 &4313960987112732725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976151638120473634}
+  m_GameObject: {fileID: 4313960987112732680}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
@@ -47,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 3976151638120473633}
-  - {fileID: 3976151638120473638}
+  - {fileID: 4313960987112732683}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -66,29 +64,18 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
---- !u!114 &3976151638120473633
+--- !u!114 &4313960987112732683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976151638120473634}
+  m_GameObject: {fileID: 4313960987112732680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d2ebf00b1891041ad4582bec513f27, type: 3}
+  m_Script: {fileID: 11500000, guid: b8806492965714840a80fd5047124127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandler: {fileID: 0}
---- !u!114 &3976151638120473638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976151638120473634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46db517c84b222d4fbcf1caf7974a53a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   manaSlider: {fileID: 0}
+  playerSpeedManipulator: {fileID: 0}

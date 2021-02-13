@@ -5,12 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Shield Block")]
 public class ShieldBlock : BaseActiveAbility
 {
+    [SerializeField] private float speedChange = -5;
     private DamageDealer fireShield;
+    private PlayerSpeedManipulator _playerSpeedManipulator;
     public override void Init(AbilityCaster caster, DamageDealer mainHandWeapon, DamageDealer offHandWeapon, InputHandler inputHandler)
     {
         base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
         fireShield = _offHandWeapon.GetComponentInChildren<FireShield>().GetComponent<DamageDealer>();
         fireShield.gameObject.SetActive(false);
+        _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
     }
 
     public override void Execute()
@@ -28,6 +31,10 @@ public class ShieldBlock : BaseActiveAbility
         _offHandAnimator.SetTrigger("ShieldOn");
         fireShield.ChangeDamageState();
         fireShield.gameObject.SetActive(!fireShield.gameObject.activeSelf);
+        _playerSpeedManipulator.SpeedBonus =
+            fireShield.gameObject.activeSelf
+                ? _playerSpeedManipulator.SpeedBonus + speedChange
+                : _playerSpeedManipulator.SpeedBonus - speedChange;
         _inputHandler.CanCast = !fireShield.gameObject.activeSelf;
     }
 }
