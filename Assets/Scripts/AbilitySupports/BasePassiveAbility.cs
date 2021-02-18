@@ -1,24 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using WeaponScripts;
 
-
-public abstract class BasePassiveAbility : ScriptableObject
+namespace AbilitySupports
 {
-    [SerializeField] protected Image abilityImage;
-    protected DamageDealer _mainHandWeapon;
-    protected DamageDealer _offHandWeapon;
-    protected IDamageable _damageable;
-
-    public virtual void Init(DamageDealer mainHandWeapon, DamageDealer offHandWeapon, IDamageable damageable)
+    public abstract class BasePassiveAbility : ScriptableObject
     {
-        _mainHandWeapon = mainHandWeapon;
-        _offHandWeapon = offHandWeapon;
-        _damageable = damageable;
+        protected DamageCalculator _damageCalculator;
+        protected PlayerSpeedManipulator _manipulator;
+        protected PlayerResources _playerResources;
+        public void Init(DamageCalculator damageCalculator, PlayerSpeedManipulator manipulator, PlayerResources resources)
+        {
+            _damageCalculator = damageCalculator;
+            _manipulator = manipulator;
+            _playerResources = resources;
+        }
+
+        public abstract void ApplyEffect();
     }
-
-
-
 }

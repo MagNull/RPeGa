@@ -1,29 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+using AbilitySupports;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Melee Sword Attack")]
-public class MeleeSwordAttack : BaseActiveAbility
+namespace AbilitiesScripts
 {
-    public override void Execute()
+    [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Melee Sword Attack")]
+    public class MeleeSwordAttack : BaseActiveAbility
     {
-        int num = Random.Range(1,4);
-        switch (num)
+        public override void Execute()
         {
-            case 1:
-                _mainHandAnimator.SetTrigger("MA 1");
-                break;
-            case 2:
-                _mainHandAnimator.SetTrigger("MA 2");
-                break;
-            case 3:
-                _mainHandAnimator.SetTrigger("MA 3");
-                break;
-        }
+            int num = Random.Range(1,4);
+            switch (num)
+            {
+                case 1:
+                    _mainHandAnimator.SetTrigger("MA 1");
+                    break;
+                case 2:
+                    _mainHandAnimator.SetTrigger("MA 2");
+                    break;
+                case 3:
+                    _mainHandAnimator.SetTrigger("MA 3");
+                    break;
+            }
 
-        if (_offHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shield Block"))
-        {
-            _offHandAnimator.SetTrigger("Shield Bash");
+            if (_offHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shield Block"))
+            {
+                _offHandAnimator.SetTrigger("Shield Bash");
+            }
         }
     }
 }

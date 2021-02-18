@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RefreshAllTrigger : StateMachineBehaviour
+namespace AbilitySupports
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class RefreshAllTrigger : StateMachineBehaviour
     {
-        animator.ResetTrigger("MA 1");
-        animator.ResetTrigger("MA 2");
-        animator.ResetTrigger("MA 3");
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.ResetTrigger("MA 1");
+            animator.ResetTrigger("MA 2");
+            animator.ResetTrigger("MA 3");
+        }
     }
 }

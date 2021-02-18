@@ -1,42 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using AbilitySupports;
 using UnityEngine;
+using WeaponScripts;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Passive/Crit Chance")]
-public class CritChancePassive : BasePassiveAbility
+namespace AbilitiesScripts
 {
-    [SerializeField] private float critChance = 1;
-    [SerializeField] private float critMultiplayer = 2;
-    private int roll;
-
-    public override void Init(DamageDealer mainHandWeapon, DamageDealer offHandWeapon, IDamageable damageable)
+    [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Passive/Crit Chance")]
+    public class CritChancePassive : BasePassiveAbility
     {
-        base.Init(mainHandWeapon, offHandWeapon, damageable);
-        _mainHandWeapon.OnHitStart += CritTest;
-        _mainHandWeapon.OnHitEnd += RevertDamage;
-        _offHandWeapon.OnHitStart += CritTest;
-        _offHandWeapon.OnHitEnd += RevertDamage;
-        roll = 0;
-    }
+        [SerializeField] private float critChance = 1;
+        [SerializeField] private float critMultiplayer = 2;
 
-    private void CritTest()
-    {
-        roll = Random.Range(0, 101);
-        if (roll <= critChance)
+        public override void ApplyEffect()
         {
-            _mainHandWeapon.damage *= critMultiplayer;
-            _offHandWeapon.damage *= critMultiplayer;
+            _damageCalculator.CritChance = critChance;
+            _damageCalculator.CritMultiplier = critMultiplayer;
         }
-    }
 
-    private void RevertDamage()
-    {
-        if (roll <= critChance)
-        {
-            _mainHandWeapon.damage /= critMultiplayer;
-            _offHandWeapon.damage /= critMultiplayer;
-        }
+       
     }
 }

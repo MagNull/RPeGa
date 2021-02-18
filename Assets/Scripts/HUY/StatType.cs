@@ -1,6 +1,9 @@
-﻿public enum StatType
+﻿namespace HUY
 {
-    Strength,
-    Agility,
-    Intelligence
+    public enum StatType
+    {
+        Strength,
+        Agility,
+        Intelligence
+    }
 }

@@ -1,86 +1,72 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using WeaponScripts;
 using Zenject;
 
-public class AbilityCaster : MonoBehaviour
+namespace AbilitySupports
 {
-    public DamageDealer mainHandWeapon;
-    public DamageDealer offHandWeapon;
-    [SerializeField] private BaseActiveAbility[] activeAbilities;
-    [SerializeField] private BaseActiveAbility[] activeAttacks;
-    [SerializeField] private BasePassiveAbility[] passiveAbilities;
-    [SerializeField] private int manaPool = 5;
-    private float _currentMana;
-    
-    [Inject]
-    private InputHandler _inputHandler;
-    
-    [Inject(Id = "Mana")]
-    private Slider _manaBar;
-
-    public float CurrentMana
+    public class AbilityCaster : MonoBehaviour
     {
-        get => _currentMana;
-        set
+        public Weapon mainHandWeapon;
+        public Weapon offHandWeapon;
+        [SerializeField] private BaseActiveAbility[] activeAbilities;
+        [SerializeField] private BaseActiveAbility[] activeAttacks;
+        [SerializeField] private BasePassiveAbility[] passiveAbilities;
+    
+        private InputHandler _inputHandler;
+        private PlayerResources _playerResources;
+
+        [Inject]
+        public void Construct(InputHandler inputHandler,
+            PlayerResources playerResources)
         {
-            if (value <= manaPool)
+            _inputHandler = inputHandler;
+            _playerResources = playerResources;
+        }
+
+        private void Start()
+        {
+            foreach (var ability in activeAbilities)
             {
-                _currentMana = value;
-                _manaBar.value = _currentMana / ManaPool;
+                ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
+            }
+            foreach (var ability in activeAttacks)
+            {
+                ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
+            }
+            foreach (var ability in passiveAbilities)
+            {
+                ability.Init(_inputHandler.GetComponent<DamageCalculator>(),
+                                            _inputHandler.GetComponent<PlayerSpeedManipulator>(),
+                                            _playerResources);
+                ability.ApplyEffect();
+            }
+        
+            _inputHandler.OnCast += CastAbility;
+            _inputHandler.OnAttack += Attack;
+            _inputHandler.CanMove = true;
+        }
+
+        private void OnDisable()
+        {
+            _inputHandler.OnCast -= CastAbility;
+            _inputHandler.OnAttack -= Attack;
+        }
+
+        private void CastAbility(int i)
+        {
+            if (activeAbilities[i].ManaCost <= _playerResources.Mana && activeAbilities[i].CanCast)
+            {
+                _playerResources.Mana -= activeAbilities[i].ManaCost;
+                activeAbilities[i].Execute();
             }
         }
-    }
-
-    public int ManaPool
-    {
-        get => manaPool;
-        set => manaPool = value;
-    }
-
-    private void Start()
-    {
-        foreach (var ability in activeAbilities)
-        {
-            ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
-        }
-        foreach (var ability in activeAttacks)
-        {
-            ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
-        }
-        foreach (var ability in passiveAbilities)
-        {
-            ability.Init(mainHandWeapon, offHandWeapon,GetComponent<IDamageable>());
-        }
-
-        CurrentMana = ManaPool;
-        _manaBar.gameObject.SetActive(true);
-        _inputHandler.OnCast += CastAbility;
-        _inputHandler.OnAttack += Attack;
-        _inputHandler.CanMove = true;
-    }
-
-    private void OnDisable()
-    {
-        _inputHandler.OnCast -= CastAbility;
-        _inputHandler.OnAttack -= Attack;
-    }
-
-    private void CastAbility(int i)
-    {
-        if (activeAbilities[i].ManaCost <= _currentMana && activeAbilities[i].CanCast)
-        {
-            activeAbilities[i].Execute();
-        }
-    }
     
-    private void Attack(int i)
-    {
-        if (activeAttacks[i].CanCast)
+        private void Attack(int i)
         {
-            activeAttacks[i].Execute();
+            if (activeAttacks[i].CanCast)
+            {
+                activeAttacks[i].Execute();
+            }
         }
     }
 }

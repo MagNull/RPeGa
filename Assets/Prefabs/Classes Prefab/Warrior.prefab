@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4409445026435836830}
   - component: {fileID: 4409445026445414046}
   - component: {fileID: 3655361886680884041}
-  - component: {fileID: 3655361886680884040}
-  - component: {fileID: 5614420838140978148}
   - component: {fileID: 5614420838140978152}
   - component: {fileID: 7770154951445950448}
+  - component: {fileID: 5614420838140978148}
+  - component: {fileID: 3836046295569087330}
   m_Layer: 7
   m_Name: sword
   m_TagString: Untagged
@@ -120,37 +120,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5502649, y: 1.7801784, z: 0.12}
   m_Center: {x: -0.0013282122, y: 0.45142108, z: -0.00084750674}
---- !u!114 &3655361886680884040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409445026438109278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  canDamage: 0
---- !u!114 &5614420838140978148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409445026438109278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824be60427a965a42bdcc91a02b989b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WavePrefab: {fileID: 1512636555991059846, guid: 1ef6dcc71c4685148bb7093ffdae0046, type: 3}
-  WaveDistance: 50
-  WaveSpeed: 10
-  poolSize: 2
-  fireMaterial: {fileID: 2100000, guid: 3ba964ca6687f4543862c32689ea5b11, type: 2}
 --- !u!54 &5614420838140978152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,6 +148,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed58572d7bd735149945fce971493e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5614420838140978148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409445026438109278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824be60427a965a42bdcc91a02b989b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WavePrefab: {fileID: 1512636555991059846, guid: 1ef6dcc71c4685148bb7093ffdae0046, type: 3}
+  WaveDistance: 50
+  WaveSpeed: 10
+  poolSize: 2
+  fireMaterial: {fileID: 2100000, guid: 3ba964ca6687f4543862c32689ea5b11, type: 2}
+--- !u!114 &3836046295569087330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409445026438109278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe63565d51c60a489e519249b56b029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseDamage: 1
+  canDamage: 0
 --- !u!1 &4409445026801453548
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,8 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0.5
-  canDamage: 0
+  BaseDamage: 1
 --- !u!114 &4409445027619821171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,7 +5197,6 @@ GameObject:
   - component: {fileID: 4409445027191617738}
   - component: {fileID: 4409445027191617741}
   - component: {fileID: 4409445027191617742}
-  - component: {fileID: 4409445027051982160}
   - component: {fileID: -887601942673056261}
   - component: {fileID: -3936946353791221191}
   m_Layer: 6
@@ -5288,30 +5286,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85716c07a34ce224691c0da6e25032a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainHandWeapon: {fileID: 3655361886680884040}
+  mainHandWeapon: {fileID: 3836046295569087330}
   offHandWeapon: {fileID: 7598647429176387705}
   activeAbilities:
-  - {fileID: 11400000, guid: c693c8c990cf9744580e15de56d71681, type: 2}
   - {fileID: 11400000, guid: d3bb8ff8af2beab43ac5ab50ca58db13, type: 2}
+  - {fileID: 11400000, guid: c693c8c990cf9744580e15de56d71681, type: 2}
   activeAttacks:
   - {fileID: 11400000, guid: 8fe03c176febd6d4b999f431d7afc6c2, type: 2}
   - {fileID: 11400000, guid: 4b458ea7de0ee6246aa0f1201ad8566e, type: 2}
   passiveAbilities:
   - {fileID: 11400000, guid: 5da85422c150a144d9561384a67ebb38, type: 2}
-  manaPool: 50
---- !u!114 &4409445027051982160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409445027191617729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecb4b45413520064ba27698f8d9f2460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
 --- !u!114 &-887601942673056261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5338,7 +5322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 3c8b47426dd468745b44f80982b9178b, type: 2}
-  strengthPowerCoefficient: 1
+  strengthDamageCoefficient: 1
   agilitySpeedCoefficient: 1
   intelligenceManaCoefficient: 1
 --- !u!1 &6475395383019989658
@@ -5489,8 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  canDamage: 0
+  BaseDamage: 1
 --- !u!114 &7770154952374660158
 MonoBehaviour:
   m_ObjectHideFlags: 0

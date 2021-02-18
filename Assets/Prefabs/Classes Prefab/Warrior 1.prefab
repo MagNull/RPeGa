@@ -5198,7 +5198,6 @@ GameObject:
   - component: {fileID: 4409445027191617738}
   - component: {fileID: 4409445027191617741}
   - component: {fileID: 4409445027191617742}
-  - component: {fileID: 4409445027051982160}
   - component: {fileID: -8868106628741017031}
   m_Layer: 6
   m_Name: Warrior 1
@@ -5289,7 +5288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainHandWeapon: {fileID: 3655361886680884040}
   offHandWeapon: {fileID: 7598647429176387705}
-  manaBar: {fileID: 0}
   activeAbilities:
   - {fileID: 11400000, guid: c693c8c990cf9744580e15de56d71681, type: 2}
   - {fileID: 11400000, guid: d3bb8ff8af2beab43ac5ab50ca58db13, type: 2}
@@ -5298,21 +5296,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b458ea7de0ee6246aa0f1201ad8566e, type: 2}
   passiveAbilities:
   - {fileID: 11400000, guid: 5da85422c150a144d9561384a67ebb38, type: 2}
-  manaPool: 50
-  _inputHandler: {fileID: 0}
---- !u!114 &4409445027051982160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409445027191617729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecb4b45413520064ba27698f8d9f2460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
+  _playerResources: {fileID: 0}
 --- !u!114 &-8868106628741017031
 MonoBehaviour:
   m_ObjectHideFlags: 0
