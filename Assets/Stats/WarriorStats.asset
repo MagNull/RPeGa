@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06aba7a8d272b6b448e9f5d9eed44c6c, type: 3}
   m_Name: WarriorStats
   m_EditorClassIdentifier: 
-  _strength: 5
+  _strength: 2
   _agility: 1
   _intelligence: 2

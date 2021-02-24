@@ -8,13 +8,13 @@ namespace HUY
     {
         [SerializeField] private Stats stats;
 
-        [Header("Strength Scale Coefficient ")] [SerializeField]
-        private float strengthDamageCoefficient;
-        private float strengthHealthCoefficient;
-        [Header("Agility Scale Coefficient ")] [SerializeField]
-        private float agilitySpeedCoefficient;
-        [Header("Intelligence Scale Coefficient ")] [SerializeField]
-        private float intelligenceManaCoefficient;
+        [Header("Strength Scale Coefficient ")]
+        [SerializeField] private float strengthDamageCoefficient;
+        [SerializeField] private float strengthHealthCoefficient;
+        [Header("Agility Scale Coefficient ")]
+        [SerializeField] private float agilitySpeedCoefficient;
+        [Header("Intelligence Scale Coefficient ")]
+        [SerializeField] private float intelligenceManaCoefficient;
 
 
         private PlayerSpeedManipulator _playerSpeedManipulator;
@@ -50,14 +50,14 @@ namespace HUY
             ScaleStrength(StatType.Strength, stats.Strength);
             ScaleAgility(StatType.Agility, stats.Agility);
             ScaleIntelligence(StatType.Intelligence, stats.Intelligence);
-            _playerResources.Init();
+            _playerResources.Init();;
         }
 
         private void ScaleStrength(StatType type, int delta)
         {
             if (type == StatType.Strength)
             {
-                _playerResources.MAXHealth += strengthHealthCoefficient * delta;
+                _playerResources.MAXHealth.Value += strengthHealthCoefficient * delta;
                 _damageCalculator.DamageBonus += strengthDamageCoefficient * delta; 
             }
         }
@@ -71,7 +71,7 @@ namespace HUY
         private void ScaleIntelligence(StatType type, int delta)
         {
             if (type == StatType.Intelligence)
-                _playerResources.MAXMana += intelligenceManaCoefficient * delta;
+                _playerResources.MAXMana.Value += intelligenceManaCoefficient * delta;
         }
     }
 }

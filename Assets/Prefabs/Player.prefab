@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 1194826221461362214}
   - component: {fileID: 7441455743516830425}
   - component: {fileID: 7441455743516830424}
+  - component: {fileID: 136324413}
+  - component: {fileID: 136324414}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -156,3 +158,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &136324413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441455743516830407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b6b019fc53e144788e85acbee32e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaSlider: {fileID: 0}
+  healthSlider: {fileID: 0}
+  manaText: {fileID: 0}
+  healthText: {fileID: 0}
+  maxHealth: 20
+  maxMana: 20
+--- !u!114 &136324414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441455743516830407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae795f95525a0745a0130a905a33e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CritMultiplier: 1
+  CritChance: 0
+  damageBonus: 0

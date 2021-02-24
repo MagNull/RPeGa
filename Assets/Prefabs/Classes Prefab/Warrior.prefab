@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe63565d51c60a489e519249b56b029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseDamage: 1
   canDamage: 0
+  baseDamage: 1
 --- !u!1 &4409445026801453548
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDamage: 0
   BaseDamage: 1
 --- !u!114 &4409445027619821171
 MonoBehaviour:
@@ -5323,6 +5324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 3c8b47426dd468745b44f80982b9178b, type: 2}
   strengthDamageCoefficient: 1
+  strengthHealthCoefficient: 1
   agilitySpeedCoefficient: 1
   intelligenceManaCoefficient: 1
 --- !u!1 &6475395383019989658
@@ -5473,6 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDamage: 0
   BaseDamage: 1
 --- !u!114 &7770154952374660158
 MonoBehaviour:

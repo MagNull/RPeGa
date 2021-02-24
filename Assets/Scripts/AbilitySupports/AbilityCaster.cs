@@ -54,9 +54,9 @@ namespace AbilitySupports
 
         private void CastAbility(int i)
         {
-            if (activeAbilities[i].ManaCost <= _playerResources.Mana && activeAbilities[i].CanCast)
+            if (activeAbilities[i].ManaCost <= _playerResources.Mana.Value && activeAbilities[i].CanCast)
             {
-                _playerResources.Mana -= activeAbilities[i].ManaCost;
+                _playerResources.Mana.Value -= activeAbilities[i].ManaCost;
                 activeAbilities[i].Execute();
             }
         }

@@ -77,5 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandler: {fileID: 0}
-  manaSlider: {fileID: 0}
   playerSpeedManipulator: {fileID: 0}
+  playerResources: {fileID: 0}
+  damageCalculator: {fileID: 0}

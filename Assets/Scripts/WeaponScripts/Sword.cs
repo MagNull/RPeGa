@@ -6,7 +6,6 @@ namespace WeaponScripts
     public class Sword : Weapon
     {
         [SerializeField] private float baseDamage = 1;
-        [SerializeField] private bool canDamage = false;
         private ParticleSystem _particles;
 
         [Inject] 
@@ -26,9 +25,9 @@ namespace WeaponScripts
         }
         
 
-        public void ChangeDamageState()
+        public override void ChangeDamageState()
         {
-            canDamage = !canDamage;
+            base.ChangeDamageState();
             if(_particles)_particles.enableEmission = !_particles.emission.enabled;
         }
     

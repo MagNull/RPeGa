@@ -37,7 +37,7 @@ namespace AbilitiesScripts
             _inputHandler.CanAttack = false;
             CanCast = false;
             
-            ((Sword)_mainHandWeapon).ChangeDamageState();
+            _mainHandWeapon.ChangeDamageState();
             
             _mainHandAnimator.SetBool("Spin", true);
             _offHandAnimator.SetBool("Spin", true);

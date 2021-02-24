@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
@@ -12,8 +13,6 @@ public class InputHandler : MonoBehaviour
     public bool CanCast = true;
     public bool CanAttack = true;
     
-
-
 
     private void Update()
     {

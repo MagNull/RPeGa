@@ -20,4 +20,4 @@ MonoBehaviour:
   spinSpeed: 3
   spinDuration: 3
   spinTargetTransform: {fileID: 0}
-  speedChange: 1.5
+  speedChange: 6
