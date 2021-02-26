@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using AbilitySupports;
-using TMPro;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -11,38 +9,68 @@ using Zenject;
 public class UIController : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private Slider manaSlider;
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Text manaText;
-    [SerializeField] private Text healthText;
+    [SerializeField] private Slider _manaSlider;
+    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private Text _manaText;
+    [SerializeField] private Text _healthText;
+    [SerializeField] private GameObject _panel;
+
+    
+    private PlayerResources _playerResources;
+    private InputHandler _inputHandler;
 
     [Inject]
-    private PlayerResources _playerResources;
+    public void Construct(PlayerResources playerResources, InputHandler inputHandler)
+    {
+        _playerResources = playerResources;
+        _inputHandler = inputHandler;
+    }
 
     private void Start()
     {
         _playerResources
-            .Health
+            .CurrentHealth
             .Where(x => x >= 0)
             .Subscribe(x => ChangeHealthSliderValue(x))
             .AddTo(this);
         _playerResources
-            .Mana
+            .CurrentMana
             .Where(x => x >= 0)
             .Subscribe(x => ChangeManaSliderValue(x))
             .AddTo(this);
+        
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKeyDown(KeyCode.I))
+            .Subscribe(_ => ChangeInventoryEnable());
+        
+        _panel.SetActive(false);
+    }
+
+    private void ChangeInventoryEnable()
+    {
+        bool state = !_panel.activeSelf;
+        _panel.SetActive(state);
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = state;
+        StopPlayerActivity(!state);
+    }
+
+    private void StopPlayerActivity(bool state)
+    {
+        _inputHandler.CanAttack = state;
+        _inputHandler.CanCast = state;
     }
 
     private void ChangeHealthSliderValue(float health)
     {
-        healthSlider.value = health / _playerResources.MAXHealth.Value;
-        healthText.text = String.Format("{0} / {1}", health, _playerResources.MAXHealth.Value);
+        _healthSlider.value = health / _playerResources.MAXHealth.Value;
+        _healthText.text = $"{health} / {_playerResources.MAXHealth.Value}";
     }
 
 
     private void ChangeManaSliderValue(float mana)
     {
-        manaSlider.value = mana / _playerResources.MAXMana.Value;
-        manaText.text = String.Format("{0} / {1}", mana, _playerResources.MAXMana.Value);
+        _manaSlider.value = mana / _playerResources.MAXMana.Value;
+        _manaText.text = $"{mana} / {_playerResources.MAXMana.Value}";
     }
 }

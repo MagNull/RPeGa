@@ -6,14 +6,14 @@ using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float jumpHeight = 1.5f;
-    [SerializeField] private float gravityForce = -9.81f;
+    [SerializeField] private float _jumpHeight = 1.5f;
+    [SerializeField] private float _gravityForce = -9.81f;
     
     private InputHandler _inputHandler;
     private PlayerSpeedManipulator _playerSpeedManipulator;
     
     private CharacterController _characterController;
-    private Vector3 movement = Vector3.zero;
+    private Vector3 _movement = Vector3.zero;
 
     [Inject]
     public void Construct(InputHandler inputHandler, PlayerSpeedManipulator playerSpeedManipulator)
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _characterController.isGrounded)
         {
-            movement.y = Mathf.Sqrt(jumpHeight * -2f * gravityForce);
+            _movement.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityForce);
         }
     }
 
@@ -49,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_characterController.isGrounded)
         {
-            movement = new Vector3(Input.GetAxis("Horizontal"), 0,
+            _movement = new Vector3(Input.GetAxis("Horizontal"), 0,
                 Input.GetAxis("Vertical"));
-            if (movement.magnitude > 1) movement.Normalize();
-            movement = transform.TransformDirection(movement * _playerSpeedManipulator.Speed);
+            if (_movement.magnitude > 1) _movement.Normalize();
+            _movement = transform.TransformDirection(_movement * _playerSpeedManipulator.Speed);
         }
 
-        movement.y += gravityForce * Time.deltaTime;
+        _movement.y += _gravityForce * Time.deltaTime;
         Jump();
-        _characterController.Move(movement * Time.deltaTime);
+        _characterController.Move(_movement * Time.deltaTime);
     }
 }

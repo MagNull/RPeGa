@@ -4,20 +4,20 @@ namespace AbilitiesScripts
 {
     public class FireShield : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer shieldStone;
-        [SerializeField] private float sinKoef = .5f;
-        [SerializeField] private float minAlpha;
-        [SerializeField] private float fireSpeed = 1;
+        [SerializeField] private MeshRenderer _shieldStone;
+        [SerializeField] private float _sinKoef = .5f;
+        [SerializeField] private float _minAlpha;
+        [SerializeField] private float _fireSpeed = 1;
         private MeshRenderer _meshRenderer;
 
         private void OnEnable()
         {
-            shieldStone.material.EnableKeyword("_EMISSION");
+            _shieldStone.material.EnableKeyword("_EMISSION");
         }
 
         private void OnDisable()
         {
-            shieldStone.material.DisableKeyword("_EMISSION");
+            _shieldStone.material.DisableKeyword("_EMISSION");
         }
 
         private void Awake()
@@ -28,7 +28,7 @@ namespace AbilitiesScripts
         private void Update()
         {
             Color c = _meshRenderer.material.color;
-            c.a = (sinKoef * Mathf.Sin(Time.realtimeSinceStartup * fireSpeed) + minAlpha) / 100;
+            c.a = (_sinKoef * Mathf.Sin(Time.realtimeSinceStartup * _fireSpeed) + _minAlpha) / 100;
             _meshRenderer.material.color = c;
         }
     }

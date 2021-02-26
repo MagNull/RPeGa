@@ -6,15 +6,15 @@ namespace HUY
 {
     public class StatScaler : MonoBehaviour
     {
-        [SerializeField] private Stats stats;
+        [SerializeField] private Stats _stats;
 
         [Header("Strength Scale Coefficient ")]
-        [SerializeField] private float strengthDamageCoefficient;
-        [SerializeField] private float strengthHealthCoefficient;
+        [SerializeField] private float _strengthDamageCoefficient;
+        [SerializeField] private float _strengthHealthCoefficient;
         [Header("Agility Scale Coefficient ")]
-        [SerializeField] private float agilitySpeedCoefficient;
+        [SerializeField] private float _agilitySpeedCoefficient;
         [Header("Intelligence Scale Coefficient ")]
-        [SerializeField] private float intelligenceManaCoefficient;
+        [SerializeField] private float _intelligenceManaCoefficient;
 
 
         private PlayerSpeedManipulator _playerSpeedManipulator;
@@ -33,23 +33,23 @@ namespace HUY
 
         private void OnEnable()
         {
-            stats.OnStatsChange += ScaleStrength;
-            stats.OnStatsChange += ScaleAgility;
-            stats.OnStatsChange += ScaleIntelligence;
+            _stats.OnStatsChange += ScaleStrength;
+            _stats.OnStatsChange += ScaleAgility;
+            _stats.OnStatsChange += ScaleIntelligence;
         }
 
         private void OnDisable()
         {
-            stats.OnStatsChange -= ScaleStrength;
-            stats.OnStatsChange -= ScaleAgility;
-            stats.OnStatsChange -= ScaleIntelligence;
+            _stats.OnStatsChange -= ScaleStrength;
+            _stats.OnStatsChange -= ScaleAgility;
+            _stats.OnStatsChange -= ScaleIntelligence;
         }
 
         private void Start()
         {
-            ScaleStrength(StatType.Strength, stats.Strength);
-            ScaleAgility(StatType.Agility, stats.Agility);
-            ScaleIntelligence(StatType.Intelligence, stats.Intelligence);
+            ScaleStrength(StatType.Strength, _stats.Strength);
+            ScaleAgility(StatType.Agility, _stats.Agility);
+            ScaleIntelligence(StatType.Intelligence, _stats.Intelligence);
             _playerResources.Init();;
         }
 
@@ -57,21 +57,21 @@ namespace HUY
         {
             if (type == StatType.Strength)
             {
-                _playerResources.MAXHealth.Value += strengthHealthCoefficient * delta;
-                _damageCalculator.DamageBonus += strengthDamageCoefficient * delta; 
+                _playerResources.MAXHealth.Value += _strengthHealthCoefficient * delta;
+                _damageCalculator.DamageBonus += _strengthDamageCoefficient * delta; 
             }
         }
 
         private void ScaleAgility(StatType type, int delta)
         {
             if (type == StatType.Agility)
-                _playerSpeedManipulator.SpeedBonus += delta * agilitySpeedCoefficient;
+                _playerSpeedManipulator.SpeedBonus += delta * _agilitySpeedCoefficient;
         }
 
         private void ScaleIntelligence(StatType type, int delta)
         {
             if (type == StatType.Intelligence)
-                _playerResources.MAXMana.Value += intelligenceManaCoefficient * delta;
+                _playerResources.MAXMana.Value += _intelligenceManaCoefficient * delta;
         }
     }
 }

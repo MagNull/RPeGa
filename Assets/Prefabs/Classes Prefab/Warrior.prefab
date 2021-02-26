@@ -163,8 +163,8 @@ MonoBehaviour:
   WavePrefab: {fileID: 1512636555991059846, guid: 1ef6dcc71c4685148bb7093ffdae0046, type: 3}
   WaveDistance: 50
   WaveSpeed: 10
-  poolSize: 2
-  fireMaterial: {fileID: 2100000, guid: 3ba964ca6687f4543862c32689ea5b11, type: 2}
+  _poolSize: 2
+  _fireMaterial: {fileID: 2100000, guid: 3ba964ca6687f4543862c32689ea5b11, type: 2}
 --- !u!114 &3836046295569087330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe63565d51c60a489e519249b56b029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDamage: 0
-  baseDamage: 1
+  _canDamage: 0
+  _baseDamage: 1
 --- !u!1 &4409445026801453548
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDamage: 0
+  _canDamage: 0
   BaseDamage: 1
 --- !u!114 &4409445027619821171
 MonoBehaviour:
@@ -319,10 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91db2c1e32b50794899f9ec5cd1e64d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldStone: {fileID: 7770154950983814529}
-  sinKoef: 3.5
-  minAlpha: 6.5
-  fireSpeed: 2
+  _shieldStone: {fileID: 7770154950983814529}
+  _sinKoef: 2
+  _minAlpha: 4
+  _fireSpeed: 3
 --- !u!1 &4409445027102915399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,15 +5287,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85716c07a34ce224691c0da6e25032a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainHandWeapon: {fileID: 3836046295569087330}
-  offHandWeapon: {fileID: 7598647429176387705}
-  activeAbilities:
-  - {fileID: 11400000, guid: d3bb8ff8af2beab43ac5ab50ca58db13, type: 2}
+  _mainHandWeapon: {fileID: 3836046295569087330}
+  _offHandWeapon: {fileID: 7598647429176387705}
+  _activeAbilities:
   - {fileID: 11400000, guid: c693c8c990cf9744580e15de56d71681, type: 2}
-  activeAttacks:
+  - {fileID: 11400000, guid: d3bb8ff8af2beab43ac5ab50ca58db13, type: 2}
+  _activeAttacks:
   - {fileID: 11400000, guid: 8fe03c176febd6d4b999f431d7afc6c2, type: 2}
   - {fileID: 11400000, guid: 4b458ea7de0ee6246aa0f1201ad8566e, type: 2}
-  passiveAbilities:
+  _passiveAbilities:
   - {fileID: 11400000, guid: 5da85422c150a144d9561384a67ebb38, type: 2}
 --- !u!114 &-887601942673056261
 MonoBehaviour:
@@ -5322,11 +5322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3a1b7ffc49e8d41879f1b19a798cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 3c8b47426dd468745b44f80982b9178b, type: 2}
-  strengthDamageCoefficient: 1
-  strengthHealthCoefficient: 1
-  agilitySpeedCoefficient: 1
-  intelligenceManaCoefficient: 1
+  _stats: {fileID: 11400000, guid: 3c8b47426dd468745b44f80982b9178b, type: 2}
+  _strengthDamageCoefficient: 1
+  _strengthHealthCoefficient: 1
+  _agilitySpeedCoefficient: 1
+  _intelligenceManaCoefficient: 1
 --- !u!1 &6475395383019989658
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,7 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDamage: 0
+  _canDamage: 0
   BaseDamage: 1
 --- !u!114 &7770154952374660158
 MonoBehaviour:

@@ -1,4 +1,5 @@
 using AbilitySupports;
+using InventoryScripts;
 using UnityEngine;
 using Zenject;
 
@@ -6,16 +7,18 @@ namespace Installers
 {
     public class PlayersServicesInstaller : MonoInstaller
     {
-        [SerializeField] private InputHandler inputHandler;
-        [SerializeField] private PlayerSpeedManipulator playerSpeedManipulator;
-        [SerializeField] private PlayerResources playerResources;
-        [SerializeField] private DamageCalculator damageCalculator;
+        [SerializeField] private InputHandler _inputHandler;
+        [SerializeField] private PlayerSpeedManipulator _playerSpeedManipulator;
+        [SerializeField] private PlayerResources _playerResources;
+        [SerializeField] private DamageCalculator _damageCalculator;
+        [SerializeField] private Inventory _inventory;
         public override void InstallBindings()
         {
-            Container.Bind<InputHandler>().FromInstance(inputHandler).AsSingle();
-            Container.Bind<PlayerSpeedManipulator>().FromInstance(playerSpeedManipulator).AsSingle();
-            Container.Bind<PlayerResources>().FromInstance(playerResources).AsSingle();
-            Container.Bind<DamageCalculator>().FromInstance(damageCalculator).AsSingle();
+            Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
+            Container.Bind<PlayerSpeedManipulator>().FromInstance(_playerSpeedManipulator).AsSingle();
+            Container.Bind<PlayerResources>().FromInstance(_playerResources).AsSingle();
+            Container.Bind<DamageCalculator>().FromInstance(_damageCalculator).AsSingle();
+            Container.Bind<Inventory>().FromInstance(_inventory).AsSingle();
         }
     }
 }

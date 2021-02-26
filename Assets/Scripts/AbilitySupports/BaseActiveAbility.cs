@@ -7,10 +7,10 @@ namespace AbilitySupports
     public abstract class BaseActiveAbility : ScriptableObject
     {
         public bool CanCast = true;
-        [SerializeField] protected int manaCost = 1;
-        [SerializeField] protected float coolDown;
-        [SerializeField] protected Text coolDownText;
-        [SerializeField] protected Image abilityImage;
+        [SerializeField] protected int _manaCost = 1;
+        [SerializeField] protected float _coolDown;
+        [SerializeField] protected Text _coolDownText;
+        [SerializeField] protected Image _abilityImage;
         protected AbilityCaster _caster;
         protected Animator _mainHandAnimator;
         protected Animator _offHandAnimator;
@@ -18,7 +18,7 @@ namespace AbilitySupports
         protected Weapon _offHandWeapon;
         protected InputHandler _inputHandler;
 
-        public int ManaCost => manaCost;
+        public int ManaCost => _manaCost;
     
 
 

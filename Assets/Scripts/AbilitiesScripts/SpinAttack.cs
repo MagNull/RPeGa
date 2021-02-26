@@ -8,23 +8,23 @@ namespace AbilitiesScripts
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Spin Attack")]
     public class SpinAttack : BaseActiveAbility
     {
-        [SerializeField] private float spinSpeed = 1;
-        [SerializeField] private float spinDuration = 1;
-        [SerializeField] private Transform spinTargetTransform;
-        [SerializeField] private float speedChange = 1.5f;
+        [SerializeField] private float _spinSpeed = 1;
+        [SerializeField] private float _spinDuration = 1;
+        [SerializeField] private Transform _spinTargetTransform;
+        [SerializeField] private float _speedChange = 1.5f;
         private PlayerSpeedManipulator _playerSpeedManipulator;
 
         public override void Init(AbilityCaster caster, Weapon mainHandWeapon, Weapon offHandWeapon, InputHandler inputHandler)
         {
             base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
-            spinTargetTransform = caster.transform;
+            _spinTargetTransform = caster.transform;
             _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
 
         }
 
         public override void Execute()
         {
-            if (!_mainHandAnimator || !_offHandAnimator || !spinTargetTransform)
+            if (!_mainHandAnimator || !_offHandAnimator || !_spinTargetTransform)
             {
                 Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
             }
@@ -42,28 +42,28 @@ namespace AbilitiesScripts
             _mainHandAnimator.SetBool("Spin", true);
             _offHandAnimator.SetBool("Spin", true);
 
-            _playerSpeedManipulator.SpeedBonus += speedChange;
+            _playerSpeedManipulator.SpeedBonus += _speedChange;
         
             float t = 0;
-            while (t < spinDuration)
+            while (t < _spinDuration)
             {
                 t += Time.deltaTime;
-                spinTargetTransform.Rotate(Vector3.up, 360 * spinSpeed * Time.deltaTime);
+                _spinTargetTransform.Rotate(Vector3.up, 360 * _spinSpeed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
-            spinTargetTransform.localEulerAngles = Vector3.zero;
+            _spinTargetTransform.localEulerAngles = Vector3.zero;
         
             _mainHandAnimator.SetBool("Spin", false);
             _offHandAnimator.SetBool("Spin", false);
         
-            _playerSpeedManipulator.SpeedBonus -= speedChange;
+            _playerSpeedManipulator.SpeedBonus -= _speedChange;
         
             _inputHandler.CanCast = true;
             _inputHandler.CanAttack = true;
         
             ((Sword)_mainHandWeapon).ChangeDamageState();
 
-            yield return new WaitForSeconds(coolDown);
+            yield return new WaitForSeconds(_coolDown);
 
             CanCast = true;
         }

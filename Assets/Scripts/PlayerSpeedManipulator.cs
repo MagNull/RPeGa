@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerSpeedManipulator : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 1;
+    [SerializeField] private float _baseSpeed = 1;
     [SerializeField] private float _currentSpeed;
     private float _speedBonus = 0;
 
@@ -32,7 +32,7 @@ public class PlayerSpeedManipulator : MonoBehaviour
 
     private void RecalculateSpeed()
     {
-        _currentSpeed = baseSpeed + _speedBonus;
+        _currentSpeed = _baseSpeed + _speedBonus;
         _currentSpeed = Mathf.Clamp(_currentSpeed, 0, 100);
     }
     

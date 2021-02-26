@@ -6,11 +6,11 @@ namespace AbilitySupports
 {
     public class AbilityCaster : MonoBehaviour
     {
-        public Weapon mainHandWeapon;
-        public Weapon offHandWeapon;
-        [SerializeField] private BaseActiveAbility[] activeAbilities;
-        [SerializeField] private BaseActiveAbility[] activeAttacks;
-        [SerializeField] private BasePassiveAbility[] passiveAbilities;
+        public Weapon _mainHandWeapon;
+        public Weapon _offHandWeapon;
+        [SerializeField] private BaseActiveAbility[] _activeAbilities;
+        [SerializeField] private BaseActiveAbility[] _activeAttacks;
+        [SerializeField] private BasePassiveAbility[] _passiveAbilities;
     
         private InputHandler _inputHandler;
         private PlayerResources _playerResources;
@@ -25,15 +25,15 @@ namespace AbilitySupports
 
         private void Start()
         {
-            foreach (var ability in activeAbilities)
+            foreach (var ability in _activeAbilities)
             {
-                ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
+                ability.Init(this, _mainHandWeapon, _offHandWeapon, _inputHandler);
             }
-            foreach (var ability in activeAttacks)
+            foreach (var ability in _activeAttacks)
             {
-                ability.Init(this, mainHandWeapon, offHandWeapon, _inputHandler);
+                ability.Init(this, _mainHandWeapon, _offHandWeapon, _inputHandler);
             }
-            foreach (var ability in passiveAbilities)
+            foreach (var ability in _passiveAbilities)
             {
                 ability.Init(_inputHandler.GetComponent<DamageCalculator>(),
                                             _inputHandler.GetComponent<PlayerSpeedManipulator>(),
@@ -54,18 +54,18 @@ namespace AbilitySupports
 
         private void CastAbility(int i)
         {
-            if (activeAbilities[i].ManaCost <= _playerResources.Mana.Value && activeAbilities[i].CanCast)
+            if (_activeAbilities[i].ManaCost <= _playerResources.CurrentMana.Value && _activeAbilities[i].CanCast)
             {
-                _playerResources.Mana.Value -= activeAbilities[i].ManaCost;
-                activeAbilities[i].Execute();
+                _playerResources.CurrentMana.Value -= _activeAbilities[i].ManaCost;
+                _activeAbilities[i].Execute();
             }
         }
     
         private void Attack(int i)
         {
-            if (activeAttacks[i].CanCast)
+            if (_activeAttacks[i].CanCast)
             {
-                activeAttacks[i].Execute();
+                _activeAttacks[i].Execute();
             }
         }
     }

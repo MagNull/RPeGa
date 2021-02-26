@@ -9,13 +9,13 @@ namespace AbilitiesScripts
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Passive/Crit Chance")]
     public class CritChancePassive : BasePassiveAbility
     {
-        [SerializeField] private float critChance = 1;
-        [SerializeField] private float critMultiplayer = 2;
+        [SerializeField] private float _critChance = 1;
+        [SerializeField] private float _critMultiplayer = 2;
 
         public override void ApplyEffect()
         {
-            _damageCalculator.CritChance = critChance;
-            _damageCalculator.CritMultiplier = critMultiplayer;
+            _damageCalculator.CritChance = _critChance;
+            _damageCalculator.CritMultiplier = _critMultiplayer;
         }
 
        

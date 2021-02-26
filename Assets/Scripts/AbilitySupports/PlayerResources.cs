@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,13 +10,29 @@ namespace AbilitySupports
     {
         public ReactiveProperty<float> MAXHealth = new ReactiveProperty<float>();
         public ReactiveProperty<float> MAXMana = new ReactiveProperty<float>();
-        [HideInInspector] public ReactiveProperty<float> Mana = new ReactiveProperty<float>(0);
-        [HideInInspector] public ReactiveProperty<float> Health = new ReactiveProperty<float>(0);
+        public ReactiveProperty<float> CurrentMana = new ReactiveProperty<float>(0);
+        public ReactiveProperty<float> CurrentHealth = new ReactiveProperty<float>(0);
 
         public void Init()
         {
-            Mana.Value = MAXHealth.Value;
-            Health.Value = MAXHealth.Value;
+            CurrentMana.Value = MAXHealth.Value;
+            CurrentHealth.Value = MAXHealth.Value;
+        }
+
+        private void Start()
+        {
+            CurrentMana
+                .Where(x => x < 0 || x > MAXMana.Value)
+                .Subscribe(_ =>
+                {
+                    CurrentMana.Value = Mathf.Clamp(CurrentMana.Value, 0, MAXMana.Value);
+                });
+            CurrentHealth
+                .Where(x => x < 0 || x > MAXHealth.Value)
+                .Subscribe(_ =>
+                {
+                    CurrentHealth.Value = Mathf.Clamp(CurrentHealth.Value, 0, MAXHealth.Value);
+                });
         }
     }
 }

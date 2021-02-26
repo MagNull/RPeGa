@@ -5,7 +5,7 @@ namespace WeaponScripts
 {
     public class Sword : Weapon
     {
-        [SerializeField] private float baseDamage = 1;
+        [SerializeField] private float _baseDamage = 1;
         private ParticleSystem _particles;
 
         [Inject] 
@@ -33,12 +33,12 @@ namespace WeaponScripts
     
         public void OnCollisionEnter(Collision other)
         {
-            if (canDamage)
+            if (_canDamage)
             {
                 IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    DealDamage(damageable, baseDamage);
+                    DealDamage(damageable, _baseDamage);
                 }  
             }
         }

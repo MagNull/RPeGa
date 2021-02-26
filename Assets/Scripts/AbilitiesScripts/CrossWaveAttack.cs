@@ -8,20 +8,20 @@ namespace AbilitiesScripts
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Cross Wave Attack")]
     public class CrossWaveAttack : BaseActiveAbility
     {
-        [SerializeField] private GameObject wavePrefab;
-        [SerializeField] private float waveDistance = 1;
-        [SerializeField] private float waveSpeed;
-        [SerializeField] private float animDelay = 1;
-        [SerializeField] private float speedChange = 2;
+        [SerializeField] private GameObject _wavePrefab;
+        [SerializeField] private float _waveDistance = 1;
+        [SerializeField] private float _waveSpeed;
+        [SerializeField] private float _animDelay = 1;
+        [SerializeField] private float _speedChange = 2;
         private PlayerSpeedManipulator _playerSpeedManipulator;
 
         public override void Init(AbilityCaster caster, Weapon mainHandWeapon, Weapon offHandWeapon, InputHandler inputHandler)
         {
             base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
             WaveSpawner waveSpawner = _mainHandWeapon.GetComponent<WaveSpawner>();
-            waveSpawner.WavePrefab = wavePrefab;
-            waveSpawner.WaveDistance = waveDistance;
-            waveSpawner.WaveSpeed = waveSpeed;
+            waveSpawner.WavePrefab = _wavePrefab;
+            waveSpawner.WaveDistance = _waveDistance;
+            waveSpawner.WaveSpeed = _waveSpeed;
             _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
         }
 
@@ -40,13 +40,13 @@ namespace AbilitiesScripts
 
             _mainHandAnimator.SetTrigger("Cross Wave");
         
-            _playerSpeedManipulator.SpeedBonus += speedChange;
+            _playerSpeedManipulator.SpeedBonus += _speedChange;
 
-            yield return new WaitForSeconds(animDelay);
+            yield return new WaitForSeconds(_animDelay);
 
-            _playerSpeedManipulator.SpeedBonus -= speedChange;
+            _playerSpeedManipulator.SpeedBonus -= _speedChange;
         
-            yield return new WaitForSeconds(coolDown);
+            yield return new WaitForSeconds(_coolDown);
 
             CanCast = true;
         }

@@ -170,12 +170,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b6b019fc53e144788e85acbee32e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaSlider: {fileID: 0}
-  healthSlider: {fileID: 0}
-  manaText: {fileID: 0}
-  healthText: {fileID: 0}
-  maxHealth: 20
-  maxMana: 20
+  MAXHealth:
+    value: 20
+  MAXMana:
+    value: 20
+  Mana:
+    value: 0
+  Health:
+    value: 0
 --- !u!114 &136324414
 MonoBehaviour:
   m_ObjectHideFlags: 0

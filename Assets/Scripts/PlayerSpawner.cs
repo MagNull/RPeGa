@@ -6,31 +6,31 @@ using Zenject;
 
 public class PlayerSpawner : MonoBehaviour
 {
-   [SerializeField] private GameObject warriorPrefab;
-   [SerializeField] private GameObject archerPrefab;
-   [SerializeField] private GameObject wizardPrefab;
-   [SerializeField] private Transform playerTransform;
-   [SerializeField] private GameObject classChooseUI;
+   [SerializeField] private GameObject _warriorPrefab;
+   [SerializeField] private GameObject _archerPrefab;
+   [SerializeField] private GameObject _wizardPrefab;
+   [SerializeField] private Transform _playerTransform;
+   [SerializeField] private GameObject _classChooseUI;
    
    public void Create(ClassesChooseComponent component)
    {
       GameObject player = null;
-      switch (component.classType)
+      switch (component._classType)
       {
          case Classes.Warrior:
-            player = Instantiate(warriorPrefab, playerTransform.position, playerTransform.rotation);
+            player = Instantiate(_warriorPrefab, _playerTransform.position, _playerTransform.rotation);
             break;
          case Classes.Archer:
-            player = Instantiate(archerPrefab, playerTransform.position, playerTransform.rotation);
+            player = Instantiate(_archerPrefab, _playerTransform.position, _playerTransform.rotation);
             break;
          case Classes.Wizard:
-            player = Instantiate(wizardPrefab, playerTransform.position, playerTransform.rotation);
+            player = Instantiate(_wizardPrefab, _playerTransform.position, _playerTransform.rotation);
             break;
       }
-      if(!(player is null)) player.transform.parent = playerTransform;
+      if(!(player is null)) player.transform.parent = _playerTransform;
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
-      playerTransform.GetComponent<MouseRotation>().enabled = true;
-      classChooseUI.SetActive(false);
+      _playerTransform.GetComponent<MouseRotation>().enabled = true;
+      _classChooseUI.SetActive(false);
    }
 }

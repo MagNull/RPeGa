@@ -13,17 +13,17 @@ public class DamageCalculator : MonoBehaviour
     [HideInInspector]
     public float CritChance;
     
-    [SerializeField] private float damageBonus = 0;
+    [SerializeField] private float _damageBonus = 0;
 
     public float DamageBonus
     {
-        get => damageBonus;
-        set => damageBonus = value;
+        get => _damageBonus;
+        set => _damageBonus = value;
     }
 
     public float CalculateDamage(float damage)
     {
-        float resultDamage = damage + damageBonus;
+        float resultDamage = damage + _damageBonus;
         if (CritChance > 0)
         {
             CritTest(ref resultDamage);

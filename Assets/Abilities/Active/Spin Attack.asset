@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Spin Attack
   m_EditorClassIdentifier: 
   CanCast: 1
-  manaCost: 5
-  coolDown: 1
-  coolDownText: {fileID: 0}
-  abilityImage: {fileID: 0}
-  spinSpeed: 3
-  spinDuration: 3
-  spinTargetTransform: {fileID: 0}
-  speedChange: 6
+  _manaCost: 11
+  _coolDown: 2
+  _coolDownText: {fileID: 0}
+  _abilityImage: {fileID: 0}
+  _spinSpeed: 2.5
+  _spinDuration: 4
+  _spinTargetTransform: {fileID: 0}
+  _speedChange: 3

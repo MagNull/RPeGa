@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ClassesChooseComponent : MonoBehaviour
 {
-    public Classes classType;
+    public Classes _classType;
 }
