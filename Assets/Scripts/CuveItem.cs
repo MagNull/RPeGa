@@ -9,6 +9,4 @@ public class CuveItem : Item
    {
       Debug.Log(name + " was used.");
    }
-   
-   
 }

@@ -3,6 +3,7 @@ using Zenject;
 
 namespace InventoryScripts
 {
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class СonsumableItem : Item
     {
         [SerializeField] private int _numberOfUses = 1;
@@ -24,6 +25,7 @@ namespace InventoryScripts
         private void DeleteItem()
         {
             _inventory.DeleteItem(this);
+            Destroy(gameObject);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using DG.Tweening;
 
 namespace InventoryScripts
 {
@@ -11,17 +12,24 @@ namespace InventoryScripts
         public int Index = 0;
         public Image ItemImage;
         public Text ItemName;
-        [SerializeField] private Item _item;
+        [SerializeField] private Transform _itemPanelSpawnPoint;
+        [SerializeField] private float _throwForce = 1;
+        private Item _item;
         private Inventory _inventory;
+        private Button _button;
+        private ItemPanel _itemPanel;
 
         [Inject]
-        public void Construct(Inventory inventory)
+        public void Construct(Inventory inventory, ItemPanel itemPanel)
         {
             _inventory = inventory;
+            _itemPanel = itemPanel;
         }
 
         private void Awake()
         {
+            _button = GetComponent<Button>();
+            _button.onClick.AddListener(ShowItemPanel);
             _inventory.AddSlot(this);
             ItemName.text = $"Slot {Index}";
         }
@@ -41,7 +49,30 @@ namespace InventoryScripts
             ItemImage.gameObject.SetActive(false);
         }
 
-        public void Use() => _item?.Use();
+        private void ShowItemPanel()
+        {
+            _itemPanel.transform.position = _itemPanelSpawnPoint.position;
+            _itemPanel.gameObject.SetActive(true);
+            _itemPanel.BindButtons(Use, DropItem); 
+        }
+
+        private void Use() => _item?.Use();
+        
+        private void DropItem()
+        {
+            if (!(_item is null))
+            {
+                _item.transform.position = _inventory.transform.position + _inventory.transform.forward * 2;
+                _item.gameObject.SetActive(true);
+                ThrowItem(_item.GetComponent<Rigidbody>());
+                _inventory.DeleteItem(_item);
+            }
+        }
+
+        private void ThrowItem(Rigidbody item)
+        {
+            item.AddForce(_inventory.transform.forward * _throwForce, ForceMode.Impulse);
+        }
 
         public int CompareTo(object obj)
         {
