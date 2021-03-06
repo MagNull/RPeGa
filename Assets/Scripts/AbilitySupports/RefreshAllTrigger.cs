@@ -4,11 +4,21 @@ namespace AbilitySupports
 {
     public class RefreshAllTrigger : StateMachineBehaviour
     {
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        [SerializeField] private string[] _triggers;
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.ResetTrigger("MA 1");
-            animator.ResetTrigger("MA 2");
-            animator.ResetTrigger("MA 3");
+            foreach (string triggerName in _triggers)
+            {
+                animator.ResetTrigger(triggerName);
+            }
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            foreach (string triggerName in _triggers)
+            {
+                animator.ResetTrigger(triggerName);
+            }
         }
     }
 }

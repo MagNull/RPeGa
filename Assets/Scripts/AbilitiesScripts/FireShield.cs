@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AbilitiesScripts
@@ -23,6 +24,11 @@ namespace AbilitiesScripts
         private void Awake()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
+        }
+
+        private void Start()
+        {
+            gameObject.SetActive(false);
         }
 
         private void Update()

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610361f7138b714d9ae7e0f26150f85, type: 3}
   m_Name: ShieldBlock
   m_EditorClassIdentifier: 
-  manaCost: 0
-  coolDown: 0
-  coolDownText: {fileID: 0}
-  abilityImage: {fileID: 0}
-  cdTimer: 0
-  _inBlock: 0
+  CanCast: 1
+  _manaCost: 1
+  _coolDown: 0
+  _coolDownText: {fileID: 0}
+  _abilityImage: {fileID: 0}
+  _mainHandWeapon: {fileID: 0}
+  _offHandWeapon: {fileID: 0}
+  _speedChange: -5

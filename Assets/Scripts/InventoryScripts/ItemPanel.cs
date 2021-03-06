@@ -21,7 +21,12 @@ namespace InventoryScripts
             _useButton.onClick.AddListener(() => gameObject.SetActive(false));
             _dropButton.onClick.AddListener(() => gameObject.SetActive(false));
             _dropButton.onClick.AddListener(dropAction);
-            
+        }
+
+        public void UnbindButtons()
+        {
+            _useButton.onClick.RemoveAllListeners();
+            _dropButton.onClick.RemoveAllListeners();
         }
 
         private void OnDisable()

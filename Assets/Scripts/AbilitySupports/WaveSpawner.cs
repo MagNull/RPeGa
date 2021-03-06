@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WeaponScripts;
+using Zenject;
 
 namespace AbilitySupports
 {
     public class WaveSpawner : MonoBehaviour
     {
+        [HideInInspector] public Transform Player;
         [HideInInspector] public GameObject WavePrefab;
         [HideInInspector] public float WaveDistance;
         [HideInInspector] public float WaveSpeed;
         [SerializeField] private int _poolSize = 2;
         [SerializeField] private Material _fireMaterial;
-        private Queue<Transform> _wavesPool = new Queue<Transform>();
+        [SerializeField] private MeshRenderer _swordMeshRenderer;
+        private readonly Queue<Transform> _wavesPool = new Queue<Transform>();
         private Material _defaultMaterial;
-        private MeshRenderer _meshRenderer;
-
-        private void Awake()
-        {
-            _meshRenderer = GetComponent<MeshRenderer>();
-        }
 
         private void Start()
         {
@@ -30,21 +27,21 @@ namespace AbilitySupports
                 wave.SetActive(false);
                 _wavesPool.Enqueue(wave.transform);
             }
-            _defaultMaterial = _meshRenderer.material;
+            _defaultMaterial = _swordMeshRenderer.material;
         }
 
         public void ChargeSword()
         {
-            _meshRenderer.material = _fireMaterial;
+            _swordMeshRenderer.material = _fireMaterial;
         }
     
         public void CreateWave()
         {
             Transform wave = _wavesPool.Dequeue();
-            wave.position = transform.parent.transform.parent.position;
-            wave.rotation = Quaternion.Euler(wave.eulerAngles.x,transform.parent.transform.parent.eulerAngles.y,wave.eulerAngles.z);
+            wave.position = Player.position;
+            wave.rotation = Quaternion.Euler(wave.eulerAngles.x, Player.eulerAngles.y,wave.eulerAngles.z);
             wave.gameObject.SetActive(true);
-            _meshRenderer.material = _defaultMaterial;
+            _swordMeshRenderer.material = _defaultMaterial;
             StartCoroutine(PushWave(wave));
         }
 

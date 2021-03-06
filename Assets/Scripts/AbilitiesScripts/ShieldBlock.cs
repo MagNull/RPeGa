@@ -1,4 +1,6 @@
 using AbilitySupports;
+using InventoryScripts;
+using UniRx;
 using UnityEngine;
 using WeaponScripts;
 
@@ -10,33 +12,39 @@ namespace AbilitiesScripts
         [SerializeField] private float _speedChange = -5;
         private BaseDamageDealer _fireShield;
         private PlayerSpeedManipulator _playerSpeedManipulator;
-        public override void Init(AbilityCaster caster, Weapon mainHandWeapon, Weapon offHandWeapon, InputHandler inputHandler)
+        public override void Init(AbilityCaster caster,InputHandler inputHandler)
         {
-            base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
-            _fireShield = ((BaseDamageDealer)_offHandWeapon).GetComponentInChildren<FireShield>().GetComponent<BaseDamageDealer>();
-            _fireShield.gameObject.SetActive(false);
+            base.Init(caster, inputHandler);
             _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
         }
 
-        public override void Execute()
+        public override void Execute(ReactiveProperty<float> mana)
         {
-            if (!_mainHandAnimator || !_offHandAnimator)
+            if(!(_offHandWeapon is null))ChangeBlockState();
+        }
+
+        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
+        {
+            base.SetWeapon(weapon, weaponType);
+            if (!(_offHandWeapon is null) && weapon.GetType() == typeof(Shield)) 
             {
-                Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
+                _fireShield = ((Shield)_offHandWeapon).FireShield.GetComponent<BaseDamageDealer>();
+                _fireShield.gameObject.SetActive(false); 
             }
-            ChangeBlockState();
+               
         }
 
         private void ChangeBlockState()
         {
-            _mainHandAnimator.SetTrigger("ShieldOn");
-            _offHandAnimator.SetTrigger("ShieldOn");
-            _fireShield.gameObject.SetActive(!_fireShield.gameObject.activeSelf);
+            bool state = !_fireShield.gameObject.activeSelf;
             _playerSpeedManipulator.SpeedBonus =
-                _fireShield.gameObject.activeSelf
+                state
                     ? _playerSpeedManipulator.SpeedBonus + _speedChange
                     : _playerSpeedManipulator.SpeedBonus - _speedChange;
-            _inputHandler.CanCast = !_fireShield.gameObject.activeSelf;
+            _inputHandler.CanCast = !state;
+            _mainHandWeapon?.SetSkillBoolParameter("ShieldOn", state);
+            _offHandWeapon.SetSkillBoolParameter("ShieldOn", state);
+            _fireShield.gameObject.SetActive(state);
         }
     }
 }

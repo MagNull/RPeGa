@@ -1,3 +1,6 @@
+using System;
+using InventoryScripts;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaponScripts;
@@ -12,10 +15,8 @@ namespace AbilitySupports
         [SerializeField] protected Text _coolDownText;
         [SerializeField] protected Image _abilityImage;
         protected AbilityCaster _caster;
-        protected Animator _mainHandAnimator;
-        protected Animator _offHandAnimator;
-        protected Weapon _mainHandWeapon;
-        protected Weapon _offHandWeapon;
+        [SerializeField]protected Weapon _mainHandWeapon;
+        [SerializeField]protected Weapon _offHandWeapon;
         protected InputHandler _inputHandler;
 
         public int ManaCost => _manaCost;
@@ -23,19 +24,28 @@ namespace AbilitySupports
 
 
 
-        public virtual void Init(AbilityCaster caster, Weapon mainHandWeapon, 
-            Weapon offHandWeapon, InputHandler inputHandler)
+        public virtual void Init(AbilityCaster caster, InputHandler inputHandler)
         {
-            _mainHandWeapon = mainHandWeapon;
-            _offHandWeapon = offHandWeapon;
             _inputHandler = inputHandler;
-            _mainHandAnimator = _mainHandWeapon.GetComponent<Animator>();
-            _offHandAnimator = _offHandWeapon.GetComponent<Animator>();
             _caster = caster;
             CanCast = true;
+            _mainHandWeapon = null;
+            _offHandWeapon = null;
         }
 
-        public abstract void Execute();
-    
+        public virtual void SetWeapon(Weapon weapon, EquipableType weaponType)
+        {
+            switch (weaponType)
+            {
+                case EquipableType.MAINHANDWEAPON:
+                    _mainHandWeapon = weapon;
+                    break;
+                case EquipableType.OFFHANDWEAPON:
+                    _offHandWeapon = weapon;
+                    break;
+            }
+        }
+
+        public abstract void Execute(ReactiveProperty<float> mana);
     }
 }

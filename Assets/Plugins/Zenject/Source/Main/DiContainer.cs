@@ -1041,7 +1041,7 @@ namespace Zenject
                         return context.FallBackValue;
                     }
 
-                    throw Assert.CreateException("Unable to resolve '{0}'{1}. Object graph:\n{2}", context.BindingId,
+                        throw Assert.CreateException("Unable to resolve '{0}'{1}. Object graph:\n{2}", context.BindingId,
                         (context.ObjectType == null ? "" : " while building object with type '{0}'".Fmt(context.ObjectType)),
                         context.GetObjectGraphString());
                 }

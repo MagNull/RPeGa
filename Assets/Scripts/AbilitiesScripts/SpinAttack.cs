@@ -1,5 +1,6 @@
 using System.Collections;
 using AbilitySupports;
+using UniRx;
 using UnityEngine;
 using WeaponScripts;
 
@@ -14,21 +15,26 @@ namespace AbilitiesScripts
         [SerializeField] private float _speedChange = 1.5f;
         private PlayerSpeedManipulator _playerSpeedManipulator;
 
-        public override void Init(AbilityCaster caster, Weapon mainHandWeapon, Weapon offHandWeapon, InputHandler inputHandler)
+        public override void Init(AbilityCaster caster,InputHandler inputHandler)
         {
-            base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
+            base.Init(caster, inputHandler);
             _spinTargetTransform = caster.transform;
             _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
 
         }
 
-        public override void Execute()
+        public override void Execute(ReactiveProperty<float> mana)
         {
-            if (!_mainHandAnimator || !_offHandAnimator || !_spinTargetTransform)
+            if (!(_mainHandWeapon is null) || !(_offHandWeapon is null))
             {
-                Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
+                if (!_spinTargetTransform)
+                {
+                    Init(_caster, _inputHandler);
+                }
+                mana.Value -= _manaCost;
+                _caster.StartCoroutine(Spin(_caster));
             }
-            _caster.StartCoroutine(Spin(_caster));
+            
         }
 
         private IEnumerator Spin(AbilityCaster coolDowner)
@@ -37,10 +43,12 @@ namespace AbilitiesScripts
             _inputHandler.CanAttack = false;
             CanCast = false;
             
-            _mainHandWeapon.ChangeDamageState();
+            _mainHandWeapon?.ChangeDamageState();
+            _offHandWeapon?.ChangeDamageState();
             
-            _mainHandAnimator.SetBool("Spin", true);
-            _offHandAnimator.SetBool("Spin", true);
+            
+            _mainHandWeapon?.SetSkillBoolParameter("Spin", true);
+            _offHandWeapon?.SetSkillBoolParameter("Spin", true);
 
             _playerSpeedManipulator.SpeedBonus += _speedChange;
         
@@ -53,15 +61,16 @@ namespace AbilitiesScripts
             }
             _spinTargetTransform.localEulerAngles = Vector3.zero;
         
-            _mainHandAnimator.SetBool("Spin", false);
-            _offHandAnimator.SetBool("Spin", false);
+            _mainHandWeapon?.SetSkillBoolParameter("Spin", false);
+            _offHandWeapon?.SetSkillBoolParameter("Spin", false);
         
             _playerSpeedManipulator.SpeedBonus -= _speedChange;
         
             _inputHandler.CanCast = true;
             _inputHandler.CanAttack = true;
         
-            ((Sword)_mainHandWeapon).ChangeDamageState();
+            _mainHandWeapon?.ChangeDamageState();
+            _offHandWeapon?.ChangeDamageState();
 
             yield return new WaitForSeconds(_coolDown);
 

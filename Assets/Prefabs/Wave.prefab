@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  canDamage: 0
+  weaponTransform: {fileID: 0}
+  _canDamage: 0
+  BaseDamage: 10
 --- !u!54 &1046552040241110817
 Rigidbody:
   m_ObjectHideFlags: 0

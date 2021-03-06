@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e17fabd2464822498438f515c57f823, type: 3}
   m_Name: CritChance
   m_EditorClassIdentifier: 
-  critChance: 30
-  critMultiplayer: 2
+  _critChance: 20
+  _critMultiplayer: 2

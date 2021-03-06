@@ -13,7 +13,7 @@ namespace InventoryScripts
         [SerializeField] private Text _takeItemText;
         private readonly PriorityQueue<Slot> _slots = new PriorityQueue<Slot>();
         private readonly List<Slot> _closedSlots = new List<Slot>();
-        private Item _targetItem;
+        [SerializeField] private Item _targetItem;
 
         private void Start()
         {
@@ -31,27 +31,32 @@ namespace InventoryScripts
 
         public void ChangeTakeTargetItem(Item item)
         {
-            _takeItemText.gameObject.SetActive(!_takeItemText.gameObject.activeSelf);
-            _targetItem = item;
+            if (_slots.Length > 0)
+            {
+                _takeItemText.gameObject.SetActive(!_takeItemText.gameObject.activeSelf);
+                _targetItem = item; 
+            }
         }
 
-        private void AddItem(Item item)
+        public void AddItem(Item item)
         {
-            Slot slot = _slots.Peek();
-            _slots.Dequeue(slot);
-            slot.SetItem(item);
-            _closedSlots.Add(slot);
-            item.SlotIndex = slot.Index;
-            item.gameObject.SetActive(false);
+            if (_slots.Length > 0)
+            {
+                Slot slot = _slots.Peek();
+                _slots.Dequeue(slot);
+                slot.SetItem(item);
+                _closedSlots.Add(slot);
+            }
         }
 
         public void AddSlot(Slot slot)
         {
-            _slots.Enqueue(slot);   
+            if(slot.Index >= 0) _slots.Enqueue(slot);   
         }
 
         public void DeleteItem(Item item)
         {
+            if (item.SlotIndex < 0) return;
             int i = 0;
             while (_closedSlots[i].Index != item.SlotIndex) i++;
             _closedSlots[i].DeleteItem();

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4313960987112732724}
   - component: {fileID: 4313960987112732725}
   - component: {fileID: 4313960987112732683}
+  - component: {fileID: 1937867476}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 4313960987112732683}
+  - {fileID: 1937867476}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -76,7 +78,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8806492965714840a80fd5047124127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputHandler: {fileID: 0}
-  playerSpeedManipulator: {fileID: 0}
-  playerResources: {fileID: 0}
-  damageCalculator: {fileID: 0}
+  _inputHandler: {fileID: 0}
+  _playerSpeedManipulator: {fileID: 0}
+  _playerResources: {fileID: 0}
+  _damageCalculator: {fileID: 0}
+  _inventory: {fileID: 0}
+  _playerEquipment: {fileID: 0}
+--- !u!114 &1937867476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313960987112732680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149032928d0ac034f90db5dfa29952c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPanel: {fileID: 0}

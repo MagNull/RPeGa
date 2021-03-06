@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace WeaponScripts
@@ -11,10 +12,15 @@ namespace WeaponScripts
             damageable.TakeDamage(damage);
         }
 
+        public override void PlayMeleeAttackAnimation()
+        {
+            
+        }
+
         public void OnCollisionEnter(Collision other)
         {
-            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
-            if (damageable != null)
+            Debug.Log(other.gameObject.name);
+            if (other.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 float damage = BaseDamage;
                 DealDamage(damageable, damage);

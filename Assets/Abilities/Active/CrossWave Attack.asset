@@ -17,6 +17,8 @@ MonoBehaviour:
   _coolDown: 1
   _coolDownText: {fileID: 0}
   _abilityImage: {fileID: 0}
+  _mainHandWeapon: {fileID: 0}
+  _offHandWeapon: {fileID: 0}
   _wavePrefab: {fileID: 3637661360229736198, guid: 08f1b58c1b53df24f827205f706bb4cd, type: 3}
   _waveDistance: 20
   _waveSpeed: 15

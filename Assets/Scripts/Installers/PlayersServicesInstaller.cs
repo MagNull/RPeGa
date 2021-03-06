@@ -12,6 +12,7 @@ namespace Installers
         [SerializeField] private PlayerResources _playerResources;
         [SerializeField] private DamageCalculator _damageCalculator;
         [SerializeField] private Inventory _inventory;
+        [SerializeField] private PlayerEquipment _playerEquipment;
         public override void InstallBindings()
         {
             Container.Bind<InputHandler>().FromInstance(_inputHandler).AsSingle();
@@ -19,6 +20,7 @@ namespace Installers
             Container.Bind<PlayerResources>().FromInstance(_playerResources).AsSingle();
             Container.Bind<DamageCalculator>().FromInstance(_damageCalculator).AsSingle();
             Container.Bind<Inventory>().FromInstance(_inventory).AsSingle();
+            Container.Bind<PlayerEquipment>().FromInstance(_playerEquipment).AsSingle();
         }
     }
 }

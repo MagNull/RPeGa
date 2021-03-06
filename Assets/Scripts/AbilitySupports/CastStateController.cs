@@ -6,7 +6,7 @@ namespace AbilitySupports
     public class CastStateController : MonoBehaviour
     {
         [Inject]
-        private InputHandler _inputHandler;
+        private InputHandler _inputHandler;    
 
         public void SetTrueCastState() => _inputHandler.CanCast = true;
     

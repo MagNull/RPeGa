@@ -1,13 +1,17 @@
 using InventoryScripts;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
-public class UIElementsInstaller : MonoInstaller
+namespace Installers
 {
-    [SerializeField] private ItemPanel _itemPanel;
-    public override void InstallBindings()
+    public class UIElementsInstaller : MonoInstaller
     {
-        Container.Bind<ItemPanel>().FromInstance(_itemPanel).AsSingle();
+        [SerializeField] private ItemPanel _itemPanel;
+        [SerializeField] private UIController _uiController;
+        public override void InstallBindings()
+        {
+            Container.Bind<ItemPanel>().FromInstance(_itemPanel).AsSingle();
+            Container.Bind<UIController>().FromInstance(_uiController).AsSingle();
+        }
     }
 }

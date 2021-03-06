@@ -1,5 +1,7 @@
 using System.Collections;
 using AbilitySupports;
+using InventoryScripts;
+using UniRx;
 using UnityEngine;
 using WeaponScripts;
 
@@ -15,30 +17,44 @@ namespace AbilitiesScripts
         [SerializeField] private float _speedChange = 2;
         private PlayerSpeedManipulator _playerSpeedManipulator;
 
-        public override void Init(AbilityCaster caster, Weapon mainHandWeapon, Weapon offHandWeapon, InputHandler inputHandler)
+        public override void Init(AbilityCaster caster,InputHandler inputHandler)
         {
-            base.Init(caster, mainHandWeapon, offHandWeapon, inputHandler);
-            WaveSpawner waveSpawner = _mainHandWeapon.GetComponent<WaveSpawner>();
-            waveSpawner.WavePrefab = _wavePrefab;
-            waveSpawner.WaveDistance = _waveDistance;
-            waveSpawner.WaveSpeed = _waveSpeed;
+            base.Init(caster, inputHandler);
             _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
         }
 
-        public override void Execute()
+        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
         {
-            if (!_mainHandAnimator || _offHandAnimator)
+            base.SetWeapon(weapon, weaponType);
+            if(!(_mainHandWeapon is null))
             {
-                Init(_caster, _mainHandWeapon, _offHandWeapon, _inputHandler);
+                SetWaveSpawner(_mainHandWeapon.GetComponentInParent<WaveSpawner>());
             }
-            _caster.StartCoroutine(CrossAttack(_caster));
+        }
+
+        private void SetWaveSpawner(WaveSpawner waveSpawner)
+        {
+            waveSpawner.enabled = true;
+            waveSpawner.WavePrefab = _wavePrefab;
+            waveSpawner.WaveDistance = _waveDistance;
+            waveSpawner.WaveSpeed = _waveSpeed;
+            waveSpawner.Player = _playerSpeedManipulator.transform;
+        }
+
+        public override void Execute(ReactiveProperty<float> mana)
+        {
+            if (!(_mainHandWeapon is null))
+            {
+                mana.Value -= _manaCost;
+                _caster.StartCoroutine(CrossAttack(_caster));
+            }
         }
 
         private IEnumerator CrossAttack(AbilityCaster coolDowner)
         {
             CanCast = false;
 
-            _mainHandAnimator.SetTrigger("Cross Wave");
+            _mainHandWeapon.SetSkillTrigger("Cross Wave");
         
             _playerSpeedManipulator.SpeedBonus += _speedChange;
 

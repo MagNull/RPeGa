@@ -37,6 +37,7 @@ namespace InventoryScripts
         public void SetItem(Item item)
         {
             _item = item;
+            _item.TakeItem(this);
             ItemName.text = item.Name;
             ItemImage.gameObject.SetActive(true);
             ItemImage.sprite = item.Image;
@@ -53,6 +54,7 @@ namespace InventoryScripts
         {
             _itemPanel.transform.position = _itemPanelSpawnPoint.position;
             _itemPanel.gameObject.SetActive(true);
+            _itemPanel.UnbindButtons();
             _itemPanel.BindButtons(Use, DropItem); 
         }
 
@@ -64,15 +66,12 @@ namespace InventoryScripts
             {
                 _item.transform.position = _inventory.transform.position + _inventory.transform.forward * 2;
                 _item.gameObject.SetActive(true);
-                ThrowItem(_item.GetComponent<Rigidbody>());
+                _item.ThrowOutItem(_inventory.transform.forward, _throwForce);
                 _inventory.DeleteItem(_item);
+                DeleteItem();
             }
         }
-
-        private void ThrowItem(Rigidbody item)
-        {
-            item.AddForce(_inventory.transform.forward * _throwForce, ForceMode.Impulse);
-        }
+        
 
         public int CompareTo(object obj)
         {

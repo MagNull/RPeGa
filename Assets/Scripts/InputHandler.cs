@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviour //TODO: Change CanDoSMT system.
 {
     public event Action OnMove;
     public event Action<int> OnCast;
     public event Action<int> OnAttack;
+    
     public bool CanMove = true;
     public bool CanCast = true;
     public bool CanAttack = true;
