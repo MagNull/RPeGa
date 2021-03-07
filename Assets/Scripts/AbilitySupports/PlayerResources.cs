@@ -19,16 +19,16 @@ namespace AbilitySupports
             CurrentHealth.Value = MAXHealth.Value;
         }
 
-        private void Start()
+        private void Awake()
         {
             CurrentMana
-                .Where(x => x < 0 || x > MAXMana.Value)
+                .Where(x => x < 0 || x >= MAXMana.Value)
                 .Subscribe(_ =>
                 {
                     CurrentMana.Value = Mathf.Clamp(CurrentMana.Value, 0, MAXMana.Value);
                 });
             CurrentHealth
-                .Where(x => x < 0 || x > MAXHealth.Value)
+                .Where(x => x < 0 || x >= MAXHealth.Value)
                 .Subscribe(_ =>
                 {
                     CurrentHealth.Value = Mathf.Clamp(CurrentHealth.Value, 0, MAXHealth.Value);

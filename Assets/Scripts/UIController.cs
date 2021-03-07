@@ -23,14 +23,12 @@ public class UIController : MonoBehaviour
     
     private PlayerResources _playerResources;
     private InputHandler _inputHandler;
-    private Inventory _inventory;
 
     [Inject]
-    public void Construct(PlayerResources playerResources, InputHandler inputHandler, Inventory inventory)
+    public void Construct(PlayerResources playerResources, InputHandler inputHandler)
     {
         _playerResources = playerResources;
         _inputHandler = inputHandler;
-        _inventory = inventory;
     }
 
     public void SetEquipmentInSlot(EquipableType type, EquipableItem equipment)
@@ -64,12 +62,12 @@ public class UIController : MonoBehaviour
         _playerResources
             .CurrentHealth
             .Where(x => x >= 0)
-            .Subscribe(x => ChangeHealthSliderValue(x))
+            .Subscribe(_ => ChangeHealthSliderValue())
             .AddTo(this);
         _playerResources
             .CurrentMana
             .Where(x => x >= 0)
-            .Subscribe(x => ChangeManaSliderValue(x))
+            .Subscribe(_ => ChangeManaSliderValue())
             .AddTo(this);
         
         this.UpdateAsObservable()
@@ -97,15 +95,15 @@ public class UIController : MonoBehaviour
         _inputHandler.CanCast = state;
     }
 
-    private void ChangeHealthSliderValue(float health)
+    private void ChangeHealthSliderValue()
     {
-        _healthSlider.value = health / _playerResources.MAXHealth.Value;
-        _healthText.text = $"{health} / {_playerResources.MAXHealth.Value}";
+        _healthSlider.value = _playerResources.CurrentHealth.Value / _playerResources.MAXHealth.Value;
+        _healthText.text = $"{_playerResources.CurrentHealth.Value} / {_playerResources.MAXHealth.Value}";
     }
     
-    private void ChangeManaSliderValue(float mana)
+    private void ChangeManaSliderValue()
     {
-        _manaSlider.value = mana / _playerResources.MAXMana.Value;
-        _manaText.text = $"{mana} / {_playerResources.MAXMana.Value}";
+        _manaSlider.value = _playerResources.CurrentMana.Value / _playerResources.MAXMana.Value;
+        _manaText.text = $"{_playerResources.CurrentMana.Value} / {_playerResources.MAXMana.Value}";
     }
 }

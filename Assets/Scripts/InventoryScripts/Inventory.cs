@@ -21,7 +21,7 @@ namespace InventoryScripts
                 .Where(_ => Input.GetKeyDown(KeyCode.E))
                 .Subscribe(_ =>
                 {
-                    if (!(_targetItem is null))
+                    if (!(_targetItem is null) && _slots.Length >= 0)
                     {
                         AddItem(_targetItem);
                         ChangeTakeTargetItem(null);
@@ -31,11 +31,15 @@ namespace InventoryScripts
 
         public void ChangeTakeTargetItem(Item item)
         {
-            if (_slots.Length > 0)
+            if (item is null)
             {
-                _takeItemText.gameObject.SetActive(!_takeItemText.gameObject.activeSelf);
-                _targetItem = item; 
+                _takeItemText.gameObject.SetActive(false);
             }
+            else
+            {
+                _takeItemText.gameObject.SetActive(true);
+            }
+            _targetItem = item;
         }
 
         public void AddItem(Item item)

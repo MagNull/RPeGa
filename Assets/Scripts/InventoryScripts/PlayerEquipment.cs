@@ -39,12 +39,12 @@ namespace InventoryScripts
                 });
         }
 
-        public void EquipWeapon(EquipableItem weapon, EquipableType weaponType)
+        public void PutOnEquipment(EquipableItem equipment, EquipableType equipableType)
         {
-            switch (weaponType)
+            switch (equipableType)
             {
                 case EquipableType.MAINHANDWEAPON:
-                    _mainHandWeapon = weapon;
+                    _mainHandWeapon = equipment;
                     _mainHandWeapon.gameObject.layer = 7;
                     _mainHandWeapon.WeaponTransform.transform.position = _mainHandTransform.position;
                     _mainHandWeapon.WeaponTransform.rotation = _mainHandTransform.rotation;
@@ -54,7 +54,7 @@ namespace InventoryScripts
                     _uiController.SetEquipmentInSlot(EquipableType.MAINHANDWEAPON, _mainHandWeapon);
                     break;
                 case EquipableType.OFFHANDWEAPON:
-                    _offHandWeapon = weapon;
+                    _offHandWeapon = equipment;
                     _offHandWeapon.gameObject.layer = 7;
                     _offHandWeapon.WeaponTransform.position = _offHandTransform.position;
                     _offHandWeapon.WeaponTransform.rotation = _offHandTransform.rotation;
@@ -67,28 +67,29 @@ namespace InventoryScripts
             }
         }
 
-        public void TakeOffWeapon(EquipableType weaponType)
+        public void TakeOffEquipment(EquipableType equipmentType)
         {
-            switch (weaponType)
+            switch (equipmentType)
             {
                 case EquipableType.MAINHANDWEAPON:
-                    _uiController.RemoveEquipmentFromSlot(weaponType);
-                    _inventory.AddItem(_mainHandWeapon);
-                    _mainHandWeapon.gameObject.layer = 0;
-                    _mainHandWeapon.WeaponTransform.parent = null;
-                    _mainHandWeapon = null;
+                    _uiController.RemoveEquipmentFromSlot(equipmentType);
+                    TakeOffWeapon(_mainHandWeapon);
                     InitWeapons(EquipableType.MAINHANDWEAPON, null);
                     break;
                 case EquipableType.OFFHANDWEAPON:
-                    _uiController.RemoveEquipmentFromSlot(weaponType);
-                    _inventory.AddItem(_offHandWeapon);
-                    _offHandWeapon.gameObject.layer = 0;
-                    _offHandWeapon.WeaponTransform.parent = null;
-                    _offHandWeapon = null;
+                    _uiController.RemoveEquipmentFromSlot(equipmentType);
+                    TakeOffWeapon(_offHandWeapon);
                     InitWeapons(EquipableType.OFFHANDWEAPON, null);
                     break;
-
             }
+        }
+
+        private void TakeOffWeapon(EquipableItem weapon)
+        {
+            _inventory.AddItem(weapon);
+            weapon.gameObject.layer = 0;
+            weapon.WeaponTransform.parent = null;
+            weapon = null;
         }
 
         private void InitWeapons(EquipableType weaponType, Weapon weapon)

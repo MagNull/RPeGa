@@ -15,15 +15,12 @@ namespace AbilitySupports
         [SerializeField] protected Text _coolDownText;
         [SerializeField] protected Image _abilityImage;
         protected AbilityCaster _caster;
-        [SerializeField]protected Weapon _mainHandWeapon;
-        [SerializeField]protected Weapon _offHandWeapon;
+        protected Weapon _mainHandWeapon;
+        protected Weapon _offHandWeapon;
         protected InputHandler _inputHandler;
 
         public int ManaCost => _manaCost;
-    
-
-
-
+        
         public virtual void Init(AbilityCaster caster, InputHandler inputHandler)
         {
             _inputHandler = inputHandler;

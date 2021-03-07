@@ -32,12 +32,12 @@ namespace InventoryScripts
         {
             if (_isEquipped)
             {
-                _playerEquipment.TakeOffWeapon(_equipableType);
+                _playerEquipment.TakeOffEquipment(_equipableType);
                 _isEquipped = false;
             }
             else
             {
-                _playerEquipment.EquipWeapon(this, _equipableType);
+                _playerEquipment.PutOnEquipment(this, _equipableType);
                 gameObject.SetActive(true);
                 _animator.enabled = true;
                 _isEquipped = true;
@@ -52,6 +52,7 @@ namespace InventoryScripts
             transform.parent.SetParent(null);
             base.ThrowOutItem(forward, throwForce);
             _takeCollider.enabled = true;
+            _isEquipped = false;
 
         }
 

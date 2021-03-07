@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour //TODO: Change CanDoSMT system.
@@ -13,26 +14,25 @@ public class InputHandler : MonoBehaviour //TODO: Change CanDoSMT system.
     public bool CanMove = true;
     public bool CanCast = true;
     public bool CanAttack = true;
-    
 
-    private void Update()
+    private void Start()
     {
-        if (CanMove)
-        {
-            OnMove?.Invoke();
-        }
-
-        if (CanCast)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) OnCast?.Invoke(0);
-            if (Input.GetKeyDown(KeyCode.Alpha2)) OnCast?.Invoke(1);
-            if (Input.GetKeyDown(KeyCode.Alpha3)) OnCast?.Invoke(2);
-        }
-
-        if (CanAttack)
-        {
-            if (Input.GetMouseButtonDown(0)) OnAttack?.Invoke(0);
-            if (Input.GetMouseButtonDown(1)) OnAttack?.Invoke(1);
-        }
+        this.UpdateAsObservable()
+            .Where(_ => CanMove)
+            .Subscribe(_ => OnMove?.Invoke());
+        
+        Observable.EveryUpdate()
+            .Where(_ => CanAttack && Input.GetMouseButtonDown(0))
+            .Subscribe(_ => OnAttack?.Invoke(0));
+        Observable.EveryUpdate()
+            .Where(_ => CanAttack && Input.GetMouseButtonDown(1))
+            .Subscribe(_ => OnAttack?.Invoke(1));
+        
+        this.UpdateAsObservable()
+            .Where(_ => CanCast && Input.GetKeyDown(KeyCode.Alpha1))
+            .Subscribe(_ => OnCast?.Invoke(0));
+        this.UpdateAsObservable()
+            .Where(_ => CanCast && Input.GetKeyDown(KeyCode.Alpha2))
+            .Subscribe(_ => OnCast?.Invoke(1));
     }
 }

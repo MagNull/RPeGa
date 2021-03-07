@@ -23,4 +23,4 @@ MonoBehaviour:
   _waveDistance: 20
   _waveSpeed: 15
   _animDelay: 1
-  _speedChange: -2
+  _speedChange: -4

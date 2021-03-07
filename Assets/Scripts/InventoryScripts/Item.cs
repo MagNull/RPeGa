@@ -22,14 +22,30 @@ namespace InventoryScripts
             SlotIndex = slot.Index;
             gameObject.SetActive(false);
         }
-        private void OnCollisionEnter(Collision other)
+
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out Inventory inventory)) inventory.ChangeTakeTargetItem(this);
         }
 
-        private void OnCollisionExit(Collision other)
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.TryGetComponent(out Inventory inventory)) inventory.ChangeTakeTargetItem(this);
+        }
+
+        private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.TryGetComponent(out Inventory inventory)) inventory.ChangeTakeTargetItem(null);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            
         }
         
         public virtual void ThrowOutItem(Vector3 forward, float throwForce)

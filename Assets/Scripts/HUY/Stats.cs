@@ -10,9 +10,7 @@ namespace HUY
         [SerializeField] private int _strength;    
         [SerializeField] private int _agility;
         [SerializeField] private int _intelligence;
-    
-    
-
+        
         public int Strength
         {
             get => _strength;

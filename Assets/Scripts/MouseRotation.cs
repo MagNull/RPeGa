@@ -18,9 +18,8 @@ public class MouseRotation : MonoBehaviour
         {
             _rotation.x += -Input.GetAxis("Mouse Y") * _sensitivity;
             _rotation.y += Input.GetAxis("Mouse X") * _sensitivity;
-            _rotation.x = Mathf.Clamp(_rotation.x, -30, 30);
-    
-    
+            _rotation.x = Mathf.Clamp(_rotation.x, -30, 30);    
+
             transform.rotation = Quaternion.Euler(0, _rotation.y, 0);
             _followTarget.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
         }
