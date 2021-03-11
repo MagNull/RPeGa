@@ -6,11 +6,11 @@ namespace InventoryScripts
 {
     public class ManaCuve : СonsumableItem
     {
-        [SerializeField] private int manaRefil = 1;
+        [SerializeField] private int _manaRefill = 1;
         [Inject] private PlayerResources _playerResources;
         public override void Use()
         {
-            _playerResources.CurrentMana.Value += manaRefil;
+            _playerResources.CurrentMana.Value += _manaRefill;
             base.Use();
         }
     }

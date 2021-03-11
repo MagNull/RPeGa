@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using AbilitySupports;
+using UniRx;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class DamageCalculator : MonoBehaviour
@@ -14,6 +16,15 @@ public class DamageCalculator : MonoBehaviour
     public float CritChance;
     
     [SerializeField] private float _damageBonus = 0;
+    [Inject] private PlayerBonuses _playerBonuses;
+
+    private void Start()
+    {
+        _playerBonuses.DamageBonus.Where(x => x != null).Subscribe(_ =>
+        {
+            _damageBonus = _playerBonuses.DamageBonus.Value;
+        });
+    }
 
     public float DamageBonus
     {

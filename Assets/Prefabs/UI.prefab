@@ -328,7 +328,7 @@ MonoBehaviour:
   ItemImage: {fileID: 176284077}
   ItemName: {fileID: 1134928254}
   _itemPanelSpawnPoint: {fileID: 2085818255}
-  _throwForce: 2
+  _throwForce: 3
 --- !u!1 &228509626
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ MonoBehaviour:
   ItemImage: {fileID: 138812566}
   ItemName: {fileID: 1331364691}
   _itemPanelSpawnPoint: {fileID: 289970792}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &355679438
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +828,72 @@ RectTransform:
   m_AnchoredPosition: {x: 80, y: -58.522}
   m_SizeDelta: {x: 0, y: 0.00051498}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &393357757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 393357760}
+  - component: {fileID: 393357759}
+  - component: {fileID: 393357758}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &393357760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393357757}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -572.5, y: -430.625, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4372413228279685677}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &393357759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393357757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &393357758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393357757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!1 &466276435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1640,7 @@ MonoBehaviour:
   ItemImage: {fileID: 967702413}
   ItemName: {fileID: 1753765754}
   _itemPanelSpawnPoint: {fileID: 1199422474}
-  _throwForce: 2
+  _throwForce: 3
 --- !u!1 &691293109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,7 +2163,7 @@ MonoBehaviour:
   ItemImage: {fileID: 1784844406}
   ItemName: {fileID: 541047148}
   _itemPanelSpawnPoint: {fileID: 1064424081}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &897959102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2383,7 @@ MonoBehaviour:
   ItemImage: {fileID: 856000187}
   ItemName: {fileID: 641452044}
   _itemPanelSpawnPoint: {fileID: 843531920}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &940180097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2679,7 @@ MonoBehaviour:
   ItemImage: {fileID: 952826831}
   ItemName: {fileID: 755298015}
   _itemPanelSpawnPoint: {fileID: 1835386146}
-  _throwForce: 2
+  _throwForce: 3
 --- !u!1 &967702411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2965,7 @@ MonoBehaviour:
   ItemImage: {fileID: 1432916624}
   ItemName: {fileID: 1733150438}
   _itemPanelSpawnPoint: {fileID: 355679439}
-  _throwForce: 2
+  _throwForce: 3
 --- !u!1 &1123879711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,7 +3536,7 @@ MonoBehaviour:
   ItemImage: {fileID: 255506412}
   ItemName: {fileID: 2126472290}
   _itemPanelSpawnPoint: {fileID: 691293110}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &1331364689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,7 +3831,7 @@ MonoBehaviour:
   ItemImage: {fileID: 1777748975}
   ItemName: {fileID: 808169114}
   _itemPanelSpawnPoint: {fileID: 1775124002}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &1407119852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4102,7 +4168,7 @@ MonoBehaviour:
   ItemImage: {fileID: 475686605}
   ItemName: {fileID: 1621476759}
   _itemPanelSpawnPoint: {fileID: 1089370682}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &1589282339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4243,7 +4309,7 @@ MonoBehaviour:
   ItemImage: {fileID: 1387513730}
   ItemName: {fileID: 897959104}
   _itemPanelSpawnPoint: {fileID: 1738214684}
-  _throwForce: 1
+  _throwForce: 3
 --- !u!1 &1621476757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5863,6 +5929,7 @@ RectTransform:
   - {fileID: 43594263}
   - {fileID: 7349592380131188676}
   - {fileID: 1123879712}
+  - {fileID: 393357760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5949,8 +6016,13 @@ MonoBehaviour:
   _manaText: {fileID: 1868447328}
   _healthText: {fileID: 1883953264}
   _panel: {fileID: 993577399729214090}
-  _mainHandSlot: {fileID: 0}
-  _offHandSlot: {fileID: 0}
+  _mainHandSlot: {fileID: 194409121}
+  _offHandSlot: {fileID: 1768208475}
+  _headSlot: {fileID: 319972368}
+  _bodySlot: {fileID: 903333784}
+  _glovesSlot: {fileID: 977227291}
+  _legsSlot: {fileID: 269074605}
+  _bootsSlot: {fileID: 1595786075}
 --- !u!1 &4372413228760646803
 GameObject:
   m_ObjectHideFlags: 0

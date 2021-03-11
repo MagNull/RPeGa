@@ -17,7 +17,7 @@ namespace WeaponScripts
             
         }
 
-        public void OnCollisionEnter(Collision other)
+        public virtual void OnCollisionEnter(Collision other)
         {
             Debug.Log(other.gameObject.name);
             if (other.gameObject.TryGetComponent(out IDamageable damageable))

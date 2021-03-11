@@ -20,6 +20,11 @@ public class UIController : MonoBehaviour
     [Header("Equipment Slots UI")]
     [SerializeField] private Slot _mainHandSlot;
     [SerializeField] private Slot _offHandSlot;
+    [SerializeField] private Slot _headSlot;
+    [SerializeField] private Slot _bodySlot;
+    [SerializeField] private Slot _glovesSlot;
+    [SerializeField] private Slot _legsSlot;
+    [SerializeField] private Slot _bootsSlot;
     
     private PlayerResources _playerResources;
     private InputHandler _inputHandler;
@@ -41,6 +46,21 @@ public class UIController : MonoBehaviour
             case EquipableType.OFFHANDWEAPON:
                 _offHandSlot.SetItem(equipment);
                 break;
+            case EquipableType.HEAD:
+                _headSlot.SetItem(equipment);
+                break;
+            case EquipableType.BODY:
+                _bodySlot.SetItem(equipment);
+                break;
+            case EquipableType.GLOVES:
+                _glovesSlot.SetItem(equipment);
+                break;
+            case EquipableType.LEGS:
+                _legsSlot.SetItem(equipment);
+                break;
+            case EquipableType.BOOTS:
+                _bootsSlot.SetItem(equipment);
+                break;
         }
     }
 
@@ -53,6 +73,21 @@ public class UIController : MonoBehaviour
                 break;
             case EquipableType.OFFHANDWEAPON:
                 _offHandSlot.DeleteItem();
+                break;
+            case EquipableType.HEAD:
+                _headSlot.DeleteItem();
+                break;
+            case EquipableType.BODY:
+                _bodySlot.DeleteItem();
+                break;
+            case EquipableType.GLOVES:
+                _glovesSlot.DeleteItem();
+                break;
+            case EquipableType.LEGS:
+                _legsSlot.DeleteItem();
+                break;
+            case EquipableType.BOOTS:
+                _bootsSlot.DeleteItem();
                 break;
         }
     }

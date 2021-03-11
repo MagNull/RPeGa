@@ -11,12 +11,6 @@ namespace AbilitiesScripts
     {
         [SerializeField] private float _speedChange = -5;
         private BaseDamageDealer _fireShield;
-        private PlayerSpeedManipulator _playerSpeedManipulator;
-        public override void Init(AbilityCaster caster,InputHandler inputHandler)
-        {
-            base.Init(caster, inputHandler);
-            _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
-        }
 
         public override void Execute(ReactiveProperty<float> mana)
         {
@@ -37,10 +31,10 @@ namespace AbilitiesScripts
         private void ChangeBlockState()
         {
             bool state = !_fireShield.gameObject.activeSelf;
-            _playerSpeedManipulator.SpeedBonus =
+            _playerBonuses.SpeedBonus.Value =
                 state
-                    ? _playerSpeedManipulator.SpeedBonus + _speedChange
-                    : _playerSpeedManipulator.SpeedBonus - _speedChange;
+                    ? _playerBonuses.SpeedBonus.Value + _speedChange
+                    : _playerBonuses.SpeedBonus.Value - _speedChange;
             _inputHandler.CanCast = !state;
             _mainHandWeapon?.SetSkillBoolParameter("ShieldOn", state);
             _offHandWeapon.SetSkillBoolParameter("ShieldOn", state);

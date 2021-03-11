@@ -17,15 +17,15 @@ namespace HUY
         [SerializeField] private float _intelligenceManaCoefficient;
 
 
-        private PlayerSpeedManipulator _playerSpeedManipulator;
+        private PlayerBonuses _playerBonuses;
         private PlayerResources _playerResources;
         private DamageCalculator _damageCalculator;
     
         [Inject]
-        public void Construct(PlayerSpeedManipulator playerSpeedManipulator, PlayerResources playerResources, 
+        public void Construct(PlayerBonuses playerBonuses, PlayerResources playerResources, 
             DamageCalculator damageCalculator)
         {
-            _playerSpeedManipulator = playerSpeedManipulator;
+            _playerBonuses = playerBonuses;
             _playerResources = playerResources;
             _damageCalculator = damageCalculator;
         }
@@ -65,7 +65,7 @@ namespace HUY
         private void ScaleAgility(StatType type, int delta)
         {
             if (type == StatType.Agility)
-                _playerSpeedManipulator.SpeedBonus += delta * _agilitySpeedCoefficient;
+                _playerBonuses.SpeedBonus.Value += delta * _agilitySpeedCoefficient;
         }
 
         private void ScaleIntelligence(StatType type, int delta)

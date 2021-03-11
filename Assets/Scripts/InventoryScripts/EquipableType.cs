@@ -3,6 +3,11 @@
     public enum EquipableType
     {
         MAINHANDWEAPON,
-        OFFHANDWEAPON
+        OFFHANDWEAPON,
+        HEAD,
+        BODY,
+        GLOVES,
+        LEGS,
+        BOOTS
     }
 }

@@ -9,9 +9,6 @@ namespace AbilitySupports
 {
     public class AbilityCaster : MonoBehaviour
     {
-        public Transform MainHandTransform;
-        public Transform OffHandTransform;
-        
         [SerializeField] private BaseActiveAbility[] _activeAbilities;
         [SerializeField] private BaseActiveAbility[] _activeAttacks;
         [SerializeField] private BasePassiveAbility[] _passiveAbilities;

@@ -13,14 +13,11 @@ namespace AbilitiesScripts
         [SerializeField] private float _spinDuration = 1;
         [SerializeField] private Transform _spinTargetTransform;
         [SerializeField] private float _speedChange = 1.5f;
-        private PlayerSpeedManipulator _playerSpeedManipulator;
 
         public override void Init(AbilityCaster caster,InputHandler inputHandler)
         {
             base.Init(caster, inputHandler);
             _spinTargetTransform = caster.transform;
-            _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
-
         }
 
         public override void Execute(ReactiveProperty<float> mana)
@@ -50,7 +47,7 @@ namespace AbilitiesScripts
             _mainHandWeapon?.SetSkillBoolParameter("Spin", true);
             _offHandWeapon?.SetSkillBoolParameter("Spin", true);
 
-            _playerSpeedManipulator.SpeedBonus += _speedChange;
+            _playerBonuses.SpeedBonus.Value += _speedChange;
         
             float t = 0;
             while (t < _spinDuration)
@@ -64,7 +61,7 @@ namespace AbilitiesScripts
             _mainHandWeapon?.SetSkillBoolParameter("Spin", false);
             _offHandWeapon?.SetSkillBoolParameter("Spin", false);
         
-            _playerSpeedManipulator.SpeedBonus -= _speedChange;
+            _playerBonuses.SpeedBonus.Value -= _speedChange;
         
             _inputHandler.CanCast = true;
             _inputHandler.CanAttack = true;

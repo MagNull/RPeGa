@@ -10,10 +10,10 @@ namespace InventoryScripts
 {
     public class Inventory : MonoBehaviour
     {
+        [SerializeField] private Item _targetItem;
         [SerializeField] private Text _takeItemText;
         private readonly PriorityQueue<Slot> _slots = new PriorityQueue<Slot>();
         private readonly List<Slot> _closedSlots = new List<Slot>();
-        [SerializeField] private Item _targetItem;
 
         private void Start()
         {

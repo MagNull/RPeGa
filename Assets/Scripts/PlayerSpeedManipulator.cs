@@ -1,24 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class PlayerSpeedManipulator : MonoBehaviour
 {
     [SerializeField] private float _baseSpeed = 1;
     [SerializeField] private float _currentSpeed;
     private float _speedBonus = 0;
-
-
-    public float SpeedBonus
-    {
-        get => _speedBonus;
-        set
-        {
-            _speedBonus = value;
-            RecalculateSpeed();
-        }
-    }
+    [Inject] private PlayerBonuses _playerBonuses;
 
     public float Speed
     {
@@ -27,6 +19,11 @@ public class PlayerSpeedManipulator : MonoBehaviour
 
     private void Start()
     {
+        _playerBonuses.SpeedBonus.Where(x => x != null).Subscribe(_ =>
+        {
+            _speedBonus = _playerBonuses.SpeedBonus.Value;
+            RecalculateSpeed();
+        });
         RecalculateSpeed();
     }
 

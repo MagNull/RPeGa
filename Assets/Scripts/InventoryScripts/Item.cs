@@ -8,7 +8,7 @@ namespace InventoryScripts
         public string Name;
         public Sprite Image;
         public int SlotIndex = -1;
-        private Rigidbody _rigidbody;
+        protected Rigidbody _rigidbody;
 
         protected virtual void Awake()
         {
@@ -38,16 +38,6 @@ namespace InventoryScripts
             if (other.gameObject.TryGetComponent(out Inventory inventory)) inventory.ChangeTakeTargetItem(null);
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            
-        }
-
-        private void OnCollisionExit(Collision other)
-        {
-            
-        }
-        
         public virtual void ThrowOutItem(Vector3 forward, float throwForce)
         {
             _rigidbody.AddForce(forward * throwForce, ForceMode.Impulse);

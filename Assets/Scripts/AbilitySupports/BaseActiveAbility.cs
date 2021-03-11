@@ -18,6 +18,7 @@ namespace AbilitySupports
         protected Weapon _mainHandWeapon;
         protected Weapon _offHandWeapon;
         protected InputHandler _inputHandler;
+        protected PlayerBonuses _playerBonuses;
 
         public int ManaCost => _manaCost;
         
@@ -28,6 +29,7 @@ namespace AbilitySupports
             CanCast = true;
             _mainHandWeapon = null;
             _offHandWeapon = null;
+            _playerBonuses = _inputHandler.GetComponent<PlayerBonuses>();
         }
 
         public virtual void SetWeapon(Weapon weapon, EquipableType weaponType)

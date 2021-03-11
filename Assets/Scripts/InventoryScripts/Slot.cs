@@ -14,7 +14,7 @@ namespace InventoryScripts
         public Text ItemName;
         [SerializeField] private Transform _itemPanelSpawnPoint;
         [SerializeField] private float _throwForce = 1;
-        private Item _item;
+        [SerializeField] private Item _item;
         private Inventory _inventory;
         private Button _button;
         private ItemPanel _itemPanel;
@@ -65,8 +65,8 @@ namespace InventoryScripts
             if (!(_item is null))
             {
                 _item.transform.position = _inventory.transform.position + _inventory.transform.forward * 2;
-                _item.gameObject.SetActive(true);
                 _item.ThrowOutItem(_inventory.transform.forward, _throwForce);
+                _item.gameObject.SetActive(true);
                 _inventory.DeleteItem(_item);
                 DeleteItem();
             }

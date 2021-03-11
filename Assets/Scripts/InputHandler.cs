@@ -5,7 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour //TODO: Change CanDoSMT system.
+public class InputHandler : MonoBehaviour 
 {
     public event Action OnMove;
     public event Action<int> OnCast;

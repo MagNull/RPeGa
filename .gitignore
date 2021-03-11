@@ -10,6 +10,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Aa]ssets/[Pp]oly
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -70,3 +71,12 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Ignore the auto-generated AOT compatibility dll.
+/Assets/Plugins/Sirenix/Assemblies/AOT/*
+
+# Ignore all unpacked demos.
+/Assets/Plugins/Sirenix/Demos/*
+
+# But keep the demo packages themselves.
+!/Assets/Plugins/Sirenix/Demos/*.unitypackage

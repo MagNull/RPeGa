@@ -15,13 +15,6 @@ namespace AbilitiesScripts
         [SerializeField] private float _waveSpeed;
         [SerializeField] private float _animDelay = 1;
         [SerializeField] private float _speedChange = 2;
-        private PlayerSpeedManipulator _playerSpeedManipulator;
-
-        public override void Init(AbilityCaster caster,InputHandler inputHandler)
-        {
-            base.Init(caster, inputHandler);
-            _playerSpeedManipulator = _inputHandler.GetComponent<PlayerSpeedManipulator>();
-        }
 
         public override void SetWeapon(Weapon weapon, EquipableType weaponType)
         {
@@ -38,7 +31,7 @@ namespace AbilitiesScripts
             waveSpawner.WavePrefab = _wavePrefab;
             waveSpawner.WaveDistance = _waveDistance;
             waveSpawner.WaveSpeed = _waveSpeed;
-            waveSpawner.Player = _playerSpeedManipulator.transform;
+            waveSpawner.Player = _playerBonuses.transform;
         }
 
         public override void Execute(ReactiveProperty<float> mana)
@@ -46,21 +39,21 @@ namespace AbilitiesScripts
             if (!(_mainHandWeapon is null))
             {
                 mana.Value -= _manaCost;
-                _caster.StartCoroutine(CrossAttack(_caster));
+                _caster.StartCoroutine(CrossAttack());
             }
         }
 
-        private IEnumerator CrossAttack(AbilityCaster coolDowner)
+        private IEnumerator CrossAttack()
         {
             CanCast = false;
 
             _mainHandWeapon.SetSkillTrigger("Cross Wave");
         
-            _playerSpeedManipulator.SpeedBonus += _speedChange;
+            _playerBonuses.SpeedBonus.Value += _speedChange;
 
             yield return new WaitForSeconds(_animDelay);
 
-            _playerSpeedManipulator.SpeedBonus -= _speedChange;
+            _playerBonuses.SpeedBonus.Value -= _speedChange;
         
             yield return new WaitForSeconds(_coolDown);
 

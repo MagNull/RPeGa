@@ -6,9 +6,13 @@ using Zenject;
 
 namespace InventoryScripts
 {
+    [RequireComponent(typeof(Rigidbody), typeof(ItemBonus))]
     public class EquipableItem : Item
     {
-        public Transform WeaponTransform;
+        public Transform ItemTransform;
+        public event Action OnTakeOffItem;
+        public event Action OnPutOnItem;
+        public event Action<EquipableType> OnDropItem;
         [Inject] private PlayerEquipment _playerEquipment;
         [SerializeField] private EquipableType _equipableType;
         [SerializeField] private Collider _takeCollider;
@@ -32,28 +36,40 @@ namespace InventoryScripts
         {
             if (_isEquipped)
             {
+                OnTakeOffItem?.Invoke();
                 _playerEquipment.TakeOffEquipment(_equipableType);
+                _animator.enabled = false;
                 _isEquipped = false;
             }
             else
             {
                 _playerEquipment.PutOnEquipment(this, _equipableType);
                 gameObject.SetActive(true);
+                OnPutOnItem?.Invoke(); 
                 _animator.enabled = true;
                 _isEquipped = true;
+                if (_equipableType != EquipableType.MAINHANDWEAPON &&
+                    _equipableType != EquipableType.OFFHANDWEAPON) _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             }
         }
         
         
         public override void ThrowOutItem(Vector3 forward, float throwForce)
         {
-            if (transform.parent.TryGetComponent(out Animator animator)) animator.enabled = false;
+            Animator animator;
+            if (transform.TryGetComponent(out animator) || 
+                transform.parent.TryGetComponent(out animator)) animator.enabled = false;
             transform.gameObject.layer = 0;
-            transform.parent.SetParent(null);
+            ItemTransform.SetParent(null);
             base.ThrowOutItem(forward, throwForce);
             _takeCollider.enabled = true;
             _isEquipped = false;
-
+            if (_equipableType != EquipableType.MAINHANDWEAPON &&
+                _equipableType != EquipableType.OFFHANDWEAPON)
+            {
+                _rigidbody.constraints =  RigidbodyConstraints.None;
+            }
+            OnDropItem?.Invoke(_equipableType);
         }
 
     }

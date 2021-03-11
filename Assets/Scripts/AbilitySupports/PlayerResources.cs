@@ -3,15 +3,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using Zenject;
 
 namespace AbilitySupports
 {
-    public class PlayerResources : MonoBehaviour
+    public class PlayerResources : MonoBehaviour, IDamageable
     {
         public ReactiveProperty<float> MAXHealth = new ReactiveProperty<float>();
         public ReactiveProperty<float> MAXMana = new ReactiveProperty<float>();
         public ReactiveProperty<float> CurrentMana = new ReactiveProperty<float>(0);
         public ReactiveProperty<float> CurrentHealth = new ReactiveProperty<float>(0);
+        [Inject] private PlayerBonuses _playerBonuses;
 
         public void Init()
         {
@@ -33,6 +35,13 @@ namespace AbilitySupports
                 {
                     CurrentHealth.Value = Mathf.Clamp(CurrentHealth.Value, 0, MAXHealth.Value);
                 });
+        }
+
+        public void TakeDamage(float damage)
+        {
+            damage -= _playerBonuses.ArmorBonus.Value;
+            damage = Mathf.Clamp(damage, 0, Single.MaxValue);
+            CurrentHealth.Value -= damage;
         }
     }
 }
