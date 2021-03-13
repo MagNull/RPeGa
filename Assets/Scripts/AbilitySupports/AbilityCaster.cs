@@ -16,7 +16,8 @@ namespace AbilitySupports
         private InputHandler _inputHandler;
         private PlayerResources _playerResources;
         private PlayerEquipment _playerEquipment;
-        
+        private Animator _animator;
+
 
         [Inject]
         public void Construct(InputHandler inputHandler,
@@ -33,13 +34,15 @@ namespace AbilitySupports
  
         private void Start()
         {
+            _animator = _inputHandler.GetComponent<PlayerMovement>().PlayerAnimator;
+            _playerEquipment.Init(this);
             foreach (var ability in _activeAbilities)
             {
-                ability.Init(this,_inputHandler);
+                ability.Init(this,_inputHandler, _animator);
             }
             foreach (var ability in _activeAttacks)
             {
-                ability.Init(this, _inputHandler);
+                ability.Init(this, _inputHandler, _animator);
             }
             foreach (var ability in _passiveAbilities)
             {
@@ -52,7 +55,6 @@ namespace AbilitySupports
             _inputHandler.OnCast += CastAbility;
             _inputHandler.OnAttack += Attack;
             _inputHandler.CanMove = true;
-            _playerEquipment.Init(this);
         }
         
         

@@ -10,6 +10,7 @@ namespace Installers
         [SerializeField] private PlayerMovement _player;
         public override void InstallBindings()
         {
+            Container.Bind<PlayerMovement>().FromInstance(_player).AsSingle();
             Container.Bind<InputHandler>().FromInstance(_player.GetComponent<InputHandler>()).AsSingle();
             Container.Bind<PlayerSpeedManipulator>().FromInstance(_player.GetComponent<PlayerSpeedManipulator>()).AsSingle();
             Container.Bind<PlayerResources>().FromInstance(_player.GetComponent<PlayerResources>()).AsSingle();

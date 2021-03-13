@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using AbilitySupports;
 using UniRx;
@@ -14,11 +15,15 @@ namespace AbilitiesScripts
         [SerializeField] private Transform _spinTargetTransform;
         [SerializeField] private float _speedChange = 1.5f;
 
-        public override void Init(AbilityCaster caster,InputHandler inputHandler)
+        private int _spinAttackToHash;
+
+        public override void Init(AbilityCaster caster,InputHandler inputHandler, Animator animator)
         {
-            base.Init(caster, inputHandler);
+            base.Init(caster, inputHandler, animator);
             _spinTargetTransform = caster.transform;
+            _spinAttackToHash = Animator.StringToHash("Spin Attack");
         }
+        
 
         public override void Execute(ReactiveProperty<float> mana)
         {
@@ -26,7 +31,7 @@ namespace AbilitiesScripts
             {
                 if (!_spinTargetTransform)
                 {
-                    Init(_caster, _inputHandler);
+                    Init(_caster, _inputHandler, _animator);
                 }
                 mana.Value -= _manaCost;
                 _caster.StartCoroutine(Spin(_caster));
@@ -36,16 +41,12 @@ namespace AbilitiesScripts
 
         private IEnumerator Spin(AbilityCaster coolDowner)
         {
-            _inputHandler.CanCast = false;
-            _inputHandler.CanAttack = false;
             CanCast = false;
             
             _mainHandWeapon?.ChangeDamageState();
             _offHandWeapon?.ChangeDamageState();
             
-            
-            _mainHandWeapon?.SetSkillBoolParameter("Spin", true);
-            _offHandWeapon?.SetSkillBoolParameter("Spin", true);
+            _animator.SetBool(_spinAttackToHash, true);
 
             _playerBonuses.SpeedBonus.Value += _speedChange;
         
@@ -58,14 +59,10 @@ namespace AbilitiesScripts
             }
             _spinTargetTransform.localEulerAngles = Vector3.zero;
         
-            _mainHandWeapon?.SetSkillBoolParameter("Spin", false);
-            _offHandWeapon?.SetSkillBoolParameter("Spin", false);
+            _animator.SetBool(_spinAttackToHash, false);
         
             _playerBonuses.SpeedBonus.Value -= _speedChange;
-        
-            _inputHandler.CanCast = true;
-            _inputHandler.CanAttack = true;
-        
+
             _mainHandWeapon?.ChangeDamageState();
             _offHandWeapon?.ChangeDamageState();
 

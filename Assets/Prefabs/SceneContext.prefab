@@ -78,12 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8806492965714840a80fd5047124127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputHandler: {fileID: 0}
-  _playerSpeedManipulator: {fileID: 0}
-  _playerResources: {fileID: 0}
-  _damageCalculator: {fileID: 0}
-  _inventory: {fileID: 0}
-  _playerEquipment: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &1937867476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,3 +92,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPanel: {fileID: 0}
+  _uiController: {fileID: 0}

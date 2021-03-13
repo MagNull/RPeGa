@@ -4,11 +4,19 @@ namespace WeaponScripts
 {
     public class DamageStateChanger : MonoBehaviour
     {
-        [SerializeField] private Weapon _weapon;
+        [SerializeField] private Transform _hand;
 
         public void ChangeDamageState()
         {
-            _weapon.ChangeDamageState();
+            Transform child = _hand.GetChild(0);
+            if (child.TryGetComponent(out Weapon weapon))
+            {
+                weapon.ChangeDamageState();
+            }
+            else
+            {
+                Debug.Log(child.name);
+            }
         }
     }
 }

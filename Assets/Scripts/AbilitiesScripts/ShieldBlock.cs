@@ -11,6 +11,13 @@ namespace AbilitiesScripts
     {
         [SerializeField] private float _speedChange = -5;
         private BaseDamageDealer _fireShield;
+        private int _inBlockToHash;
+
+        public override void Init(AbilityCaster caster, InputHandler inputHandler, Animator animator)
+        {
+            base.Init(caster, inputHandler, animator);
+            _inBlockToHash = Animator.StringToHash("In Block");
+        }
 
         public override void Execute(ReactiveProperty<float> mana)
         {
@@ -36,8 +43,9 @@ namespace AbilitiesScripts
                     ? _playerBonuses.SpeedBonus.Value + _speedChange
                     : _playerBonuses.SpeedBonus.Value - _speedChange;
             _inputHandler.CanCast = !state;
-            _mainHandWeapon?.SetSkillBoolParameter("ShieldOn", state);
-            _offHandWeapon.SetSkillBoolParameter("ShieldOn", state);
+            _animator.SetBool(_inBlockToHash, state);
+            int weight = state ? 1 : 0;
+            _animator.SetLayerWeight(1,weight);
             _fireShield.gameObject.SetActive(state);
         }
     }

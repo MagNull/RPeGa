@@ -15,14 +15,15 @@ namespace AbilitySupports
         [SerializeField] protected Text _coolDownText;
         [SerializeField] protected Image _abilityImage;
         protected AbilityCaster _caster;
-        protected Weapon _mainHandWeapon;
+        [SerializeField] protected Weapon _mainHandWeapon;
         protected Weapon _offHandWeapon;
         protected InputHandler _inputHandler;
         protected PlayerBonuses _playerBonuses;
+        protected Animator _animator;
 
         public int ManaCost => _manaCost;
         
-        public virtual void Init(AbilityCaster caster, InputHandler inputHandler)
+        public virtual void Init(AbilityCaster caster, InputHandler inputHandler, Animator animator)
         {
             _inputHandler = inputHandler;
             _caster = caster;
@@ -30,6 +31,7 @@ namespace AbilitySupports
             _mainHandWeapon = null;
             _offHandWeapon = null;
             _playerBonuses = _inputHandler.GetComponent<PlayerBonuses>();
+            _animator = animator;
         }
 
         public virtual void SetWeapon(Weapon weapon, EquipableType weaponType)

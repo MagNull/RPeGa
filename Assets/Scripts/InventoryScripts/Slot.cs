@@ -54,6 +54,8 @@ namespace InventoryScripts
         {
             _itemPanel.transform.position = _itemPanelSpawnPoint.position;
             _itemPanel.gameObject.SetActive(true);
+            _itemPanel.transform.localScale = Vector3.zero;
+            _itemPanel.transform.DOScale(Vector3.one, .3f);
             _itemPanel.UnbindButtons();
             _itemPanel.BindButtons(Use, DropItem); 
         }
@@ -71,7 +73,12 @@ namespace InventoryScripts
                 DeleteItem();
             }
         }
-        
+
+        private void OnDisable()
+        {
+            _itemPanel.gameObject.SetActive(false);
+        }
+
 
         public int CompareTo(object obj)
         {

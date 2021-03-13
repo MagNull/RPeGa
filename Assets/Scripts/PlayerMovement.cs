@@ -6,6 +6,7 @@ using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator PlayerAnimator;
     [SerializeField] private float _jumpHeight = 1.5f;
     [SerializeField] private float _gravityForce = -9.81f;
     
@@ -14,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController _characterController;
     private Vector3 _movement = Vector3.zero;
+
+    private int _movementXToHash;
+    private int _movementYToHash;
 
     [Inject]
     public void Construct(InputHandler inputHandler, PlayerSpeedManipulator playerSpeedManipulator)
@@ -25,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _movementXToHash = Animator.StringToHash("Movement X");
+        _movementYToHash = Animator.StringToHash("Movement Y");
     }
 
     private void OnEnable()
@@ -51,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         {
             _movement = new Vector3(Input.GetAxis("Horizontal"), 0,
                 Input.GetAxis("Vertical"));
+            PlayerAnimator.SetFloat(_movementXToHash, _movement.x);
+            PlayerAnimator.SetFloat(_movementYToHash, _movement.z);
             if (_movement.magnitude > 1) _movement.Normalize();
             _movement = transform.TransformDirection(_movement * _playerSpeedManipulator.Speed);
         }

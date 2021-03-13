@@ -15,23 +15,13 @@ namespace AbilitiesScripts
         [SerializeField] private float _waveSpeed;
         [SerializeField] private float _animDelay = 1;
         [SerializeField] private float _speedChange = 2;
+        private int _crossWaveToHash;
 
-        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
-        {
-            base.SetWeapon(weapon, weaponType);
-            if(!(_mainHandWeapon is null))
-            {
-                SetWaveSpawner(_mainHandWeapon.GetComponentInParent<WaveSpawner>());
-            }
-        }
 
-        private void SetWaveSpawner(WaveSpawner waveSpawner)
+        public override void Init(AbilityCaster caster, InputHandler inputHandler, Animator animator)
         {
-            waveSpawner.enabled = true;
-            waveSpawner.WavePrefab = _wavePrefab;
-            waveSpawner.WaveDistance = _waveDistance;
-            waveSpawner.WaveSpeed = _waveSpeed;
-            waveSpawner.Player = _playerBonuses.transform;
+            base.Init(caster, inputHandler, animator);
+            _crossWaveToHash = Animator.StringToHash("Cross Wave");
         }
 
         public override void Execute(ReactiveProperty<float> mana)
@@ -39,7 +29,23 @@ namespace AbilitiesScripts
             if (!(_mainHandWeapon is null))
             {
                 mana.Value -= _manaCost;
+                
                 _caster.StartCoroutine(CrossAttack());
+            }
+        }
+
+        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
+        {
+            base.SetWeapon(weapon, weaponType);
+            WaveSpawner waveSpawner = _caster.GetComponent<WaveSpawner>();
+            if (weapon)
+            {
+                waveSpawner.SetSword(weapon.GetComponent<MeshRenderer>());
+                waveSpawner.enabled = true;
+            }
+            else
+            {
+                waveSpawner.enabled = false;
             }
         }
 
@@ -47,7 +53,7 @@ namespace AbilitiesScripts
         {
             CanCast = false;
 
-            _mainHandWeapon.SetSkillTrigger("Cross Wave");
+            _animator.SetTrigger(_crossWaveToHash);
         
             _playerBonuses.SpeedBonus.Value += _speedChange;
 
@@ -56,7 +62,7 @@ namespace AbilitiesScripts
             _playerBonuses.SpeedBonus.Value -= _speedChange;
         
             yield return new WaitForSeconds(_coolDown);
-
+            
             CanCast = true;
         }
     }

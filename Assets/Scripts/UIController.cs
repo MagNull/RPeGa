@@ -7,7 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using WeaponScripts;
 using Zenject;
-
+using DG;
+using DG.Tweening;
 public class UIController : MonoBehaviour
 {
     [Header("UI Elements")]
@@ -118,6 +119,8 @@ public class UIController : MonoBehaviour
         if ((_inputHandler.CanAttack && _inputHandler.CanCast) == state)
         {
             _panel.SetActive(state);
+            _panel.transform.localScale = Vector3.zero;
+            if(state) _panel.transform.DOScale(Vector3.one, .5f);
             Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = state;
             StopPlayerActivity(!state);

@@ -14,16 +14,6 @@ namespace WeaponScripts
         }
 
         public abstract void PlayMeleeAttackAnimation();
-
-        public virtual void SetSkillBoolParameter(string boolParameterName, bool state)
-        {
-            _animator.SetBool(boolParameterName, state);
-        }
-        
-        public virtual void SetSkillTrigger(string triggerName)
-        {
-            _animator.SetTrigger(triggerName);
-        }
         
         protected abstract void DealDamage(IDamageable damageable, float damage);
 

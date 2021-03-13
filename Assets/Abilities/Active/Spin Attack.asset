@@ -17,7 +17,7 @@ MonoBehaviour:
   _coolDown: 2
   _coolDownText: {fileID: 0}
   _abilityImage: {fileID: 0}
-  _spinSpeed: 2.5
+  _spinSpeed: 3.2
   _spinDuration: 4
   _spinTargetTransform: {fileID: 0}
-  _speedChange: 3
+  _speedChange: 5

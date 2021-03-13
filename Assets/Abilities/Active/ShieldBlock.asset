@@ -17,6 +17,4 @@ MonoBehaviour:
   _coolDown: 0
   _coolDownText: {fileID: 0}
   _abilityImage: {fileID: 0}
-  _mainHandWeapon: {fileID: 0}
-  _offHandWeapon: {fileID: 0}
-  _speedChange: -5
+  _speedChange: -1

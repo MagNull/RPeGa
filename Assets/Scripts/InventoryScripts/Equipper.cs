@@ -16,7 +16,7 @@ public class Equipper : MonoBehaviour
     public Transform BootsTransform;
     [Inject] private PlayerEquipment _equipment;
 
-    private void Awake()
+    private void Start()
     {
         _equipment.SetEquipTransforms(this);
     }

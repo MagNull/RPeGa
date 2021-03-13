@@ -103,6 +103,7 @@ namespace InventoryScripts
 
         public void TakeOffEquipment(EquipableType equipmentType)
         {
+            Debug.Log(1);
             switch (equipmentType)
             {
                 case EquipableType.MAINHANDWEAPON:
@@ -116,15 +117,14 @@ namespace InventoryScripts
                     _uiController.RemoveEquipmentFromSlot(equipmentType);
                     _offHandWeapon.OnDropItem -= DropItem;
                     TakeOffWeapon(_offHandWeapon);
-                    _offHandWeapon = null;
                     InitWeapons(EquipableType.OFFHANDWEAPON, null);
+                    _offHandWeapon = null;
                     break;
                 case EquipableType.BOOTS:
                     _uiController.RemoveEquipmentFromSlot(equipmentType);
                     _boots.OnDropItem -= DropItem;
                     TakeOffWeapon(_boots);
                     _boots = null;
-                    InitWeapons(EquipableType.BOOTS, null);
                     break;
             }
         }
@@ -151,10 +151,12 @@ namespace InventoryScripts
                 case EquipableType.MAINHANDWEAPON:
                     _mainHandWeapon.OnDropItem -= DropItem;
                     _mainHandWeapon = null;
+                    InitWeapons(EquipableType.MAINHANDWEAPON, null);
                     break;
                 case EquipableType.OFFHANDWEAPON:
                     _offHandWeapon.OnDropItem -= DropItem;
                     _offHandWeapon = null;
+                    InitWeapons(EquipableType.OFFHANDWEAPON, null);
                     break;
                 case EquipableType.BOOTS:
                     _boots.OnDropItem -= DropItem;
@@ -163,7 +165,6 @@ namespace InventoryScripts
             }
         }
         
-
         private void InitWeapons(EquipableType weaponType, Weapon weapon)
         {
             foreach (var ability in _activeAttacks)

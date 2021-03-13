@@ -11,6 +11,7 @@ public class PlayerSpawner : MonoBehaviour
    [SerializeField] private GameObject _wizardPrefab;
    [SerializeField] private Transform _playerTransform;
    [SerializeField] private GameObject _classChooseUI;
+   [Inject] private PlayerMovement _playerMovement;
    
    public void Create(ClassesChooseComponent component)
    {
@@ -27,7 +28,13 @@ public class PlayerSpawner : MonoBehaviour
             player = Instantiate(_wizardPrefab, _playerTransform.position, _playerTransform.rotation);
             break;
       }
-      if(!(player is null)) player.transform.parent = _playerTransform;
+
+      _playerMovement.PlayerAnimator = player.GetComponent<Animator>();
+      player.transform.parent = _playerTransform;
+      player.transform.position = new Vector3(
+         player.transform.position.x,
+         0,
+         player.transform.position.z);
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
       _playerTransform.GetComponent<MouseRotation>().enabled = true;

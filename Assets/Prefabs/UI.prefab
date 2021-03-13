@@ -329,6 +329,7 @@ MonoBehaviour:
   ItemName: {fileID: 1134928254}
   _itemPanelSpawnPoint: {fileID: 2085818255}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &228509626
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +794,7 @@ MonoBehaviour:
   ItemName: {fileID: 1331364691}
   _itemPanelSpawnPoint: {fileID: 289970792}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &355679438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1643,7 @@ MonoBehaviour:
   ItemName: {fileID: 1753765754}
   _itemPanelSpawnPoint: {fileID: 1199422474}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &691293109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2167,7 @@ MonoBehaviour:
   ItemName: {fileID: 541047148}
   _itemPanelSpawnPoint: {fileID: 1064424081}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &897959102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2388,7 @@ MonoBehaviour:
   ItemName: {fileID: 641452044}
   _itemPanelSpawnPoint: {fileID: 843531920}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &940180097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,6 +2685,7 @@ MonoBehaviour:
   ItemName: {fileID: 755298015}
   _itemPanelSpawnPoint: {fileID: 1835386146}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &967702411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,6 +2972,7 @@ MonoBehaviour:
   ItemName: {fileID: 1733150438}
   _itemPanelSpawnPoint: {fileID: 355679439}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &1123879711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,6 +3544,7 @@ MonoBehaviour:
   ItemName: {fileID: 2126472290}
   _itemPanelSpawnPoint: {fileID: 691293110}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &1331364689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,6 +3840,7 @@ MonoBehaviour:
   ItemName: {fileID: 808169114}
   _itemPanelSpawnPoint: {fileID: 1775124002}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &1407119852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,6 +4178,7 @@ MonoBehaviour:
   ItemName: {fileID: 1621476759}
   _itemPanelSpawnPoint: {fileID: 1089370682}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &1589282339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4310,6 +4320,7 @@ MonoBehaviour:
   ItemName: {fileID: 897959104}
   _itemPanelSpawnPoint: {fileID: 1738214684}
   _throwForce: 3
+  _item: {fileID: 0}
 --- !u!1 &1621476757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,7 +5416,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
 --- !u!1 &2345755946363742531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,7 +6009,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
 --- !u!114 &1540217709
 MonoBehaviour:
   m_ObjectHideFlags: 0
