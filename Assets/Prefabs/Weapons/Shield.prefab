@@ -146,8 +146,8 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: ba2d3d7d05fd3e046b6d413365e9b11e, type: 3}
   SlotIndex: -1
   ItemTransform: {fileID: 3262847035285298959}
-  _equipableType: 1
   _takeCollider: {fileID: 3267291683121217454}
+  _itemPlaceIndex: -2
 --- !u!114 &3267291683121217489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc7b630d4c98c04881ce7aa758c30f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canDamage: 0
   BaseDamage: 1
+  _canDamage: 0
+  WeaponType: 1
   FireShield: {fileID: 3267291683795881753}
 --- !u!1 &3267291683795881754
 GameObject:
@@ -290,8 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca685e78d337214ab2028cd1684dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canDamage: 1
   BaseDamage: 1
+  _canDamage: 1
 --- !u!114 &3267291683795881753
 MonoBehaviour:
   m_ObjectHideFlags: 0

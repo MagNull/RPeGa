@@ -60,7 +60,7 @@ namespace InventoryScripts
             _itemPanel.BindButtons(Use, DropItem); 
         }
 
-        private void Use() => _item?.Use();
+        public void Use() => _item?.Use();
         
         private void DropItem()
         {

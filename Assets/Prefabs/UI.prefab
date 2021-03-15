@@ -363,7 +363,7 @@ RectTransform:
   - {fileID: 295099149}
   - {fileID: 1407119853}
   m_Father: {fileID: 7349592380131188676}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 321113215}
   - component: {fileID: 321113214}
   - component: {fileID: 321113213}
-  - component: {fileID: 319972368}
+  - component: {fileID: 4412132734268985107}
   m_Layer: 5
   m_Name: Head
   m_TagString: Untagged
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &319972368
+--- !u!114 &4412132734268985107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -786,15 +786,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 321113211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -3
   ItemImage: {fileID: 138812566}
   ItemName: {fileID: 1331364691}
   _itemPanelSpawnPoint: {fileID: 289970792}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &355679438
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,7 +2039,7 @@ GameObject:
   - component: {fileID: 869385573}
   - component: {fileID: 869385572}
   - component: {fileID: 869385571}
-  - component: {fileID: 269074605}
+  - component: {fileID: 8693649557671309686}
   m_Layer: 5
   m_Name: Legs
   m_TagString: Untagged
@@ -2150,7 +2151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &269074605
+--- !u!114 &8693649557671309686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2159,15 +2160,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 869385569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -6
   ItemImage: {fileID: 1784844406}
   ItemName: {fileID: 541047148}
   _itemPanelSpawnPoint: {fileID: 1064424081}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &897959102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2261,7 @@ GameObject:
   - component: {fileID: 908235888}
   - component: {fileID: 908235887}
   - component: {fileID: 908235886}
-  - component: {fileID: 903333784}
+  - component: {fileID: 2582165936613978115}
   m_Layer: 5
   m_Name: Body
   m_TagString: Untagged
@@ -2371,7 +2373,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &903333784
+--- !u!114 &2582165936613978115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2380,15 +2382,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 908235884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -5
   ItemImage: {fileID: 856000187}
   ItemName: {fileID: 641452044}
   _itemPanelSpawnPoint: {fileID: 843531920}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &940180097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,9 +2425,8 @@ RectTransform:
   - {fileID: 199820250}
   - {fileID: 963761095}
   - {fileID: 1101617468}
-  - {fileID: 2072580815}
   m_Father: {fileID: 7349592380131188676}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -3415,7 +3417,7 @@ GameObject:
   - component: {fileID: 1275020587}
   - component: {fileID: 1275020586}
   - component: {fileID: 1275020585}
-  - component: {fileID: 1768208475}
+  - component: {fileID: 4103036300795116467}
   m_Layer: 5
   m_Name: Off Hand
   m_TagString: Untagged
@@ -3527,7 +3529,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1768208475
+--- !u!114 &4103036300795116467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3536,15 +3538,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1275020583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -2
   ItemImage: {fileID: 255506412}
   ItemName: {fileID: 2126472290}
   _itemPanelSpawnPoint: {fileID: 691293110}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &1331364689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,7 +3714,7 @@ GameObject:
   - component: {fileID: 1392717421}
   - component: {fileID: 1392717420}
   - component: {fileID: 1392717419}
-  - component: {fileID: 977227291}
+  - component: {fileID: 5742810834350721824}
   m_Layer: 5
   m_Name: Gloves
   m_TagString: Untagged
@@ -3823,7 +3826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &977227291
+--- !u!114 &5742810834350721824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3832,15 +3835,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392717417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -7
   ItemImage: {fileID: 1777748975}
   ItemName: {fileID: 808169114}
   _itemPanelSpawnPoint: {fileID: 1775124002}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &1407119852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,7 +4053,7 @@ GameObject:
   - component: {fileID: 1523856269}
   - component: {fileID: 1523856268}
   - component: {fileID: 1523856267}
-  - component: {fileID: 194409121}
+  - component: {fileID: 1253015635579103503}
   m_Layer: 5
   m_Name: Main Hand
   m_TagString: Untagged
@@ -4161,7 +4165,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &194409121
+--- !u!114 &1253015635579103503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4170,15 +4174,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523856265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Index: -1
   ItemImage: {fileID: 475686605}
   ItemName: {fileID: 1621476759}
   _itemPanelSpawnPoint: {fileID: 1089370682}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &1589282339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4191,7 +4196,7 @@ GameObject:
   - component: {fileID: 1589282343}
   - component: {fileID: 1589282342}
   - component: {fileID: 1589282341}
-  - component: {fileID: 1595786075}
+  - component: {fileID: 1408541183102226532}
   m_Layer: 5
   m_Name: Boots
   m_TagString: Untagged
@@ -4303,7 +4308,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1595786075
+--- !u!114 &1408541183102226532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4312,15 +4317,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589282339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc1d72aaa829b4e935f38502f8a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: -1
+  Index: -4
   ItemImage: {fileID: 1387513730}
   ItemName: {fileID: 897959104}
   _itemPanelSpawnPoint: {fileID: 1738214684}
-  _throwForce: 3
+  _throwForce: 1
   _item: {fileID: 0}
+  EquipmentPlace: {fileID: 0}
 --- !u!1 &1621476757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,7 +5138,7 @@ GameObject:
   - component: {fileID: 2072580817}
   - component: {fileID: 2072580816}
   m_Layer: 5
-  m_Name: Equip Panel
+  m_Name: Equipment Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5147,7 +5153,7 @@ RectTransform:
   m_GameObject: {fileID: 2072580814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.382271, y: 1.6864442, z: 2.382271}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 321113212}
   - {fileID: 1589282340}
@@ -5156,12 +5162,12 @@ RectTransform:
   - {fileID: 1275020584}
   - {fileID: 1523856266}
   - {fileID: 1392717418}
-  m_Father: {fileID: 940180098}
-  m_RootOrder: 4
+  m_Father: {fileID: 7349592380131188676}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -352.2378, y: 123.935}
+  m_AnchoredPosition: {x: 441.53503, y: 71.48889}
   m_SizeDelta: {x: 293.866, y: 362.5561}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2072580817
@@ -5346,6 +5352,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2072580815}
   - {fileID: 940180098}
   - {fileID: 228509627}
   m_Father: {fileID: 4372413228279685677}
@@ -5703,7 +5710,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
 --- !u!1 &4372413227540549389
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,13 +6034,14 @@ MonoBehaviour:
   _manaText: {fileID: 1868447328}
   _healthText: {fileID: 1883953264}
   _panel: {fileID: 993577399729214090}
-  _mainHandSlot: {fileID: 194409121}
-  _offHandSlot: {fileID: 1768208475}
-  _headSlot: {fileID: 319972368}
-  _bodySlot: {fileID: 903333784}
-  _glovesSlot: {fileID: 977227291}
-  _legsSlot: {fileID: 269074605}
-  _bootsSlot: {fileID: 1595786075}
+  _equipmentSlots:
+  - {fileID: 4412132734268985107}
+  - {fileID: 1408541183102226532}
+  - {fileID: 2582165936613978115}
+  - {fileID: 8693649557671309686}
+  - {fileID: 4103036300795116467}
+  - {fileID: 1253015635579103503}
+  - {fileID: 5742810834350721824}
 --- !u!1 &4372413228760646803
 GameObject:
   m_ObjectHideFlags: 0

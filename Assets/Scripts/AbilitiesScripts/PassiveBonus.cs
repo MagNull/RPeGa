@@ -1,10 +1,9 @@
+using AbilitySupports;
 using UnityEngine;
-using UnityEngine.UI;
-using WeaponScripts;
 
-namespace AbilitySupports
+namespace AbilitiesScripts
 {
-    public abstract class BasePassiveAbility : ScriptableObject
+    public abstract class PassiveBonus : ScriptableObject
     {
         protected DamageCalculator _damageCalculator;
         protected PlayerSpeedManipulator _manipulator;

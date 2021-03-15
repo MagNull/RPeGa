@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace AbilitiesScripts
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Passive/Crit Chance")]
-    public class CritChancePassive : BasePassiveAbility
+    public class CritChancePassive : PassiveBonus
     {
         [SerializeField] private float _critChance = 1;
         [SerializeField] private float _critMultiplayer = 2;

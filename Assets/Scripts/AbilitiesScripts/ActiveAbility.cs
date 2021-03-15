@@ -1,13 +1,13 @@
-using System;
+using AbilitySupports;
 using InventoryScripts;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaponScripts;
 
-namespace AbilitySupports
+namespace AbilitiesScripts
 {
-    public abstract class BaseActiveAbility : ScriptableObject
+    public abstract class ActiveAbility : ScriptableObject
     {
         public bool CanCast = true;
         [SerializeField] protected int _manaCost = 1;
@@ -34,14 +34,14 @@ namespace AbilitySupports
             _animator = animator;
         }
 
-        public virtual void SetWeapon(Weapon weapon, EquipableType weaponType)
+        public virtual void SetWeapon(Weapon weapon, WeaponType weaponType)
         {
             switch (weaponType)
             {
-                case EquipableType.MAINHANDWEAPON:
+                case WeaponType.MAINHANDWEAPON:
                     _mainHandWeapon = weapon;
                     break;
-                case EquipableType.OFFHANDWEAPON:
+                case WeaponType.OFFHANDWEAPON:
                     _offHandWeapon = weapon;
                     break;
             }

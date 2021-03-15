@@ -1,23 +1,22 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using InventoryScripts;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-public class Equipper : MonoBehaviour
+namespace InventoryScripts
 {
-    public Transform MainHandTransform;
-    public Transform OffHandTransform;
-    public Transform HeadTransform;
-    public Transform BodyTransform;
-    public Transform GlovesTransform;
-    public Transform LegsTransform;
-    public Transform BootsTransform;
-    [Inject] private PlayerEquipment _equipment;
-
-    private void Start()
+    public class Equipper : SerializedMonoBehaviour
     {
-        _equipment.SetEquipTransforms(this);
+        public Dictionary<int,Transform> EquipmentPlaceDictionary = new Dictionary<int, Transform>();
+        [Inject] private Inventory _inventory;
+
+        private void Start()
+        {
+            foreach (var slot in _inventory.EquipmentSlots)
+            {
+                slot.EquipmentPlace = EquipmentPlaceDictionary[slot.Index];
+            }
+        }
     }
 }

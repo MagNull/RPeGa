@@ -18,15 +18,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text _healthText;
     [SerializeField] private GameObject _panel;
 
-    [Header("Equipment Slots UI")]
-    [SerializeField] private Slot _mainHandSlot;
-    [SerializeField] private Slot _offHandSlot;
-    [SerializeField] private Slot _headSlot;
-    [SerializeField] private Slot _bodySlot;
-    [SerializeField] private Slot _glovesSlot;
-    [SerializeField] private Slot _legsSlot;
-    [SerializeField] private Slot _bootsSlot;
-    
+    [Header("Equipment Slots UI")] [SerializeField]
+    private EquipmentSlot[] _equipmentSlots;
+
     private PlayerResources _playerResources;
     private InputHandler _inputHandler;
 
@@ -37,60 +31,19 @@ public class UIController : MonoBehaviour
         _inputHandler = inputHandler;
     }
 
-    public void SetEquipmentInSlot(EquipableType type, EquipableItem equipment)
+    public EquipmentSlot SetAndGetEquipmentInSlot(EquippableItem item)
     {
-        switch (type)
-        {
-            case EquipableType.MAINHANDWEAPON:
-                _mainHandSlot.SetItem(equipment);
-                break;
-            case EquipableType.OFFHANDWEAPON:
-                _offHandSlot.SetItem(equipment);
-                break;
-            case EquipableType.HEAD:
-                _headSlot.SetItem(equipment);
-                break;
-            case EquipableType.BODY:
-                _bodySlot.SetItem(equipment);
-                break;
-            case EquipableType.GLOVES:
-                _glovesSlot.SetItem(equipment);
-                break;
-            case EquipableType.LEGS:
-                _legsSlot.SetItem(equipment);
-                break;
-            case EquipableType.BOOTS:
-                _bootsSlot.SetItem(equipment);
-                break;
-        }
+        int i = 0;
+        while (_equipmentSlots[i].Index != item.ItemPlaceIndex) i++;
+        _equipmentSlots[i].SetItem(item);
+        return _equipmentSlots[i];
     }
 
-    public void RemoveEquipmentFromSlot(EquipableType type)
+    public void RemoveEquipmentFromSlot(EquippableItem item)
     {
-        switch (type)
-        {
-            case EquipableType.MAINHANDWEAPON:
-                _mainHandSlot.DeleteItem();
-                break;
-            case EquipableType.OFFHANDWEAPON:
-                _offHandSlot.DeleteItem();
-                break;
-            case EquipableType.HEAD:
-                _headSlot.DeleteItem();
-                break;
-            case EquipableType.BODY:
-                _bodySlot.DeleteItem();
-                break;
-            case EquipableType.GLOVES:
-                _glovesSlot.DeleteItem();
-                break;
-            case EquipableType.LEGS:
-                _legsSlot.DeleteItem();
-                break;
-            case EquipableType.BOOTS:
-                _bootsSlot.DeleteItem();
-                break;
-        }
+        int i = 0;
+        while (_equipmentSlots[i].Index != item.ItemPlaceIndex) i++;
+        _equipmentSlots[i].DeleteItem();
     }
 
     private void Start()

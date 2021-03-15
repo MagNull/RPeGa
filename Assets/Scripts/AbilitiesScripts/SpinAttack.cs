@@ -8,7 +8,7 @@ using WeaponScripts;
 namespace AbilitiesScripts
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Spin Attack")]
-    public class SpinAttack : BaseActiveAbility
+    public class SpinAttack : ActiveAbility
     {
         [SerializeField] private float _spinSpeed = 1;
         [SerializeField] private float _spinDuration = 1;
@@ -43,8 +43,8 @@ namespace AbilitiesScripts
         {
             CanCast = false;
             
-            _mainHandWeapon?.ChangeDamageState();
-            _offHandWeapon?.ChangeDamageState();
+            _mainHandWeapon?.InvertDamageState();
+            _offHandWeapon?.InvertDamageState();
             
             _animator.SetBool(_spinAttackToHash, true);
 
@@ -63,8 +63,8 @@ namespace AbilitiesScripts
         
             _playerBonuses.SpeedBonus.Value -= _speedChange;
 
-            _mainHandWeapon?.ChangeDamageState();
-            _offHandWeapon?.ChangeDamageState();
+            _mainHandWeapon?.InvertDamageState();
+            _offHandWeapon?.InvertDamageState();
 
             yield return new WaitForSeconds(_coolDown);
 

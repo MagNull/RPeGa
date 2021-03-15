@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace WeaponScripts
 {
-    public class DamageStateChanger : MonoBehaviour
+    public class DamageStateInverter : MonoBehaviour
     {
         [SerializeField] private Transform _hand;
 
-        public void ChangeDamageState()
+        public void InvertDamageState()
         {
             Transform child = _hand.GetChild(0);
             if (child.TryGetComponent(out Weapon weapon))
             {
-                weapon.ChangeDamageState();
+                weapon.InvertDamageState();
             }
             else
             {
-                Debug.Log(child.name);
+                Debug.Log($"There no weapon in {_hand.name}");
             }
         }
     }

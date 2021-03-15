@@ -7,7 +7,7 @@ using Zenject;
 namespace AbilitiesScripts
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Melee Sword Attack")]
-    public class MeleeWarriorAttack : BaseActiveAbility
+    public class MeleeWarriorAttack : ActiveAbility
     {
         private int _inBlockHash;
         private int _shieldBashToHash;

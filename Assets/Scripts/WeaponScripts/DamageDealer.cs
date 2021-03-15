@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace WeaponScripts
 {
-    public class BaseDamageDealer : Weapon
+    public class DamageDealer : MonoBehaviour
     {
         public float BaseDamage = 1;
+        [SerializeField] protected bool _canDamage = true;
 
-        protected override void DealDamage(IDamageable damageable, float damage)
+        protected virtual void DealDamage(IDamageable damageable, float damage)
         {
             damageable.TakeDamage(damage);
         }
-
-        public override void PlayMeleeAttackAnimation()
+        
+        public virtual void InvertDamageState()
         {
-            
+            _canDamage = !_canDamage;
         }
 
         public virtual void OnCollisionEnter(Collision other)
         {
-            Debug.Log(other.gameObject.name);
-            if (other.gameObject.TryGetComponent(out IDamageable damageable))
+            if (_canDamage && other.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 float damage = BaseDamage;
                 DealDamage(damageable, damage);

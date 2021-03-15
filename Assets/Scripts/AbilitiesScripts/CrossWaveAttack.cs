@@ -8,7 +8,7 @@ using WeaponScripts;
 namespace AbilitiesScripts
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Cross Wave Attack")]
-    public class CrossWaveAttack : BaseActiveAbility
+    public class CrossWaveAttack : ActiveAbility
     {
         [SerializeField] private GameObject _wavePrefab;
         [SerializeField] private float _waveDistance = 1;
@@ -34,18 +34,14 @@ namespace AbilitiesScripts
             }
         }
 
-        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
+        public override void SetWeapon(Weapon weapon, WeaponType weaponType)
         {
             base.SetWeapon(weapon, weaponType);
             WaveSpawner waveSpawner = _caster.GetComponent<WaveSpawner>();
-            if (weapon)
+            if (weapon && weaponType == WeaponType.MAINHANDWEAPON)
             {
                 waveSpawner.SetSword(weapon.GetComponent<MeshRenderer>());
                 waveSpawner.enabled = true;
-            }
-            else
-            {
-                waveSpawner.enabled = false;
             }
         }
 

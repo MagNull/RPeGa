@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using AbilitiesScripts;
 using Installers;
 using InventoryScripts;
 using UnityEngine;
@@ -9,9 +10,9 @@ namespace AbilitySupports
 {
     public class AbilityCaster : MonoBehaviour
     {
-        [SerializeField] private BaseActiveAbility[] _activeAbilities;
-        [SerializeField] private BaseActiveAbility[] _activeAttacks;
-        [SerializeField] private BasePassiveAbility[] _passiveAbilities;
+        [SerializeField] private ActiveAbility[] _activeAbilities;
+        [SerializeField] private ActiveAbility[] _activeAttacks;
+        [SerializeField] private PassiveBonus[] _passiveAbilities;
 
         private InputHandler _inputHandler;
         private PlayerResources _playerResources;
@@ -28,9 +29,9 @@ namespace AbilitySupports
             _playerEquipment = playerEquipment;
         }
 
-        public BaseActiveAbility[] GetActiveAttacks() => _activeAttacks;
+        public ActiveAbility[] GetActiveAttacks() => _activeAttacks;
 
-        public BaseActiveAbility[] GetActiveAbilities() => _activeAbilities;
+        public ActiveAbility[] GetActiveAbilities() => _activeAbilities;
  
         private void Start()
         {

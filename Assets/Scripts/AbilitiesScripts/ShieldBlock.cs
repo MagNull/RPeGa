@@ -7,10 +7,10 @@ using WeaponScripts;
 namespace AbilitiesScripts
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Abilities/Active/Melee Abilities/Shield Block")]
-    public class ShieldBlock : BaseActiveAbility
+    public class ShieldBlock : ActiveAbility
     {
         [SerializeField] private float _speedChange = -5;
-        private BaseDamageDealer _fireShield;
+        private DamageDealer _fireShield;
         private int _inBlockToHash;
 
         public override void Init(AbilityCaster caster, InputHandler inputHandler, Animator animator)
@@ -24,12 +24,12 @@ namespace AbilitiesScripts
             if(!(_offHandWeapon is null))ChangeBlockState();
         }
 
-        public override void SetWeapon(Weapon weapon, EquipableType weaponType)
+        public override void SetWeapon(Weapon weapon, WeaponType weaponType)
         {
             base.SetWeapon(weapon, weaponType);
             if (!(_offHandWeapon is null) && weapon.GetType() == typeof(Shield)) 
             {
-                _fireShield = ((Shield)_offHandWeapon).FireShield.GetComponent<BaseDamageDealer>();
+                _fireShield = ((Shield)_offHandWeapon).FireShield.GetComponent<DamageDealer>();
                 _fireShield.gameObject.SetActive(false); 
             }
                

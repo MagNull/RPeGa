@@ -2681,10 +2681,10 @@ GameObject:
   - component: {fileID: 2838198258463492545}
   - component: {fileID: 2753512650504665601}
   - component: {fileID: 2753512650504665600}
-  - component: {fileID: 2753512650504665602}
   - component: {fileID: -89599964821895899}
   - component: {fileID: 6097851911817945362}
   - component: {fileID: 5987222080479003891}
+  - component: {fileID: 931880107974432079}
   m_Layer: 0
   m_Name: Warrior Prefab
   m_TagString: Untagged
@@ -2773,25 +2773,6 @@ MonoBehaviour:
   _strengthHealthCoefficient: 1
   _agilitySpeedCoefficient: 1
   _intelligenceManaCoefficient: 1
---- !u!114 &2753512650504665602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753512650504665605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2603220a62d3f44b85d4bca335c8fa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainHandTransform: {fileID: 2755455821623823423}
-  OffHandTransform: {fileID: 2748132364564781533}
-  HeadTransform: {fileID: 2747762166382869747}
-  BodyTransform: {fileID: 2755633142980765743}
-  GlovesTransform: {fileID: 2755633142980765743}
-  LegsTransform: {fileID: 2755633142980765743}
-  BootsTransform: {fileID: 2755633142980765743}
 --- !u!114 &-89599964821895899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2831,10 +2812,137 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wavePrefab: {fileID: 3637661360229736198, guid: 08f1b58c1b53df24f827205f706bb4cd, type: 3}
-  _waveDistance: 20
-  _waveSpeed: 10
+  _waveDistance: 30
+  _waveSpeed: 15
   _poolSize: 2
   _fireMaterial: {fileID: 2100000, guid: 3ba964ca6687f4543862c32689ea5b11, type: 2}
+--- !u!114 &931880107974432079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753512650504665605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abfbf9921ad4b69bcbad00f9f62ddc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 2755455821623823423}
+    - {fileID: 2748132364564781533}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: EquipmentPlaceDictionary
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[UnityEngine.Transform,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -1
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -2
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -3
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -4
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -5
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -6
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: -7
+    - Name: $v
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &2753538555620944997
 GameObject:
   m_ObjectHideFlags: 0
