@@ -1,3 +1,4 @@
+using Other;
 using UnityEngine;
 using Zenject;
 

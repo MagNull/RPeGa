@@ -1,20 +1,22 @@
+using UIScripts;
+
 namespace InventoryScripts
 {
     public class TakeOffEquippableItemAction : IActionWithEquippableItem
     {
-        private UIController _uiController;
+        private EquipmentUIController _equipmentUIController;
         protected EquippableItem _equippableItem;
         private Inventory _inventory;
         
-        public TakeOffEquippableItemAction(UIController uiController, EquippableItem item, Inventory inventory)
+        public TakeOffEquippableItemAction(EquipmentUIController equipmentUIController, EquippableItem item, Inventory inventory)
         {
-            _uiController = uiController;
+            _equipmentUIController = equipmentUIController;
             _equippableItem = item;
             _inventory = inventory;
         }
         public virtual void Do()
         {
-            _uiController.RemoveEquipmentFromSlot(_equippableItem);
+            _equipmentUIController.RemoveEquipmentFromSlot(_equippableItem);
             _inventory.AddItem(_equippableItem);
             _equippableItem.ItemTransform.parent = null;
         }

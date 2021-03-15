@@ -2,6 +2,7 @@ using System.ComponentModel;
 using AbilitiesScripts;
 using Installers;
 using InventoryScripts;
+using Other;
 using UnityEngine;
 using WeaponScripts;
 using Zenject;

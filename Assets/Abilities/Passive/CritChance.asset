@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CritChance
   m_EditorClassIdentifier: 
   _critChance: 20
-  _critMultiplayer: 2
+  _critMultiplayer: 5

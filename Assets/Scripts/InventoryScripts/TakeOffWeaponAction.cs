@@ -1,4 +1,5 @@
-﻿using WeaponScripts;
+﻿using UIScripts;
+using WeaponScripts;
 
 namespace InventoryScripts
 {
@@ -7,8 +8,8 @@ namespace InventoryScripts
         private readonly Weapon _weapon;
         private PlayerEquipment _playerEquipment;
         
-        public TakeOffWeaponAction(UIController uiController, EquippableItem item,
-            Inventory inventory, Weapon weapon, PlayerEquipment equipment) : base(uiController, item, inventory)
+        public TakeOffWeaponAction(EquipmentUIController equipmentUIController, EquippableItem item,
+            Inventory inventory, Weapon weapon, PlayerEquipment equipment) : base(equipmentUIController, item, inventory)
         {
             _weapon = weapon;
             _playerEquipment = equipment;

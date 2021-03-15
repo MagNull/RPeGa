@@ -1,4 +1,5 @@
 using System;
+using Other;
 using UnityEngine;
 using WeaponScripts;
 using Zenject;

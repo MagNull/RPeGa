@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UIScripts;
+using UnityEngine;
 using WeaponScripts;
 
 namespace InventoryScripts
@@ -6,8 +7,8 @@ namespace InventoryScripts
     public class PutOnWeaponAction : PutOnEquippableItemAction
     {
         private Weapon _weapon;
-        public PutOnWeaponAction(UIController uiController, EquippableItem item, Inventory inventory,
-            PlayerEquipment playerEquipment, Weapon weapon) : base(uiController, item, inventory, playerEquipment)
+        public PutOnWeaponAction(EquipmentUIController equipmentUIController, EquippableItem item, Inventory inventory,
+            PlayerEquipment playerEquipment, Weapon weapon) : base(equipmentUIController, item, inventory, playerEquipment)
         {
             _weapon = weapon;
         }

@@ -1,5 +1,6 @@
 using System;
 using AbilitySupports;
+using UIScripts;
 using UnityEngine;
 using WeaponScripts;
 using Zenject;
@@ -15,17 +16,17 @@ namespace InventoryScripts
         [SerializeField] private Collider _takeCollider;
         [SerializeField] private int _itemPlaceIndex;
         private PlayerEquipment _playerEquipment;
-        private UIController _uiController;
+        private EquipmentUIController _equipmentUIController;
         private Inventory _inventory;
         private bool _isEquipped;
 
         public int ItemPlaceIndex => _itemPlaceIndex;
 
         [Inject]
-        public void Construct(PlayerEquipment playerEquipment, UIController uiController, Inventory inventory)
+        public void Construct(PlayerEquipment playerEquipment, EquipmentUIController equipmentUIController, Inventory inventory)
         {
             _playerEquipment = playerEquipment;
-            _uiController = uiController;
+            _equipmentUIController = equipmentUIController;
             _inventory = inventory;
         }
 
@@ -43,9 +44,9 @@ namespace InventoryScripts
                 
                 IActionWithEquippableItem action;
                 if (TryGetComponent(out Weapon weapon))
-                    action = new TakeOffWeaponAction(_uiController, this,
+                    action = new TakeOffWeaponAction(_equipmentUIController, this,
                         _inventory, weapon, _playerEquipment);
-                else action = new TakeOffEquippableItemAction(_uiController, this, _inventory);
+                else action = new TakeOffEquippableItemAction(_equipmentUIController, this, _inventory);
                 _playerEquipment.DoActionWithItem(action);
                 
                 _isEquipped = false;
@@ -54,9 +55,9 @@ namespace InventoryScripts
             {
                 IActionWithEquippableItem action;
                 if (TryGetComponent(out Weapon weapon))
-                    action = new PutOnWeaponAction(_uiController, this,
+                    action = new PutOnWeaponAction(_equipmentUIController, this,
                         _inventory, _playerEquipment, weapon);
-                else action = new PutOnEquippableItemAction(_uiController, this, _inventory, _playerEquipment);
+                else action = new PutOnEquippableItemAction(_equipmentUIController, this, _inventory, _playerEquipment);
                 _playerEquipment.DoActionWithItem(action);
                 
                 gameObject.SetActive(true);

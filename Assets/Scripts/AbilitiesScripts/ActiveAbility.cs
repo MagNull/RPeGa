@@ -1,5 +1,6 @@
 using AbilitySupports;
 using InventoryScripts;
+using Other;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
