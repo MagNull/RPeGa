@@ -3,3 +3,4 @@ Practice in the implementation of RPG games. Basically, this is the implementati
 # Now there added:
 + Ability System
 + Inventory System
++ Dialog System
