@@ -4,3 +4,5 @@ Practice in the implementation of RPG games. Basically, this is the implementati
 + Ability System
 + Inventory System
 + Dialog System
++ Stats system
++ Base of Questing system
