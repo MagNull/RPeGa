@@ -92,4 +92,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPanel: {fileID: 0}
-  _uiController: {fileID: 0}
+  _canvas: {fileID: 0}

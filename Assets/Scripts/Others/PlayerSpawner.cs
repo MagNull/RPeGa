@@ -30,10 +30,7 @@ namespace Others
 
          _playerMovement.PlayerAnimator = player.GetComponent<Animator>();
          player.transform.parent = _playerTransform;
-         player.transform.position = new Vector3(
-            player.transform.position.x,
-            0,
-            player.transform.position.z);
+         player.transform.localPosition = Vector3.down;
          Cursor.lockState = CursorLockMode.Locked;
          Cursor.visible = false;
          _playerTransform.GetComponent<MouseRotation>().enabled = true;

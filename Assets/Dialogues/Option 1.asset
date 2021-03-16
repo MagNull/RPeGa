@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b69f48867ca0b1468c92ea844cc1693, type: 3}
   m_Name: Option 1
   m_EditorClassIdentifier: 
-  _mainPhrase: Ha, Go fuck yourself
+  _mainPhrase: Are you want to fight ?
   _optionPhrase: Yes
   _optionAPhrase: {fileID: 11400000, guid: 661c6cd932a8ede4aa2819e32dc705ce, type: 2}
   _optionBPhrase: {fileID: 11400000, guid: 8a035e523216bb7479ee2e33267638a9, type: 2}
