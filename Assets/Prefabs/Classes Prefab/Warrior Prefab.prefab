@@ -2768,7 +2768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3a1b7ffc49e8d41879f1b19a798cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: 3c8b47426dd468745b44f80982b9178b, type: 2}
+  _startStrength: 1
+  _startAgility: 1
+  _startIntelligence: 1
   _strengthDamageCoefficient: 1
   _strengthHealthCoefficient: 1
   _agilitySpeedCoefficient: 1

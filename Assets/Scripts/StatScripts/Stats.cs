@@ -3,20 +3,25 @@ using UnityEngine;
 
 namespace StatScripts
 {
-    [CreateAssetMenu(fileName = "Stats", menuName = "Player Features/Characteristics")]
-    public class Stats : ScriptableObject
+    public class Stats
     {
         public event Action<StatType, int> OnStatsChange; 
-        [SerializeField] private int _strength;    
-        [SerializeField] private int _agility;
-        [SerializeField] private int _intelligence;
-        
+        private int _strength;    
+        private int _agility;
+        private int _intelligence;
+
+        public Stats(int strength, int agility, int intelligence)
+        {
+            _strength = strength;
+            _agility = agility;
+            _intelligence = intelligence;
+        }
         public int Strength
         {
             get => _strength;
             set
             {
-                OnStatsChange(StatType.Strength, _strength - value);
+                OnStatsChange(StatType.Strength, value - _strength);
                 _strength = value;
             }
         }
@@ -26,7 +31,7 @@ namespace StatScripts
             get => _agility;
             set
             {
-                OnStatsChange(StatType.Agility, _agility - value);
+                OnStatsChange(StatType.Agility, value - _agility);
                 _agility = value;
             }
         }
@@ -36,7 +41,7 @@ namespace StatScripts
             get => _intelligence;
             set
             {
-                OnStatsChange(StatType.Intelligence, _intelligence - value);
+                OnStatsChange(StatType.Intelligence, value - _intelligence);
                 _intelligence = value;
             }
         }

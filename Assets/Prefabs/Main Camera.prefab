@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: Damping.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5261967726587571555, guid: e6d960e5a76065b42bd7bbb49796ef60, type: 3}
+      propertyPath: CameraDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5261967727761657404, guid: e6d960e5a76065b42bd7bbb49796ef60, type: 3}
       propertyPath: m_Name
       value: CM vcam1

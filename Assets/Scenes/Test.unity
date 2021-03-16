@@ -172,40 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f675afc30b044d9a9f44009a7b35521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &359127766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3672325499702538028, guid: 89be2f220d74557489268a60ba63b447, type: 3}
-  m_PrefabInstance: {fileID: 1700517226}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &359127772
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359127766}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!65 &359127773
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359127766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &359805584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,10 +4582,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
-    - target: {fileID: 4129708955046160140, guid: 1a40ca1d62aafc746a5ece0845dca814, type: 3}
-      propertyPath: _speedBonus
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4134123255869629179, guid: 1a40ca1d62aafc746a5ece0845dca814, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4970,7 +4932,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26638
+  m_Name: pb_Mesh24044
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5133,7 +5095,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7441455743516830427, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
   m_PrefabInstance: {fileID: 5449501365409669491}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987442399}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2fe8fb5a25f9884f9955e0b0cdd08aa, type: 3}
@@ -5296,10 +5258,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2202611080621461783, guid: 89be2f220d74557489268a60ba63b447, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3672325499702538028, guid: 89be2f220d74557489268a60ba63b447, type: 3}
       propertyPath: m_Name
       value: ItemCube
@@ -5506,28 +5464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1987442399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7441455743516830407, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
-  m_PrefabInstance: {fileID: 5449501365409669491}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1987442410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987442399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9785db6cf9f413242bb18acb6e90ea3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogPanel: {fileID: 402073557}
-  _buttonA: {fileID: 1860052343}
-  _buttonB: {fileID: 540074769}
-  _pressToTalkText: {fileID: 2100343113}
-  _dialogCanvas: {fileID: 694289842}
 --- !u!1001 &2005154245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5939,22 +5875,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9221246007404920480, guid: aaabc193218b99e41800bf6613c83659, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9221246007404920480, guid: aaabc193218b99e41800bf6613c83659, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9221246007404920483, guid: aaabc193218b99e41800bf6613c83659, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 3235229456013269742}
-    - target: {fileID: 9221246008376434173, guid: aaabc193218b99e41800bf6613c83659, type: 3}
-      propertyPath: CameraDistance
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaabc193218b99e41800bf6613c83659, type: 3}
 --- !u!1001 &4313960986835070997
@@ -6381,7 +6305,7 @@ GameObject:
   - component: {fileID: 5325036241111686465}
   - component: {fileID: 5325036241111686473}
   - component: {fileID: 5325036241111686472}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Talk Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6444,10 +6368,26 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 1453705703, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
-    - target: {fileID: 1194826221461362214, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
-      propertyPath: _baseSpeed
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 1987442410, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
+      propertyPath: _buttonA
+      value: 
+      objectReference: {fileID: 1860052343}
+    - target: {fileID: 1987442410, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
+      propertyPath: _buttonB
+      value: 
+      objectReference: {fileID: 540074769}
+    - target: {fileID: 1987442410, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
+      propertyPath: _dialogPanel
+      value: 
+      objectReference: {fileID: 402073557}
+    - target: {fileID: 1987442410, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
+      propertyPath: _dialogCanvas
+      value: 
+      objectReference: {fileID: 694289842}
+    - target: {fileID: 1987442410, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
+      propertyPath: _pressToTalkText
+      value: 
+      objectReference: {fileID: 2100343113}
     - target: {fileID: 7441455743516830404, guid: c898a7f9d778a594bb0f6d2004fe7bea, type: 3}
       propertyPath: m_RootOrder
       value: 12

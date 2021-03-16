@@ -14,6 +14,9 @@ namespace InventoryScripts
         [SerializeField] private float _armorBonus;
         [SerializeField] private float _manaBonus;
         [SerializeField] private float _healthBonus;
+        [SerializeField] private int _strengthBonus;
+        [SerializeField] private int _agilityBonus;
+        [SerializeField] private int _intelligenceBonus;
         private EquippableItem _equippableItem;
 
         [Inject] private PlayerBonuses _playerBonuses;
@@ -40,7 +43,9 @@ namespace InventoryScripts
             _playerBonuses.SpeedBonus.Value -= _speedBonus;
             _playerBonuses.ArmorBonus.Value -= _armorBonus;
             _playerBonuses.ManaBonus.Value -= _manaBonus;
-            _playerBonuses.HealthBonus.Value -= _healthBonus;
+            _playerBonuses.PlayerStats.Intelligence -= _intelligenceBonus;
+            _playerBonuses.PlayerStats.Strength -= _strengthBonus;
+            _playerBonuses.PlayerStats.Agility -= _agilityBonus;
         }
 
         private void AddBonus()
@@ -50,6 +55,9 @@ namespace InventoryScripts
             _playerBonuses.ArmorBonus.Value += _armorBonus;
             _playerBonuses.ManaBonus.Value += _manaBonus;
             _playerBonuses.HealthBonus.Value += _healthBonus;
+            _playerBonuses.PlayerStats.Intelligence += _intelligenceBonus;
+            _playerBonuses.PlayerStats.Strength += _strengthBonus;
+            _playerBonuses.PlayerStats.Agility += _agilityBonus;
         }
         
     }

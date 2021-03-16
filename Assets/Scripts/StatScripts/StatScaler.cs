@@ -1,3 +1,4 @@
+using System;
 using AbilitySupports;
 using Other;
 using UnityEngine;
@@ -7,8 +8,10 @@ namespace StatScripts
 {
     public class StatScaler : MonoBehaviour
     {
-        [SerializeField] private Stats _stats;
-
+        [SerializeField] private int _startStrength;
+        [SerializeField] private int _startAgility;
+        [SerializeField] private int _startIntelligence;
+        
         [Header("Strength Scale Coefficient ")]
         [SerializeField] private float _strengthDamageCoefficient;
         [SerializeField] private float _strengthHealthCoefficient;
@@ -17,6 +20,7 @@ namespace StatScripts
         [Header("Intelligence Scale Coefficient ")]
         [SerializeField] private float _intelligenceManaCoefficient;
 
+        private Stats _stats;
 
         private PlayerBonuses _playerBonuses;
         private PlayerResources _playerResources;
@@ -27,10 +31,15 @@ namespace StatScripts
             DamageCalculator damageCalculator)
         {
             _playerBonuses = playerBonuses;
+            _playerBonuses.PlayerStats = _stats;
             _playerResources = playerResources;
             _damageCalculator = damageCalculator;
         }
-    
+
+        private void Awake()
+        {
+            _stats = new Stats(_startStrength, _startAgility, _startIntelligence);
+        }
 
         private void OnEnable()
         {
@@ -58,7 +67,9 @@ namespace StatScripts
         {
             if (type == StatType.Strength)
             {
+                float healthRatio = _playerResources.CurrentHealth.Value / _playerResources.MAXHealth.Value;
                 _playerResources.MAXHealth.Value += _strengthHealthCoefficient * delta;
+                _playerResources.CurrentHealth.Value = healthRatio * _playerResources.MAXHealth.Value;
                 _damageCalculator.DamageBonus += _strengthDamageCoefficient * delta; 
             }
         }
@@ -72,7 +83,12 @@ namespace StatScripts
         private void ScaleIntelligence(StatType type, int delta)
         {
             if (type == StatType.Intelligence)
+            {
+                float manaRatio = _playerResources.CurrentMana.Value / _playerResources.MAXMana.Value;
                 _playerResources.MAXMana.Value += _intelligenceManaCoefficient * delta;
+                _playerResources.CurrentMana.Value = manaRatio * _playerResources.MAXMana.Value;
+            }
+                
         }
     }
 }

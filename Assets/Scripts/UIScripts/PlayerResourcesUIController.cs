@@ -24,7 +24,17 @@ namespace UIScripts
                 .Subscribe(_ => ChangeHealthSliderValue())
                 .AddTo(this);
             _playerResources
+                .MAXHealth
+                .Where(x => x >= 0)
+                .Subscribe(_ => ChangeHealthSliderValue())
+                .AddTo(this);
+            _playerResources
                 .CurrentMana
+                .Where(x => x >= 0)
+                .Subscribe(_ => ChangeManaSliderValue())
+                .AddTo(this);
+            _playerResources
+                .MAXMana
                 .Where(x => x >= 0)
                 .Subscribe(_ => ChangeManaSliderValue())
                 .AddTo(this);
@@ -33,13 +43,13 @@ namespace UIScripts
         private void ChangeHealthSliderValue()
         {
             _healthSlider.value = _playerResources.CurrentHealth.Value / _playerResources.MAXHealth.Value;
-            _healthText.text = $"{_playerResources.CurrentHealth.Value} / {_playerResources.MAXHealth.Value}";
+            _healthText.text = $"{(int)_playerResources.CurrentHealth.Value} / {(int)_playerResources.MAXHealth.Value}";
         }
     
         private void ChangeManaSliderValue()
         {
             _manaSlider.value = _playerResources.CurrentMana.Value / _playerResources.MAXMana.Value;
-            _manaText.text = $"{_playerResources.CurrentMana.Value} / {_playerResources.MAXMana.Value}";
+            _manaText.text = $"{(int)_playerResources.CurrentMana.Value} / {(int)_playerResources.MAXMana.Value}";
         }
     }
 }
