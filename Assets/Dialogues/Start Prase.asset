@@ -15,4 +15,4 @@ MonoBehaviour:
   _mainPhrase: Hi. Do you need a help ?
   _optionPhrase: 
   _optionAPhrase: {fileID: 11400000, guid: 9300a43dcd1723f44b0b417104063a38, type: 2}
-  _optionBPhrase: {fileID: 11400000, guid: 6c688c0b16843f34f9102ba35cfd57a3, type: 2}
+  _optionBPhrase: {fileID: 11400000, guid: 8a035e523216bb7479ee2e33267638a9, type: 2}

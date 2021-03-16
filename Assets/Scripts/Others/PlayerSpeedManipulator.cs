@@ -2,7 +2,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Other
+namespace Others
 {
     public class PlayerSpeedManipulator : MonoBehaviour
     {

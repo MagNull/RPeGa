@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Other
+namespace Others
 {
     public class DamageCalculator : MonoBehaviour
     {

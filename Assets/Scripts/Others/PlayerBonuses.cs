@@ -1,9 +1,8 @@
-using System;
 using StatScripts;
 using UniRx;
 using UnityEngine;
 
-namespace Other
+namespace Others
 {
     public class PlayerBonuses : MonoBehaviour
     {

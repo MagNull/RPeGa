@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Other;
+using Others;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -20,6 +20,7 @@ namespace DialogSystemScripts
         [SerializeField] private Canvas _dialogCanvas;
         [Inject] private InputHandler _inputHandler;
         private ITalkable _talkTarget;
+        private bool _isTalking;
 
         private void Start()
         {
@@ -27,13 +28,13 @@ namespace DialogSystemScripts
                 .Where(_ => Input.GetKeyDown(KeyCode.R))
                 .Subscribe(_ =>
                 {
-                    if (_talkTarget != null) StartDialog();
+                    if (_talkTarget != null && !_isTalking) StartDialog();
                 });
             this.UpdateAsObservable()
                 .Where(_ => Input.GetKeyDown(KeyCode.Escape))
                 .Subscribe(_ =>
                 {
-                    if (_talkTarget != null) EndDialog();
+                    if (_talkTarget != null && _isTalking) EndDialog();
                 });
             _dialogCanvas.gameObject.SetActive(false);
             _pressToTalkText.gameObject.SetActive(false);
@@ -48,18 +49,20 @@ namespace DialogSystemScripts
 
         private void StartDialog()
         {
+            _isTalking = true;
             _talkTarget.StartDialog(this);
             ChangeDialogWindowEnable();
         }
 
         public void EndDialog()
         {
+            _isTalking = false;
             ChangeDialogWindowEnable();
             _talkTarget.EndDialog();
         }
         private void ChangeDialogWindowEnable()
         {
-            bool state = !_dialogCanvas.gameObject.activeSelf;
+            bool state = _isTalking;
             if ((_inputHandler.CanAttack && _inputHandler.CanCast) == state)
             {
                 _dialogCanvas.gameObject.SetActive(state);

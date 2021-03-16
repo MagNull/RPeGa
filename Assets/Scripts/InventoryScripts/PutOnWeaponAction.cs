@@ -1,4 +1,5 @@
-﻿using UIScripts;
+﻿using Others;
+using UIScripts;
 using UnityEngine;
 using WeaponScripts;
 
@@ -17,6 +18,7 @@ namespace InventoryScripts
             base.Do();
             _equippableItem.gameObject.layer = 7;
             _playerEquipment.InitWeapons(_weapon.WeaponType, _weapon);
+            EventBus.TriggerEvent("Take " + _equippableItem.name);
         }
     }
 }

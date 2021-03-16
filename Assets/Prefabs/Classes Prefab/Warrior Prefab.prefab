@@ -2768,13 +2768,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3a1b7ffc49e8d41879f1b19a798cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startStrength: 1
-  _startAgility: 1
-  _startIntelligence: 1
   _strengthDamageCoefficient: 1
   _strengthHealthCoefficient: 1
   _agilitySpeedCoefficient: 1
   _intelligenceManaCoefficient: 1
+  _stats:
+    _strength: 1
+    _agility: 1
+    _intelligence: 1
 --- !u!114 &-89599964821895899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2831,8 +2832,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 010118000000450071007500690070006d0065006e00740050006c00610063006500440069006300740069006f006e006100720079002f00000000017b000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00440069006300740069006f006e00610072007900600032005b005b00530079007300740065006d002e0049006e007400330032002c0020006d00730063006f0072006c00690062005d002c005b0055006e0069007400790045006e00670069006e0065002e005400720061006e00730066006f0072006d002c00200055006e0069007400790045006e00670069006e0065002e0043006f00720065004d006f00640075006c0065005d005d002c0020006d00730063006f0072006c00690062000000000001010800000063006f006d00700061007200650072002f010000000158000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00470065006e00650072006900630045007100750061006c0069007400790043006f006d0070006100720065007200600031005b005b00530079007300740065006d002e0049006e007400330032002c0020006d00730063006f0072006c00690062005d005d002c0020006d00730063006f0072006c00690062000100000005060700000000000000042e17010200000024006b00ffffffff0b0102000000240076000000000005042e17010200000024006b00feffffff0b0102000000240076000100000005042e17010200000024006b00fdffffff2d01020000002400760005042e17010200000024006b00fcffffff2d01020000002400760005042e17010200000024006b00fbffffff2d01020000002400760005042e17010200000024006b00faffffff2d01020000002400760005042e17010200000024006b00f9ffffff2d010200000024007600050705
     ReferencedUnityObjects:
     - {fileID: 2755455821623823423}
     - {fileID: 2748132364564781533}
@@ -2840,111 +2841,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: EquipmentPlaceDictionary
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[UnityEngine.Transform,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 7
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -1
-    - Name: $v
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -2
-    - Name: $v
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -3
-    - Name: $v
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -4
-    - Name: $v
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -5
-    - Name: $v
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -6
-    - Name: $v
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: -7
-    - Name: $v
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
 --- !u!1 &2753538555620944997
 GameObject:
   m_ObjectHideFlags: 0

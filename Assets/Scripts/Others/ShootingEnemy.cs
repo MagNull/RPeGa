@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeaponScripts;
 
-namespace Other
+namespace Others
 {
     public class ShootingEnemy : TestEnemy
     {

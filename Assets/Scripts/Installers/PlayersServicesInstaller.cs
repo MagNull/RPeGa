@@ -1,6 +1,8 @@
 using AbilitySupports;
+using DialogSystemScripts;
 using InventoryScripts;
-using Other;
+using Others;
+using Questing;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +21,7 @@ namespace Installers
             Container.Bind<DamageCalculator>().FromInstance(_player.GetComponent<DamageCalculator>()).AsSingle();
             Container.Bind<Inventory>().FromInstance(_player.GetComponent<Inventory>()).AsSingle();
             Container.Bind<PlayerEquipment>().FromInstance(_player.GetComponent<PlayerEquipment>()).AsSingle();
+            Container.Bind<PlayerQuester>().FromInstance(_player.GetComponent<PlayerQuester>()).AsSingle();
         }
     }
 }

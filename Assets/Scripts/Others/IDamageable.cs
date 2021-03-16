@@ -1,4 +1,4 @@
-namespace Other
+namespace Others
 {
     public interface IDamageable
     {

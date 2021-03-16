@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Other;
+using Others;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;

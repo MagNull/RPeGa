@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Other
+namespace Others
 {
     public class FireShield : MonoBehaviour
     {

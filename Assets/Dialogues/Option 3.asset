@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b69f48867ca0b1468c92ea844cc1693, type: 3}
   m_Name: Option 3
   m_EditorClassIdentifier: 
-  _mainPhrase: Ti Cho? Ohuiv?
-  _optionPhrase: Pidor
+  _mainPhrase: Goodbye
+  _optionPhrase: Ok
   _optionAPhrase: {fileID: 0}
   _optionBPhrase: {fileID: 0}

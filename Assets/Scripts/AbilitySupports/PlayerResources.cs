@@ -1,5 +1,5 @@
 using System;
-using Other;
+using Others;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

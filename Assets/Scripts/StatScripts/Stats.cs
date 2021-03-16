@@ -3,19 +3,20 @@ using UnityEngine;
 
 namespace StatScripts
 {
+    [Serializable]
     public class Stats
     {
         public event Action<StatType, int> OnStatsChange; 
-        private int _strength;    
-        private int _agility;
-        private int _intelligence;
+        [SerializeField] private int _strength;    
+        [SerializeField] private int _agility;
+        [SerializeField] private int _intelligence;
 
-        public Stats(int strength, int agility, int intelligence)
-        {
-            _strength = strength;
-            _agility = agility;
-            _intelligence = intelligence;
-        }
+        // public Stats(int strength, int agility, int intelligence)
+        // {
+        //     _strength = strength;
+        //     _agility = agility;
+        //     _intelligence = intelligence;
+        // }
         public int Strength
         {
             get => _strength;

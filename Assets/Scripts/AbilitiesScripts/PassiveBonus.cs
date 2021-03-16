@@ -1,5 +1,5 @@
 using AbilitySupports;
-using Other;
+using Others;
 using UnityEngine;
 
 namespace AbilitiesScripts

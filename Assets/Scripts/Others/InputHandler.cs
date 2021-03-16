@@ -3,7 +3,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Other
+namespace Others
 {
     public class InputHandler : MonoBehaviour 
     {

@@ -1,6 +1,6 @@
 using AbilitySupports;
 using InventoryScripts;
-using Other;
+using Others;
 using UniRx;
 using UnityEngine;
 using Zenject;

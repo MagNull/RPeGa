@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Other
+namespace Others
 {
     public class TestEnemy : MonoBehaviour, IDamageable
     {

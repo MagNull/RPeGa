@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Other
+namespace Others
 {
     [Serializable]
     public enum Classes

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using AbilitySupports;
-using Other;
+using Others;
 using UniRx;
 using UnityEngine;
 using WeaponScripts;

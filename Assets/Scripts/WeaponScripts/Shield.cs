@@ -1,5 +1,5 @@
 using AbilitiesScripts;
-using Other;
+using Others;
 using UnityEngine;
 using Zenject;
 

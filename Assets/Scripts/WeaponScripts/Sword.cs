@@ -1,4 +1,4 @@
-using Other;
+using Others;
 using UnityEngine;
 using Zenject;
 

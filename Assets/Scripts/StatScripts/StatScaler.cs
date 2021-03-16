@@ -1,6 +1,6 @@
 using System;
 using AbilitySupports;
-using Other;
+using Others;
 using UnityEngine;
 using Zenject;
 
@@ -8,10 +8,6 @@ namespace StatScripts
 {
     public class StatScaler : MonoBehaviour
     {
-        [SerializeField] private int _startStrength;
-        [SerializeField] private int _startAgility;
-        [SerializeField] private int _startIntelligence;
-        
         [Header("Strength Scale Coefficient ")]
         [SerializeField] private float _strengthDamageCoefficient;
         [SerializeField] private float _strengthHealthCoefficient;
@@ -20,7 +16,7 @@ namespace StatScripts
         [Header("Intelligence Scale Coefficient ")]
         [SerializeField] private float _intelligenceManaCoefficient;
 
-        private Stats _stats;
+        [SerializeField] private Stats _stats = new Stats();
 
         private PlayerBonuses _playerBonuses;
         private PlayerResources _playerResources;
@@ -34,11 +30,6 @@ namespace StatScripts
             _playerBonuses.PlayerStats = _stats;
             _playerResources = playerResources;
             _damageCalculator = damageCalculator;
-        }
-
-        private void Awake()
-        {
-            _stats = new Stats(_startStrength, _startAgility, _startIntelligence);
         }
 
         private void OnEnable()

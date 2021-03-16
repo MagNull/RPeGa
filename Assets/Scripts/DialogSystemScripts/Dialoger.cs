@@ -6,36 +6,36 @@ namespace DialogSystemScripts
 {
     public class Dialoger : MonoBehaviour, ITalkable
     {
-        [SerializeField] private Dialog _dialogStart;
-        [SerializeField] private Dialog _currentPhrase;
+        [SerializeField] private UsualDialog _startDialog;
+        [SerializeField] private UsualDialog _currentPhrase;
         private bool _isTalk = false;
         private PlayerDialoger _dialoger;
 
         public void StartDialog(PlayerDialoger dialoger)
         {
-            _currentPhrase = _dialogStart;
+            _currentPhrase = _startDialog;
             _isTalk = true;
             _dialoger = dialoger;
             UpdateDialog();
         }
 
-        private void UpdateDialog()
+        public void UpdateDialog()
         {
             UpdateText();
 
             UnityAction actionA;
             UnityAction actionB;
-            if (!(_currentPhrase.OptionAPhrase)) actionA = _dialoger.EndDialog;
+            if (!_currentPhrase.OptionAPhrase) actionA = _dialoger.EndDialog;
             else actionA = () =>
             {
                 _currentPhrase = _currentPhrase.OptionAPhrase;
-                UpdateDialog();
+                _currentPhrase.ChooseDialog(this);
             };
-            if (!(_currentPhrase.OptionBPhrase)) actionB = _dialoger.EndDialog;
+            if (!_currentPhrase.OptionBPhrase) actionB = _dialoger.EndDialog;
             else actionB = () =>
             {
                 _currentPhrase = _currentPhrase.OptionBPhrase;
-                UpdateDialog();
+                _currentPhrase.ChooseDialog(this);
             };
             
             UpdateButtons(actionA, actionB);
@@ -60,7 +60,7 @@ namespace DialogSystemScripts
 
         public void EndDialog()
         {
-            _currentPhrase = _dialogStart;
+            _currentPhrase = _startDialog;
             _isTalk = false;
             _dialoger.ButtonChooseA.ChooseButton.onClick.RemoveAllListeners();
             _dialoger.ButtonChooseB.ChooseButton.onClick.RemoveAllListeners();
@@ -76,8 +76,8 @@ namespace DialogSystemScripts
         {
             if (other.TryGetComponent(out PlayerDialoger dialoger))
             {
-                dialoger.SetPressToTalkText(false, this);
                 if(_isTalk) dialoger.EndDialog();
+                dialoger.SetPressToTalkText(false, this);
             }
         }
     }
