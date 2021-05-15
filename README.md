@@ -6,3 +6,5 @@ Practice in the implementation of RPG games. Basically, this is the implementati
 + Dialog System
 + Stats system
 + Base of Questing system
+
+# Used plugins: Zenject, UniRx
