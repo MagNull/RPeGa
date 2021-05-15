@@ -7,4 +7,5 @@ Practice in the implementation of RPG games. Basically, this is the implementati
 + Stats system
 + Base of Questing system
 
-# Used plugins: Zenject, UniRx
+# Used plugins: 
+Zenject, UniRx
